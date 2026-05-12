@@ -272,9 +272,15 @@ function initCountdown() {
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   // Theme
-  const saved = localStorage.getItem('iims-theme');
-  applyTheme(saved === 'dark');
-
+  // const saved = localStorage.getItem('iims-theme');
+  // applyTheme(saved === 'dark');
+const saved = localStorage.getItem('iims-theme');
+if (saved === 'dark') {
+    applyTheme(true);
+} else {
+    applyTheme(false);
+    localStorage.setItem('iims-theme', 'light'); // ✅ har page pe light persist hoga
+}
   initNavbar();
   initFaq();
   initCounters();

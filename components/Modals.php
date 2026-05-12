@@ -6,15 +6,24 @@
  */
 ?>
 
-<!-- Apply Modal -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Apply Modal -->
 <div class="modal-backdrop" id="apply-modal" onclick="closeModalOnBackdrop(event,'apply-modal')">
   <div class="modal-box" style="position:relative">
-    <button class="modal-close" onclick="closeModal('apply-modal')">
+
+    <div class="modal-title">Apply Now</div>
+        <button class="modal-close" onclick="closeModal('apply-modal')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
     </button>
-    <div class="modal-title">Apply Now</div>
     <p class="modal-desc" id="apply-modal-desc">Tell us about you. Our counsellor will reach out within 24 hours.</p>
 
     <form method="post" action="actions/apply.php" id="apply-form" onsubmit="handleApplySubmit(event)">
@@ -82,3 +91,30 @@
     </form>
   </div>
 </div>
+<script>
+function openModal(id) {
+    const modal = document.getElementById(id);
+
+    if(modal){
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(id) {
+    const modal = document.getElementById(id);
+
+    if(modal){
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+function closeModalOnBackdrop(event, id) {
+    if(event.target.id === id){
+        closeModal(id);
+    }
+}
+</script>
+</body>
+</html>

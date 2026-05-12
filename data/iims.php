@@ -337,3 +337,53 @@ $FAQS = [
     'a' => 'Click the compare icon on any college card. Add up to 3 colleges, then visit the compare page for a detailed table.',
   ],
 ];
+/* =========================================================
+   FUNCTIONS
+========================================================= */
+
+/**
+ * Get single college by slug
+ */
+
+
+function getCollege($slug) {
+    global $COLLEGES;
+
+    foreach ($COLLEGES as $college) {
+        if ($college['slug'] === $slug) {
+            return $college;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Get single course by slug
+ */
+function getCourse($slug) {
+    global $COURSES;
+
+    foreach ($COURSES as $course) {
+        if ($course['slug'] === $slug) {
+            return $course;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Get single blog by slug
+ */
+function getBlog($slug) {
+    global $BLOGS;
+
+    foreach ($BLOGS as $blog) {
+        if ($blog['slug'] === $slug) {
+            return $blog;
+        }
+    }
+
+    return null;
+}?>

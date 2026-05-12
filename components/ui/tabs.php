@@ -62,4 +62,4 @@ function uiTabsSwitch(tabsId, value) {
     panel.classList.toggle('active', active);
   });
 }
-</script>
+</script>s
