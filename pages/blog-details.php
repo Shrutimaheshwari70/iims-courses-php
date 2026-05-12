@@ -21,7 +21,7 @@ if (!$b) {
 
 $page_title       = $b['title'] . ' — IIMs Courses';
 $page_og_image    = $b['image'];
-$current_page     = 'blogs';s
+$current_page     = 'blogs';
 
 // Handle comment submission
 $comments = [

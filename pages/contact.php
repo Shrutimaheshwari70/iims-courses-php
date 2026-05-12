@@ -22,7 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include '../includes/header.php';
 include '../components/Navbar.php';
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
 <!-- Hero -->
 <section style="background: linear-gradient(135deg, #1a2340 0%, #2d3d6b 100%); padding: 7rem 0 4rem;">
   <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
@@ -113,6 +121,8 @@ include '../components/Navbar.php';
   </div>
 </section>
 
+</body>
+</html>
 <!-- Toast -->
 <?php if ($toast_message): ?>
 <div id="toast" style="position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; padding:.75rem 1.25rem; border-radius:10px; font-size:.9rem; font-weight:500; color:#fff; background:<?= $toast_type === 'success' ? '#3ab07b' : '#e05050' ?>; box-shadow:0 4px 20px rgba(0,0,0,.15);">

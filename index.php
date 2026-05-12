@@ -17,7 +17,7 @@ include 'components/Navbar.php';
 <!-- ============================================================
      HERO SECTION
      ============================================================ -->
-<section class="hero">
+<section class="hero d-flex align-items-center overflow-hidden">
   <img src="assets/images/hero-campus.jpg" alt="IIM campus at sunset" class="hero-bg" />
   <div class="hero-overlay"></div>
 
@@ -28,14 +28,14 @@ include 'components/Navbar.php';
         Admissions Open &bull; Batch 2026
       </span>
 
-      <h1>Your future in <span class="text-gradient-accent">India's top IIMs</span> starts here.</h1>
+      <h1 class="fw-semibold mt-4">Your future in <span class="text-gradient-accent">India's top IIMs</span> starts here.</h1>
 
       <p class="hero-desc">
         Discover all 14 Indian Institutes of Management with verified rankings,
         placements, fees and alumni reviews — and get free admissions counselling.
       </p>
 
-      <div class="hero-actions">
+      <div class="hero-actions d-flex flex-wrap gap-2 mt-5">
         <button class="btn btn-hero" onclick="openModal('apply-modal')">
           Apply Now
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -43,85 +43,89 @@ include 'components/Navbar.php';
         <a href="pages/colleges.php" class="btn btn-outline">Explore IIMs</a>
       </div>
 
-      <div class="hero-social">
-        <div class="hero-avatars">
-          <span></span><span></span><span></span><span></span>
-        </div>
+      <div class="hero-social d-flex align-items-center gap-5 mt-4">
+      
+        <div class="hero-avatars d-flex">
+  <img class="rounded-5 border object-fit-cover" src="assets/images/student1.webp" alt="user" class="rounded-circle" />
+  <img class="rounded-5 border object-fit-cover" src="assets/images/student2.webp" alt="user" class="rounded-circle" />
+  <img class="rounded-5 border object-fit-cover" src="assets/images/student3.webp" alt="user" class="rounded-circle" />
+  <img class="rounded-5 border object-fit-cover" src="assets/images/student5.webp" alt="user" class="rounded-circle" />
+</div>
         <div>
-          <div class="hero-stars">
+          <div class="hero-stars d-flex align-items-center gap-0">
             <?php for ($i=0;$i<5;$i++): ?>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
             </svg>
             <?php endfor; ?>
-            <span class="score">4.9</span>
+            <span class="score fw-semibold">4.9</span>
           </div>
           <div class="hero-stars sub" style="display:block;margin-top:.1rem">Trusted by 50,000+ MBA aspirants</div>
         </div>
       </div>
     </div>
 
-    <div class="hero-right">
-      <div class="floating-stat float-0">
-        <div class="floating-stat-icon">
+    <div class="hero-right d-flex flex-column gap-2">
+      <div class="floating-stat float-0   border-amber-50 py-4 px-3 rounded-2xl d-flex align-items-center gap-4 shadow">
+        <div class="floating-stat-icon d-flex align-items-center justify-content-center text-white rounded-xl">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
           </svg>
         </div>
         <div>
-          <div class="floating-stat-label">Top NIRF Ranked</div>
-          <div class="floating-stat-value">14 IIMs</div>
+          <div class="floating-stat-label fw-semibold text-uppercase ls-4">Top NIRF Ranked</div>
+          <div class="floating-stat-value text-white fw-bold fs-4">14 IIMs</div>
         </div>
       </div>
-      <div class="floating-stat float-1">
-        <div class="floating-stat-icon">
+      <div class="floating-stat float-1 border-amber-50 py-4 px-3 rounded-2xl d-flex align-items-center gap-4 shadow">
+        <div class="floating-stat-icon d-flex align-items-center justify-content-center text-white rounded-xl">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
           </svg>
         </div>
         <div>
-          <div class="floating-stat-label">Highest Placement</div>
-          <div class="floating-stat-value">₹1.15 Cr</div>
+          <div class="floating-stat-label fw-semibold text-uppercase ls-4">Highest Placement</div>
+          <div class="floating-stat-value text-white fw-bold fs-4">₹1.15 Cr</div>
         </div>
       </div>
-      <div class="floating-stat float-2">
-        <div class="floating-stat-icon">
+      <div class="floating-stat float-2 border-amber-50 py-4 px-3 rounded-2xl d-flex align-items-center gap-4 shadow">
+        <div class="floating-stat-icon d-flex align-items-center justify-content-center text-white rounded-xl">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
             <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
         </div>
         <div>
-          <div class="floating-stat-label">Alumni Network</div>
-          <div class="floating-stat-value">80,000+</div>
+          <div class="floating-stat-label fw-semibold text-uppercase ls-4">Alumni Network</div>
+          <div class="floating-stat-value text-white fw-bold fs-4">80,000+</div>
         </div>
       </div>
 
       <div class="cat-card">
         <div class="cat-card-label">CAT 2026</div>
-        <div class="cat-card-value">Apply by Sep 13</div>
-        <div class="cat-countdown">
+        <div class="cat-card-value fs-4 fw-bold text-white">Apply by Sep 13</div>
+        <div class="cat-countdown gap-3 mt-3">
           <div class="cat-countdown-unit">
-            <div class="num" id="cd-days">132</div>
-            <div class="lbl">Days</div>
+            <div class="num text-uppercase text-white" id="cd-days">132</div>
+            <div class="lbl text-uppercase fs-5 fw-bold text-white">Days</div>
           </div>
           <div class="cat-countdown-unit">
-            <div class="num" id="cd-hours">06</div>
-            <div class="lbl">Hrs</div>
+            <div class="num text-uppercase text-white" id="cd-hours">06</div>
+            <div class="lbl text-uppercase fs-5 fw-bold text-white">Hrs</div>
           </div>
           <div class="cat-countdown-unit">
-            <div class="num" id="cd-mins">42</div>
-            <div class="lbl">Min</div>
+            <div class="num text-uppercase text-white" id="cd-mins">42</div>
+            <div class="lbl text-uppercase fs-5 fw-bold text-white">Min</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="recruiters-strip">
-    <div class="recruiters-track marquee">
+  <div class="recruiters-strip position-absolute left-0 right-0 bottom-0 border-top py-2 px-2">
+    <div class="recruiters-track marquee d-flex gap-5 text-nowrap">
       <?php foreach (array_merge($RECRUITERS, $RECRUITERS) as $r): ?>
-        <span><?= htmlspecialchars($r) ?></span>
+        <span class="fw-semibold"><?= htmlspecialchars($r) ?></span>
       <?php endforeach; ?>
     </div>
   </div>
