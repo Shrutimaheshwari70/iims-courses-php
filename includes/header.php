@@ -29,5 +29,64 @@ $__assetBase = '/' . $__parts[0] . '/';
   <link rel="stylesheet" href="/iims-courses-php/assets/css/output.css">
   <link rel="stylesheet" href="<?= $__assetBase ?>assets/css/style.css" />
 </head>
+<style>
+  
+/* Reading progress bar */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent, #e25c2a), var(--color-primary, #1a3c6e));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+</style>
+<!-- Reading progress bar -->
+<div id="reading-progress"></div>
+    <div id="compareBar" style="display:none">
+        <div class="cmpbar-inner">
+            <div class="cmpbar-left">
+                <span class="cmpbar-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="16 3 21 3 21 8" />
+                        <line x1="4" y1="20" x2="21" y2="3" />
+                        <polyline points="21 16 21 21 16 21" />
+                        <line x1="15" y1="15" x2="21" y2="21" />
+                    </svg>
+                    Compare
+                </span>
+                <div class="cmpbar-slots" id="cmpbarSlots"></div>
+            </div>
+            <div class="cmpbar-right">
+                <button class="cmpbar-clear" id="cmpbarClear" title="Clear all">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6s" y1="6" x2="18" y2="18" />
+                    </svg>
+                    Clear
+                </button>
+                <a class="cmpbar-go" id="cmpbarGo" href="<?= $__assetBase ?>pages/compare.php">
+    Compare Now
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="5" y1="12" x2="19" y2="12" />
+        <polyline points="12 5 19 12 12 19" />
+    </svg>
+</a>
+            </div>
+        </div>
+    </div></body>
+<script>
+  (function() {
+  var bar = document.getElementById('reading-progress');
+  window.addEventListener('scroll', function() {
+    var d = document.documentElement;
+    var scrollTop = d.scrollTop || document.body.scrollTop;
+    var total = d.scrollHeight - d.clientHeight;
+    bar.style.width = (total > 0 ? (scrollTop / total * 100) : 0) + '%';
+  }, { passive: true });
+})();
 
+</script>
 <body class="<?= htmlspecialchars($body_class) ?>" id="page-body">

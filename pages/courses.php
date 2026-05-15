@@ -35,7 +35,10 @@ include '../components/Navbar.php';
   --radius-card:   1.1rem;
   --tr:            .3s cubic-bezier(.4,0,.2,1);
 }
-
+html,body{
+  overflow-x: hidden;
+  font-family: var(--font-display);
+}
 *, *::before, *::after { box-sizing: border-box; }
 
 /* ================================================================
@@ -78,7 +81,7 @@ include '../components/Navbar.php';
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .68rem;
   font-weight: 700;
   letter-spacing: .14em;
@@ -102,9 +105,9 @@ include '../components/Navbar.php';
 }
 
 .cp-hero h1 {
-  font-family: 'Playfair Display', serif;
+  
   font-size: clamp(2.4rem, 5vw, 3.9rem);
-  font-weight: 800;
+  font-weight: 600;
   color: #fff;
   line-height: 1.16;
   max-width: 700px;
@@ -118,7 +121,7 @@ include '../components/Navbar.php';
   background-clip: text;
 }
 .cp-hero-sub {
-  font-family: 'DM Sans', sans-serif;
+  
   color: rgba(255,255,255,.6);
   font-size: 1.05rem;
   line-height: 1.7;
@@ -135,14 +138,14 @@ include '../components/Navbar.php';
   align-items: flex-start;
 }
 .cp-stat-num {
-  font-family: 'Playfair Display', serif;
+  
   font-size: 1.95rem;
   font-weight: 700;
   color: #fff;
   line-height: 1;
 }
 .cp-stat-label {
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .68rem;
   font-weight: 600;
   letter-spacing: .09em;
@@ -194,14 +197,14 @@ include '../components/Navbar.php';
   flex-wrap: wrap;
 }
 .cp-sh-title {
-  font-family: 'Playfair Display', serif;
+  
   font-size: 1.7rem;
   font-weight: 700;
   color: #1a1a2e;
   margin: 0;
 }
 .cp-sh-badge {
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .75rem;
   font-weight: 600;
   color: var(--muted);
@@ -258,8 +261,16 @@ include '../components/Navbar.php';
   flex-shrink: 0;
 }
 .cp-ci img {
-  width: 100%; height: 100%;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f5f7fb;
+
+  /* ADD THESE */
+  image-rendering: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+
   transition: transform .55s ease;
 }
 .cp-card:hover .cp-ci img { transform: scale(1.07); }
@@ -272,7 +283,7 @@ include '../components/Navbar.php';
 .cp-ci-cat {
   position: absolute;
   top: 12px; left: 12px;
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .58rem;
   font-weight: 700;
   letter-spacing: .12em;
@@ -288,7 +299,7 @@ include '../components/Navbar.php';
 .cp-ci-price {
   position: absolute;
   bottom: 12px; right: 12px;
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .7rem;
   font-weight: 700;
   color: #fff;
@@ -306,7 +317,7 @@ include '../components/Navbar.php';
   flex: 1;
 }
 .cp-cb-title {
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .98rem;
   font-weight: 700;
   color: #1a1a2e;
@@ -318,7 +329,7 @@ include '../components/Navbar.php';
   margin: 0 0 6px;
 }
 .cp-cb-desc {
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .81rem;
   color: var(--muted);
   line-height: 1.6;
@@ -345,7 +356,7 @@ include '../components/Navbar.php';
   gap: 8px;
 }
 .cp-cb-meta {
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .78rem;
   font-weight: 600;
   color: #1a1a2e;
@@ -365,7 +376,7 @@ include '../components/Navbar.php';
   font-weight: 700;
 }
 .cp-cb-link {
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .75rem;
   font-weight: 700;
   color: var(--accent);
@@ -391,7 +402,7 @@ include '../components/Navbar.php';
   margin-top: 11px;
 }
 .cp-chip {
-  font-family: 'DM Sans', sans-serif;
+  
   font-size: .58rem;
   font-weight: 600;
   letter-spacing: .04em;
@@ -475,7 +486,7 @@ include '../components/Navbar.php';
   <div class="cp-container">
 
     <div class="cp-sh">
-      <h2 class="cp-sh-title">Browse all programmes</h2>
+      <h2 class="cp-sh-title">All IIMs programmes</h2>
       <span class="cp-sh-badge"><?= count($COURSES) ?> courses available</span>
     </div>
 
@@ -547,7 +558,46 @@ include '../components/Navbar.php';
 
   </div><!-- /.cp-container -->
 </section>
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="py-3">
+  <div class="container">
 
+    <div class="cta-pro position-relative overflow-hidden rounded-5 p-4 p-lg-5">
+
+      <!-- Glow -->
+      <div class="cta-glow"></div>
+
+      <!-- <div class="center-cta d-flex"> -->
+        <div class="row align-items-center g-4 position-relative" style="z-index:2;">
+          <!-- Left Content -->
+          <div class="col-lg-7 text-center mx-auto">
+
+            <span class="cta-badge mb-3 d-inline-flex align-items-center">
+              <i class="bi bi-stars me-2"></i>
+              Trusted by CAT Aspirants Across India
+            </span>
+
+            <h4 class="cta-content display-5 fw-bold text-white mb-2 lh-sm">
+              Start Your Journey Towards
+              <span class="cta-highlight">Top IIM Admissions</span>
+            </h4>
+
+            <p class="cta-text mb-4">
+              Get personalised guidance from experienced mentors, IIM alumni, and CAT experts.
+              From profile evaluation to final admission strategy — we help you at every step.
+            </p>
+          </div>
+<div class="text-center">
+  <button class="button-cta bg-transparent px-4 py-2" onclick="openApplyModal()">
+    Apply
+  </button>
+</div>        </div>
+      <!-- </div> -->
+
+    </div>
+</section>
 
 <!-- ============================================================
      SCROLL REVEAL
@@ -576,5 +626,7 @@ include '../components/Navbar.php';
 
 <?php
 include '../components/Footer.php';
+include '../components/Modals.php';
+
 include '../includes/footer.php';
 ?>

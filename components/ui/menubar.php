@@ -11,4 +11,3 @@ function ui_menubar(array $props = []): string {
     $slot  = $props['slot']  ?? '';
     return '<div class="ui-menubar ' . htmlspecialchars($class) . '"' . $id . '>' . $slot . '</div>';
 }
-s
