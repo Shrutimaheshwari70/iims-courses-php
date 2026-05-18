@@ -1,4 +1,18 @@
 <?php
+// ── AJAX handlers — sabse pehle, koi output se pehle ──
+if (
+  isset($_GET['wl_action'], $_GET['wl_slug']) ||
+  isset($_GET['cmp_action'], $_GET['cmp_slug']) ||
+  (isset($_GET['cmp_action']) && $_GET['cmp_action'] === 'clear_all')
+) {
+  session_start();
+  header('Content-Type: application/json');
+  header('Cache-Control: no-store');
+}
+// ── Normal page render starts below ──
+?>
+
+<?php
 /**
  * Navbar.php — Fixed: compare & wishlist badge update real-time (no refresh needed)
  */
@@ -980,7 +994,9 @@ if (isset($_GET['cmp_action']) && $_GET['cmp_action'] === 'clear_all') {
         window.toggleWishlist = function(slug, btn) {
             var isActive = btn.classList.contains('active');
             var action   = isActive ? 'remove' : 'add';
-            var url      = window.location.pathname + '?wl_action=' + action + '&wl_slug=' + encodeURIComponent(slug);
+            // var url      = window.location.pathname + '?wl_action=' + action + '&wl_slug=' + encodeURIComponent(slug);
+            var url = assetBase + 'components/Navbar.php?wl_action=...'
+
 
             // Optimistic UI
             window.applyWishToggleUI(btn, action);

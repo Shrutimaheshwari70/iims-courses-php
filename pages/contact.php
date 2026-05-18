@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $message = trim($_POST['message'] ?? '');
   if ($name && $email && $message) {
     $toast_message = "Message sent! We'll respond within 24 hours.";
-    $toast_type = 'success';
+    $toast_type = 'succescs';
     $_POST = [];
   } else {
     $toast_message = "Please fill in all fields before sending.";

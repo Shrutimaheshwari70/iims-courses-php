@@ -1,10 +1,504 @@
 <?php
-/**
- * data/iims.php
- * PHP equivalent of src/data/iims.ts
- * All colleges, courses, testimonials, recruiters, blogs, FAQs
- * Includes all 21 IIMs and 50+ courses
- */
+$COURSE_FAQS = [
+/* =====================================================
+   PGP MBA
+===================================================== */
+'pgp-mba' => [
+    ['q'=>'What is the eligibility for PGP MBA?','a'=>'Bachelor’s degree with minimum 50% marks and valid CAT score.'],
+    ['q'=>'What is the duration of the programme?','a'=>'The duration is 2 years full-time residential.'],
+    ['q'=>'Which entrance exam is accepted?','a'=>'Most IIMs accept CAT scores.'],
+    ['q'=>'What careers are available after MBA?','a'=>'Consulting, finance, marketing and analytics roles are common.'],
+    ['q'=>'Are internships included?','a'=>'Yes, summer internships are compulsory.'],
+    ['q'=>'Can freshers apply?','a'=>'Yes, fresh graduates are eligible.'],
+],
+
+/* =====================================================
+   HRM
+===================================================== */
+'pgp-hrm' => [
+    ['q'=>'What is PGP HRM?','a'=>'A specialized programme focused on Human Resource Management.'],
+    ['q'=>'What subjects are covered?','a'=>'HR analytics, talent management and industrial relations.'],
+    ['q'=>'Is CAT compulsory?','a'=>'Yes, CAT score is generally required.'],
+    ['q'=>'What is the programme duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'What careers are available?','a'=>'HR Manager, Recruiter and HR Analyst roles.'],
+    ['q'=>'Can engineers apply?','a'=>'Yes, students from all streams can apply.'],
+],
+
+/* =====================================================
+   BUSINESS ANALYTICS
+===================================================== */
+'pgp-ba' => [
+    ['q'=>'What is Business Analytics?','a'=>'It combines data science with business decision-making.'],
+    ['q'=>'What tools are taught?','a'=>'Python, SQL, Machine Learning and visualization tools.'],
+    ['q'=>'Can non-engineers apply?','a'=>'Yes, though quantitative aptitude is preferred.'],
+    ['q'=>'What careers are available?','a'=>'Business Analyst and Data Analyst roles are common.'],
+    ['q'=>'Is coding mandatory?','a'=>'Basic coding knowledge is helpful but not mandatory.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+],
+
+/* =====================================================
+   FINANCE
+===================================================== */
+'pgp-finance' => [
+    ['q'=>'What is covered in Finance specialization?','a'=>'Corporate finance, valuation and investment banking topics.'],
+    ['q'=>'Is maths important for finance?','a'=>'Yes, quantitative aptitude is beneficial.'],
+    ['q'=>'What careers are available?','a'=>'Investment banking and equity research roles.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Does the programme include fintech?','a'=>'Yes, fintech and analytics modules are included.'],
+    ['q'=>'Which exam is accepted?','a'=>'CAT and GMAT scores are commonly accepted.'],
+],
+
+/* =====================================================
+   MARKETING
+===================================================== */
+'pgp-marketing' => [
+    ['q'=>'What subjects are included in marketing?','a'=>'Branding, sales and digital marketing are core subjects.'],
+    ['q'=>'Which industries hire marketing graduates?','a'=>'FMCG, e-commerce and media sectors recruit actively.'],
+    ['q'=>'Is work experience mandatory?','a'=>'No, fresh graduates can also apply.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'What skills are important?','a'=>'Communication and creativity are important skills.'],
+    ['q'=>'Are internships included?','a'=>'Yes, internships are part of the curriculum.'],
+],
+
+/* =====================================================
+   OPERATIONS
+===================================================== */
+'pgp-operations' => [
+    ['q'=>'What is Operations Management?','a'=>'It focuses on logistics, supply chain and process optimization.'],
+    ['q'=>'What careers are available?','a'=>'Operations Consultant and Supply Chain Manager roles.'],
+    ['q'=>'Does it include Six Sigma?','a'=>'Yes, Lean Six Sigma concepts are commonly taught.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is engineering background preferred?','a'=>'Engineering background is helpful but not mandatory.'],
+    ['q'=>'Which industries hire graduates?','a'=>'Manufacturing and logistics companies recruit actively.'],
+],
+
+/* =====================================================
+   AGRIBUSINESS
+===================================================== */
+'pgp-agribusiness' => [
+    ['q'=>'What is Agribusiness Management?','a'=>'It focuses on agriculture, food business and rural markets.'],
+    ['q'=>'Who should apply for this programme?','a'=>'Students interested in agri-business and food supply chains.'],
+    ['q'=>'What careers are available?','a'=>'Agri consultant and rural marketing roles.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is CAT required?','a'=>'Yes, CAT score is generally required.'],
+    ['q'=>'Do agritech companies recruit students?','a'=>'Yes, agritech and FMCG companies recruit actively.'],
+],
+
+/* =====================================================
+   SUSTAINABILITY
+===================================================== */
+'pgp-sustainability' => [
+    ['q'=>'What is Sustainability Management?','a'=>'It focuses on ESG, climate change and sustainable business models.'],
+    ['q'=>'What careers are available?','a'=>'ESG Analyst and Sustainability Consultant roles.'],
+    ['q'=>'Is work experience required?','a'=>'No, fresh graduates can also apply.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which entrance exams are accepted?','a'=>'CAT and GRE scores are commonly accepted.'],
+    ['q'=>'Does the course include CSR?','a'=>'Yes, corporate social responsibility is included.'],
+],
+
+/* =====================================================
+   EXECUTIVE MBA
+===================================================== */
+'epgp-mba' => [
+    ['q'=>'Who can apply for Executive MBA?','a'=>'Professionals with 5+ years work experience can apply.'],
+    ['q'=>'Is GMAT required?','a'=>'Yes, many IIMs accept GMAT or GRE scores.'],
+    ['q'=>'What is the duration?','a'=>'The programme usually lasts 1 year.'],
+    ['q'=>'Is the programme residential?','a'=>'Yes, many Executive MBA programmes are residential.'],
+    ['q'=>'Can entrepreneurs apply?','a'=>'Yes, entrepreneurs can apply.'],
+    ['q'=>'What careers are available after Executive MBA?','a'=>'Senior leadership and management roles are common.'],
+],
+
+/* =====================================================
+   WORKING PROFESSIONAL MBA
+===================================================== */
+'ewmp-mba' => [
+    ['q'=>'Is this suitable for working professionals?','a'=>'Yes, classes are conducted on weekends or modular basis.'],
+    ['q'=>'Can I continue my job during the programme?','a'=>'Yes, the course is designed for working professionals.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is generally 2 years.'],
+    ['q'=>'Is CAT mandatory?','a'=>'CAT or GMAT scores are usually accepted.'],
+    ['q'=>'Are online classes available?','a'=>'Many IIMs offer hybrid learning support.'],
+    ['q'=>'What careers are available after completion?','a'=>'Leadership and managerial promotions are common outcomes.'],
+],
+
+/* =====================================================
+   IPM
+===================================================== */
+'ipm-5yr' => [
+    ['q'=>'What is IPM?','a'=>'It is a 5-year integrated BBA + MBA programme.'],
+    ['q'=>'Who can apply?','a'=>'Students after Class 12 can apply.'],
+    ['q'=>'Which exam is accepted?','a'=>'IPMAT is commonly accepted.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 5 years.'],
+    ['q'=>'Is hostel facility available?','a'=>'Yes, residential facilities are generally available.'],
+    ['q'=>'What degree is awarded?','a'=>'Students receive integrated undergraduate and MBA degrees.'],
+],
+/* =====================================================
+   INNOVATION & ENTREPRENEURSHIP
+===================================================== */
+'pgp-innovation' => [
+    ['q'=>'What is Innovation & Entrepreneurship Management?','a'=>'It focuses on startups, innovation and venture creation.'],
+    ['q'=>'What subjects are taught?','a'=>'Design thinking, startup strategy and business model innovation.'],
+    ['q'=>'Can freshers apply?','a'=>'Yes, fresh graduates are eligible.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Are incubation facilities available?','a'=>'Yes, many IIMs provide startup incubation support.'],
+    ['q'=>'What careers are available?','a'=>'Startup founder, innovation consultant and product strategist roles.'],
+],
+
+/* =====================================================
+   DIGITAL TRANSFORMATION
+===================================================== */
+'pgp-digital-transformation' => [
+    ['q'=>'What is Digital Transformation Management?','a'=>'It focuses on AI, cloud computing and digital business strategy.'],
+    ['q'=>'Is coding knowledge required?','a'=>'Basic technical understanding is beneficial.'],
+    ['q'=>'What careers are available?','a'=>'Digital Consultant and Product Manager roles.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Does the programme include AI topics?','a'=>'Yes, AI and machine learning applications are included.'],
+    ['q'=>'Who should apply?','a'=>'Students interested in technology and digital business.'],
+],
+
+/* =====================================================
+   INTERNATIONAL BUSINESS
+===================================================== */
+'pgp-international-business' => [
+    ['q'=>'What is International Business Management?','a'=>'It focuses on global trade and cross-cultural management.'],
+    ['q'=>'What careers are available?','a'=>'Export management and global consulting roles.'],
+    ['q'=>'Does the programme include foreign trade?','a'=>'Yes, international trade and forex management are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is CAT required?','a'=>'Yes, CAT score is commonly accepted.'],
+    ['q'=>'Are international exchange opportunities available?','a'=>'Many IIMs provide international immersion programmes.'],
+],
+
+/* =====================================================
+   HEALTHCARE MANAGEMENT
+===================================================== */
+'pgp-healthcare' => [
+    ['q'=>'Who can apply for Healthcare Management?','a'=>'Candidates from medical, pharma and life science backgrounds can apply.'],
+    ['q'=>'What careers are available?','a'=>'Hospital administration and healthcare consulting roles.'],
+    ['q'=>'Does the programme include hospital operations?','a'=>'Yes, healthcare systems and hospital management are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is CAT mandatory?','a'=>'Yes, CAT score is usually required.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Hospitals, pharma companies and health-tech firms recruit actively.'],
+],
+
+/* =====================================================
+   PUBLIC POLICY
+===================================================== */
+'pgp-public-policy' => [
+    ['q'=>'What is Public Policy & Governance?','a'=>'It focuses on policy analysis and governance systems.'],
+    ['q'=>'What careers are available?','a'=>'Policy Analyst and Government Consultant roles.'],
+    ['q'=>'Does the programme include economics?','a'=>'Yes, public finance and development economics are included.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which exams are accepted?','a'=>'CAT and GRE scores are commonly accepted.'],
+    ['q'=>'Who should apply?','a'=>'Students interested in governance and public administration.'],
+],
+
+/* =====================================================
+   EXECUTIVE FELLOW PROGRAMME
+===================================================== */
+'efpm' => [
+    ['q'=>'What is EFPM?','a'=>'EFPM is a doctoral-level management programme for executives.'],
+    ['q'=>'Who can apply for EFPM?','a'=>'Experienced professionals with postgraduate qualifications can apply.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is generally 4 to 5 years.'],
+    ['q'=>'Is the programme research-oriented?','a'=>'Yes, it focuses heavily on academic research.'],
+    ['q'=>'Which exams are accepted?','a'=>'CAT, GMAT and GRE scores are commonly accepted.'],
+    ['q'=>'Can working professionals continue their jobs?','a'=>'Many EFPM programmes are designed for executives.'],
+],
+
+/* =====================================================
+   BRAND & FMCG MANAGEMENT
+===================================================== */
+'pgp-fmcg-brand-manager' => [
+    ['q'=>'What is FMCG Brand Management?','a'=>'It focuses on consumer products and brand strategy.'],
+    ['q'=>'What careers are available?','a'=>'Brand Manager and Category Manager roles.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'FMCG and retail companies recruit actively.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Does the course include digital marketing?','a'=>'Yes, digital branding concepts are included.'],
+    ['q'=>'Is CAT mandatory?','a'=>'Yes, CAT score is generally required.'],
+],
+
+/* =====================================================
+   LUXURY BRAND MANAGEMENT
+===================================================== */
+'pgp-luxury-brand' => [
+    ['q'=>'What is Luxury Brand Management?','a'=>'It focuses on premium branding and luxury retail.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Luxury fashion, hospitality and retail sectors recruit actively.'],
+    ['q'=>'What skills are important?','a'=>'Creativity and consumer understanding are important skills.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is international exposure included?','a'=>'Some programmes include international immersion opportunities.'],
+    ['q'=>'Can freshers apply?','a'=>'Yes, fresh graduates are eligible.'],
+],
+
+/* =====================================================
+   ONLINE MBA
+===================================================== */
+'online-mba' => [
+    ['q'=>'Is Online MBA valid?','a'=>'Yes, online MBA programmes from reputed IIMs are recognized.'],
+    ['q'=>'Can working professionals apply?','a'=>'Yes, the programme is ideal for working professionals.'],
+    ['q'=>'Are classes live or recorded?','a'=>'Most programmes offer both live and recorded sessions.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is generally 2 years.'],
+    ['q'=>'Is placement support available?','a'=>'Some IIMs provide career assistance and networking support.'],
+    ['q'=>'Can students study remotely?','a'=>'Yes, the programme is fully online.'],
+],
+
+/* =====================================================
+   AI & ML MANAGEMENT
+===================================================== */
+'pgp-ai-ml-management' => [
+    ['q'=>'What is AI & ML Management?','a'=>'It combines artificial intelligence with business management.'],
+    ['q'=>'What subjects are included?','a'=>'Machine learning, NLP and AI strategy are covered.'],
+    ['q'=>'Who should apply?','a'=>'Students interested in analytics and technology leadership.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is coding knowledge required?','a'=>'Basic coding knowledge is beneficial.'],
+    ['q'=>'What careers are available?','a'=>'AI Consultant and Product Analyst roles are common.'],
+],/* =====================================================
+   FINANCIAL ENGINEERING
+===================================================== */
+'pgp-financial-engineering' => [
+    ['q'=>'What is Financial Engineering?','a'=>'It combines finance, mathematics and technology for advanced financial analysis.'],
+    ['q'=>'What careers are available?','a'=>'Quant Analyst and Risk Manager roles are common.'],
+    ['q'=>'Does the course include algorithmic trading?','a'=>'Yes, algo trading and derivatives are included.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is mathematics important?','a'=>'Yes, strong quantitative skills are highly preferred.'],
+    ['q'=>'Which entrance exams are accepted?','a'=>'CAT and GMAT scores are commonly accepted.'],
+],
+
+/* =====================================================
+   HR ANALYTICS
+===================================================== */
+'pgp-hr-analytics' => [
+    ['q'=>'What is HR Analytics?','a'=>'It focuses on data-driven human resource management.'],
+    ['q'=>'What subjects are covered?','a'=>'People analytics, workforce planning and predictive hiring.'],
+    ['q'=>'What careers are available?','a'=>'HR Analyst and Talent Analytics roles.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is analytics knowledge required?','a'=>'Basic analytical understanding is helpful.'],
+    ['q'=>'Can fresh graduates apply?','a'=>'Yes, freshers are eligible to apply.'],
+],
+
+/* =====================================================
+   SPORTS MANAGEMENT
+===================================================== */
+'pgp-sports-management' => [
+    ['q'=>'What is Sports Management?','a'=>'It focuses on sports marketing and event management.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Sports franchises, leagues and media companies recruit actively.'],
+    ['q'=>'What careers are available?','a'=>'Sports Manager and Event Coordinator roles.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Does the programme include sports analytics?','a'=>'Yes, sports analytics concepts are included.'],
+    ['q'=>'Can non-athletes apply?','a'=>'Yes, students from all backgrounds can apply.'],
+],
+
+/* =====================================================
+   TOURISM & HOSPITALITY
+===================================================== */
+'pgp-tourism-hospitality' => [
+    ['q'=>'What is Tourism & Hospitality Management?','a'=>'It focuses on hotel operations and tourism business.'],
+    ['q'=>'What careers are available?','a'=>'Hotel Manager and Tourism Consultant roles.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Hotels, airlines and tourism companies recruit actively.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Does the programme include event planning?','a'=>'Yes, hospitality events and destination branding are included.'],
+    ['q'=>'Can freshers apply?','a'=>'Yes, fresh graduates can apply.'],
+],
+
+/* =====================================================
+   REAL ESTATE MANAGEMENT
+===================================================== */
+'pgp-real-estate' => [
+    ['q'=>'What is Real Estate Management?','a'=>'It focuses on property management and urban infrastructure.'],
+    ['q'=>'What careers are available?','a'=>'Real Estate Consultant and Infrastructure Analyst roles.'],
+    ['q'=>'Does the programme include RERA concepts?','a'=>'Yes, RERA and property regulations are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Real estate firms and infrastructure companies recruit actively.'],
+    ['q'=>'Is CAT required?','a'=>'Yes, CAT score is generally accepted.'],
+],
+
+/* =====================================================
+   DEFENCE MANAGEMENT
+===================================================== */
+'pgp-defence-management' => [
+    ['q'=>'What is Defence Management?','a'=>'It focuses on defence logistics and strategic leadership.'],
+    ['q'=>'Who should apply for this programme?','a'=>'Students and ex-defence professionals interested in strategic management.'],
+    ['q'=>'What careers are available?','a'=>'Defence Consultant and Logistics Manager roles.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Does the programme include procurement systems?','a'=>'Yes, defence procurement and logistics are included.'],
+    ['q'=>'Is defence experience mandatory?','a'=>'No, but ex-defence candidates may receive preference.'],
+],
+
+/* =====================================================
+   BUSINESS ANALYTICS CERTIFICATE
+===================================================== */
+'pgc-ba' => [
+    ['q'=>'What is PGC in Business Analytics?','a'=>'It is a short-term analytics certification programme.'],
+    ['q'=>'Who should apply?','a'=>'Working professionals interested in analytics and data science.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is usually 6 months.'],
+    ['q'=>'Are online classes available?','a'=>'Yes, most classes are conducted online or on weekends.'],
+    ['q'=>'What tools are covered?','a'=>'Python, Excel and visualization tools are commonly taught.'],
+    ['q'=>'Is work experience required?','a'=>'Most programmes prefer candidates with work experience.'],
+],
+
+/* =====================================================
+   ADVANCED FINANCE CERTIFICATE
+===================================================== */
+'pgc-finance' => [
+    ['q'=>'What is Advanced Finance Certification?','a'=>'It focuses on corporate finance and valuation concepts.'],
+    ['q'=>'Who should apply?','a'=>'Finance professionals and graduates interested in advanced finance.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is usually 9 months.'],
+    ['q'=>'Are online classes available?','a'=>'Yes, many programmes are delivered online.'],
+    ['q'=>'Does the programme include fintech topics?','a'=>'Yes, fintech and financial analytics are included.'],
+    ['q'=>'Is work experience preferred?','a'=>'Yes, many IIMs prefer experienced professionals.'],
+],
+/* =====================================================
+   DIGITAL MARKETING CERTIFICATE
+===================================================== */
+'pgc-digital-marketing' => [
+    ['q'=>'What is Digital Marketing Certification?','a'=>'It focuses on SEO, social media and online advertising strategies.'],
+    ['q'=>'Who should apply for this programme?','a'=>'Students, entrepreneurs and marketing professionals can apply.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is generally 4 months.'],
+    ['q'=>'Are online classes available?','a'=>'Yes, most sessions are conducted online.'],
+    ['q'=>'What tools are taught?','a'=>'Google Ads, SEO tools and analytics platforms are commonly covered.'],
+    ['q'=>'What careers are available?','a'=>'Digital Marketing Executive and SEO Specialist roles are common.'],
+],
+
+/* =====================================================
+   HR LEADERSHIP CERTIFICATE
+===================================================== */
+'pgc-hr-leadership' => [
+    ['q'=>'What is Strategic HR Leadership?','a'=>'It focuses on modern HR leadership and workforce strategy.'],
+    ['q'=>'Who should apply?','a'=>'HR professionals and managers looking for leadership growth.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is generally 6 months.'],
+    ['q'=>'Are classes conducted online?','a'=>'Yes, many programmes are blended or online.'],
+    ['q'=>'What topics are covered?','a'=>'Compensation, leadership and HR business partnership topics are included.'],
+    ['q'=>'Is work experience required?','a'=>'Yes, most programmes prefer experienced professionals.'],
+],
+
+/* =====================================================
+   FAMILY BUSINESS MANAGEMENT
+===================================================== */
+'pgc-family-business' => [
+    ['q'=>'What is Family Business Management?','a'=>'It focuses on succession planning and family enterprise governance.'],
+    ['q'=>'Who should apply?','a'=>'Students and professionals from family business backgrounds.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is usually 1 year.'],
+    ['q'=>'Does the course include entrepreneurship concepts?','a'=>'Yes, innovation and business expansion topics are included.'],
+    ['q'=>'Are weekend classes available?','a'=>'Yes, many programmes are executive weekend formats.'],
+    ['q'=>'What careers are available after completion?','a'=>'Business leadership and enterprise management roles are common.'],
+],
+
+/* =====================================================
+   FORENSIC FINANCE
+===================================================== */
+'pgp-forensic-finance' => [
+    ['q'=>'What is Forensic Finance?','a'=>'It focuses on fraud detection and forensic accounting.'],
+    ['q'=>'What careers are available?','a'=>'Fraud Analyst and Risk Investigation roles are common.'],
+    ['q'=>'Does the programme include AML concepts?','a'=>'Yes, anti-money laundering and compliance are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Who should apply for this course?','a'=>'Students interested in finance, compliance and investigations.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Banks, consulting firms and financial institutions recruit actively.'],
+],
+
+/* =====================================================
+   CYBER SECURITY MANAGEMENT
+===================================================== */
+'pgp-cyber-management' => [
+    ['q'=>'What is Cyber Security Management?','a'=>'It focuses on cyber risk and information security management.'],
+    ['q'=>'What careers are available?','a'=>'Cyber Risk Consultant and Security Analyst roles.'],
+    ['q'=>'Does the programme include privacy laws?','a'=>'Yes, governance and data privacy concepts are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Is technical background required?','a'=>'Basic technical understanding is beneficial but not mandatory.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'IT companies and consulting firms recruit actively.'],
+],
+
+/* =====================================================
+   AVIATION MANAGEMENT
+===================================================== */
+'pgp-aviation-management' => [
+    ['q'=>'What is Aviation Management?','a'=>'It focuses on airline and airport operations management.'],
+    ['q'=>'What careers are available?','a'=>'Airport Manager and Aviation Consultant roles are common.'],
+    ['q'=>'Does the programme include aviation safety?','a'=>'Yes, safety and operations management are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Airlines and airport companies recruit actively.'],
+    ['q'=>'Can non-aviation students apply?','a'=>'Yes, students from all streams can apply.'],
+],
+
+/* =====================================================
+   PHARMACEUTICAL MANAGEMENT
+===================================================== */
+'pgp-pharma-management' => [
+    ['q'=>'What is Pharmaceutical Management?','a'=>'It focuses on pharma marketing and healthcare business management.'],
+    ['q'=>'Who can apply for this programme?','a'=>'Students from pharma and life science backgrounds can apply.'],
+    ['q'=>'What careers are available?','a'=>'Pharma Product Manager and Healthcare Consultant roles.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Does the programme include regulatory affairs?','a'=>'Yes, regulatory and compliance topics are included.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Pharmaceutical and biotech companies recruit actively.'],
+],
+
+/* =====================================================
+   FPM DOCTORAL
+===================================================== */
+'fpm-doctoral' => [
+    ['q'=>'What is Fellow Programme in Management?','a'=>'It is a PhD-equivalent doctoral management programme.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is generally 4 years.'],
+    ['q'=>'Is stipend support available?','a'=>'Yes, most IIMs provide research stipend support.'],
+    ['q'=>'Which exams are accepted?','a'=>'CAT, GRE, GMAT and UGC JRF scores are commonly accepted.'],
+    ['q'=>'Is the programme research-oriented?','a'=>'Yes, it focuses heavily on academic research and publications.'],
+    ['q'=>'What careers are available after completion?','a'=>'Academic and research careers are common outcomes.'],
+],/* =====================================================
+   VC & PRIVATE EQUITY
+===================================================== */
+'pgp-entrepreneurship-venture' => [
+    ['q'=>'What is Venture Capital & Private Equity Management?','a'=>'It focuses on startup funding, valuation and investment management.'],
+    ['q'=>'What careers are available?','a'=>'VC Analyst and Investment Associate roles are common.'],
+    ['q'=>'Does the programme include startup valuation?','a'=>'Yes, valuation and fundraising concepts are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Who should apply for this programme?','a'=>'Students interested in investments and startup ecosystems.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'VC firms, PE firms and consulting companies recruit actively.'],
+],
+
+/* =====================================================
+   MEDIA & ENTERTAINMENT MANAGEMENT
+===================================================== */
+'pgp-media-entertainment' => [
+    ['q'=>'What is Media & Entertainment Management?','a'=>'It focuses on media business and entertainment industries.'],
+    ['q'=>'What careers are available?','a'=>'Media Planner and Entertainment Consultant roles are common.'],
+    ['q'=>'Does the programme include OTT business concepts?','a'=>'Yes, OTT and digital media strategies are included.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Media houses and entertainment companies recruit actively.'],
+    ['q'=>'Can students from non-media backgrounds apply?','a'=>'Yes, students from all streams can apply.'],
+],
+
+/* =====================================================
+   RETAIL MANAGEMENT
+===================================================== */
+'pgp-retail-management' => [
+    ['q'=>'What is Retail Management?','a'=>'It focuses on store operations and omnichannel retail strategies.'],
+    ['q'=>'What careers are available?','a'=>'Retail Manager and Category Manager roles are common.'],
+    ['q'=>'Does the programme include e-commerce topics?','a'=>'Yes, online retail and digital commerce concepts are included.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Retail chains and e-commerce companies recruit actively.'],
+    ['q'=>'Is CAT required?','a'=>'Yes, CAT score is generally accepted.'],
+],
+
+/* =====================================================
+   MINING & NATURAL RESOURCES
+===================================================== */
+'pgp-mining-management' => [
+    ['q'=>'What is Mining & Natural Resources Management?','a'=>'It focuses on mining operations and resource management.'],
+    ['q'=>'What careers are available?','a'=>'Mining Consultant and Resource Analyst roles are common.'],
+    ['q'=>'Does the programme include sustainability concepts?','a'=>'Yes, sustainable mining and environmental governance are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Mining and energy companies recruit actively.'],
+    ['q'=>'Can non-mining students apply?','a'=>'Yes, students from multiple disciplines can apply.'],
+],
+
+/* =====================================================
+   EVENT MANAGEMENT
+===================================================== */
+'pgp-events' => [
+    ['q'=>'What is Event Management & Experiential Marketing?','a'=>'It focuses on event planning and experiential brand campaigns.'],
+    ['q'=>'What careers are available?','a'=>'Event Manager and Brand Activation roles are common.'],
+    ['q'=>'Does the programme include sponsorship management?','a'=>'Yes, sponsorship and event logistics are covered.'],
+    ['q'=>'What is the duration?','a'=>'The programme duration is 2 years.'],
+    ['q'=>'Which industries recruit graduates?','a'=>'Event agencies and media companies recruit actively.'],
+    ['q'=>'Can fresh graduates apply?','a'=>'Yes, freshers are eligible to apply.'],
+],
+];
+
 $COURSES = [
     // Flagship MBAs / PGPs
     [
@@ -512,11 +1006,7 @@ $COURSES = [
         'eligibility' => "Bachelor's + CAT",
     ]
 ];
-
 $COLLEGES = [
-
-/* ===================== OLD IIMS (TOP 6) ===================== */
-
 [
     'slug' => 'iim-ahmedabad',
     'name' => 'IIM Ahmedabad',
@@ -921,6 +1411,55 @@ $COLLEGES = [
 
 ];
 
+function cleanCollegeName($name) {
+    // removes (NITIE) or any bracket text
+    return trim(preg_replace('/\s*\(.*?\)\s*/', '', $name));
+}
+
+$COLLEGE_FAQS = [];
+
+foreach ($COLLEGES as $college) {
+
+    $name = $college['name'];
+    $fees = $college['fees'];
+    $placement = $college['placement'];
+    $highest = $college['highest'];
+    $intake = $college['intake'];
+    $exam = implode(', ', $college['exams']);
+
+    $COLLEGE_FAQS[$college['slug']] = [
+
+        [
+            'q' => "What is the eligibility for $name?",
+            'a' => "Candidates must have a Bachelor’s degree with minimum 50% marks along with a valid $exam score."
+        ],
+
+        [
+            'q' => "What is the fee structure of $name?",
+            'a' => "The total MBA/PGP fee at $name is approximately ₹{$fees} Lakhs."
+        ],
+
+        [
+            'q' => "What is the average placement at $name?",
+            'a' => "The average placement package at $name is around ₹{$placement} LPA."
+        ],
+
+        [
+            'q' => "What is the highest package at $name?",
+            'a' => "The highest domestic/international package at $name goes up to ₹{$highest} LPA."
+        ],
+
+        [
+            'q' => "How many seats are available in $name?",
+            'a' => "The intake capacity at $name is approximately {$intake} students per batch."
+        ],
+
+        [
+            'q' => "Which exam is required for admission in $name?",
+            'a' => "Admission is primarily through $exam. Final selection is based on CAT score, PI and WAT."
+        ],
+    ];
+}
 // Adding more to reach 50+ distinct entries. The above count is over 45, add a few certificate / short programs.
 $COURSES = array_merge($COURSES, [
     [

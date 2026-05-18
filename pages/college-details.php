@@ -9,6 +9,21 @@ $college['scholarships'] = $college['scholarships'] ?? [
 ];
 ?>
 <?php
+// Include your main data file
+require_once '../data/iims.php';
+
+// Get slug from URL (e.g., college.php?slug=iim-ahmedabad)
+$slug = $_GET['slug'] ?? '';
+
+// Fetch college using your existing getCollege() function
+$college = getCollege($slug);
+
+if (!$college) {
+    // Handle 404 – college not found
+    die('College not found');
+}
+?>
+<?php
 /**
  * pages/college-details.php  ←→  src/routes/colleges.$slug.tsx
  * Exact same UI as TypeScript version — fully responsive
@@ -445,7 +460,10 @@ include '../components/Navbar.php';
       <div class="cd-card">
         <h4 class="cd-sub-title">Scholarships &amp; EMI</h4>
         <ul class="cd-schol-list">
-   <?php foreach ($college['scholarships'] as $item): ?>
+          <?php foreach ($c['scholarships'] ?? [
+    'Education loans up to ₹40L from leading banks',
+    'Flexible EMI options post-placement',
+] as $item): ?>
     <li>• <?= $item ?></li>
 <?php endforeach; ?>
           <li>• Education loans up to ₹40L from leading banks</li>
@@ -476,36 +494,42 @@ include '../components/Navbar.php';
       <?php endforeach; ?>
     </div>
   </section>
-
-  <!-- ── FACULTY ── -->
-  <section id="cd-Faculty" class="cd-section reveal">
-    <h2 class="cd-section-heading">Faculty</h2>
-    <p class="cd-muted">
-      <?= htmlspecialchars($c['name']) ?> has <?= $c['faculty'] ?>+ full-time faculty members with PhDs from top global
-      institutions like Harvard, Stanford, Wharton and INSEAD. Many have served as advisors to governments and Fortune
-      500 firms.
-    </p>
-  </section>
-
   <!-- ── FAQ ── -->
-  <section id="cd-FAQ" class="cd-section reveal">
-    <h2 class="cd-section-heading">Frequently Asked</h2>
-    <div class="faq-wrap" style="max-width:100%">
-      <?php foreach ($FAQS as $faq): ?>
-        <div class="faq-item">
-          <div class="faq-question">
-            <?= htmlspecialchars($faq['q']) ?>
-            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </div>
-          <div class="faq-answer"><?= htmlspecialchars($faq['a']) ?></div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </section>
 
+<?php
+$faqs = $COLLEGE_FAQS[$college['slug']] ?? [];
+?>
+
+<?php if (!empty($faqs)): ?>
+<section id="cd-FAQ" class="cd-section reveal">
+
+    <h2 class="cd-section-heading">Frequently Asked Questions</h2>
+
+    <div class="faq-wrap" style="max-width:100%">
+
+        <?php foreach ($faqs as $faq): ?>
+            <div class="faq-item">
+
+                <div class="faq-question">
+                    <?= htmlspecialchars($faq['q']) ?>
+
+                    <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </div>
+
+                <div class="faq-answer">
+                    <?= htmlspecialchars($faq['a']) ?>
+                </div>
+
+            </div>
+        <?php endforeach; ?>
+
+    </div>
+
+</section>
+<?php endif; ?>
   <!-- ── RECOMMENDED ── -->
   <section class="cd-section">
     <h3 class="cd-section-heading" style="font-size:clamp(1.5rem,3vw,2rem)">Recommended IIMs</h3>

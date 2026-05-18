@@ -234,8 +234,36 @@ include 'components/Navbar.php';
           <div class="course-body">
             <h4 class="course-title"><?= htmlspecialchars($c['title']) ?></h4>
             <p class="course-desc"><?= htmlspecialchars($c['description']) ?></p>
+        <div class="course-iims-list ">
+
+  <?php 
+  $totalIims = count($c['iims']);
+  $visibleIims = array_slice($c['iims'], 0, 2);
+
+  foreach ($visibleIims as $iimSlug): 
+    $iim = getCollege($iimSlug);
+    if ($iim):
+  ?>
+    <span class="course-iim-chip">
+      <?= htmlspecialchars($iim['name']) ?>
+    </span>
+  <?php 
+    endif;
+  endforeach; 
+  ?>
+
+  <?php if ($totalIims > 3): ?>
+    <a 
+      href="<?= (strpos($_SERVER['PHP_SELF'], '/pages/') !== false ? '' : 'pages/') ?>course-details.php?slug=<?= $c['slug'] ?>" 
+      class="course-iim-viewall"
+    >
+      +<?= $totalIims - 3 ?> View All
+    </a>
+  <?php endif; ?>
+
+</div>
             <div class="course-footer">
-              <span class="course-iims"><?= count($c['iims']) ?> IIMs</span>
+              
               <a href="<?= (strpos($_SERVER['PHP_SELF'], '/pages/') !== false ? '' : 'pages/') ?>course-details.php?slug=<?= $c['slug'] ?>"
                 class="course-link">
                 Explore
@@ -250,6 +278,9 @@ include 'components/Navbar.php';
         </div>
       <?php endforeach; ?>
     </div>
+  </div>
+  <div class="btn featured-btn d-flex align-items-center justify-content-center mt-3">
+    <a href="pages/courses.php" class="py-2 px-3 rounded-2" >View all</a>
   </div>
 </section>
 
@@ -449,6 +480,19 @@ include 'components/Navbar.php';
 
 <!-- Testimonial avatar image style -->
 <style>
+  .featured-btn a{
+    color: white;
+    background-color: #e25c2a;
+    font-size: 0.9rem;
+    
+  }
+    .featured-btn a:hover{
+    color: #e25c2a;
+    background-color: white;
+    border: 1px solid #e25c2a;
+    font-size: 0.8rem;
+    
+  }
   .testimonial-avatar-img {
     width: 3rem;
     height: 3rem;
@@ -472,6 +516,129 @@ include 'components/Navbar.php';
   .testimonial-slide.active-slide {
     display: block;
   }
+  /* blog grid----------------- */
+  .blogs-grid{
+  gap:20px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.blogs-grid::-webkit-scrollbar{
+  display:none;
+}
+
+.blog-card{
+  flex:0 0 calc(20% - 16px); /* 5 cards in one row */
+  width:calc(20% - 16px);
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  min-height:420px;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.blog-img{
+  width:100%;
+  height:220px;
+  overflow:hidden;
+}
+
+.blog-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.blog-body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:18px;
+}
+
+.blog-title{
+  min-height:auto;
+}
+
+.blog-excerpt{
+  flex:1;
+}
+
+/* Responsive */
+@media(max-width:1200px){
+  .blog-card{
+    flex:0 0 calc(25% - 15px);
+    width:calc(25% - 15px);
+  }
+}
+
+@media(max-width:992px){
+  .blog-card{
+    flex:0 0 calc(33.33% - 14px);
+    width:calc(33.33% - 14px);
+  }
+}
+
+@media(max-width:768px){
+  .blog-card{
+    flex:0 0 calc(50% - 10px);
+    width:calc(50% - 10px);
+  }
+}
+
+@media(max-width:480px){
+  .blog-card{
+    flex:0 0 100%;
+    width:100%;
+  }
+}
+.btn-blog a{
+  background-color: #F78D37;
+}
+
+.btn-blog a:hover{
+  background-color: black;
+}
+.course-iims-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:14px;
+  align-items:center;
+}
+
+.course-iim-chip{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(226,92,42,.08);
+  border:1px solid rgba(226,92,42,.15);
+  color:var(--color-accent,#e25c2a);
+  font-size:7px;
+  font-weight:600;
+  line-height:1;
+}
+
+.course-iim-viewall{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px 8px;
+  border-radius:999px;
+  color:grey;
+  font-size:8px;
+  font-weight:600;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.course-iim-viewall:hover{
+  opacity:.9;
+  transform:translateY(-1px);
+}
 </style>
 
 <!-- Testimonial slider JS — fully self-contained, no dependencies -->
@@ -534,200 +701,6 @@ include 'components/Navbar.php';
     }
   })();
 </script>
-
-
-<!-- ============================================================
-     VIDEO / WEBINAR
-     ============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-eyebrow">Watch &amp; learn</div>
-      <h2 class="section-title">Live webinars and campus tours</h2>
-    </div>
-
-    <div class="vw-grid">
-      <div class="vw-video reveal">
-        <img src="assets/images/students.jpg" alt="Campus Tour" loading="lazy" />
-        <div class="vw-video-overlay">
-          <div class="vw-play">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <polygon points="10 8 16 12 10 16 10 8" />
-            </svg>
-          </div>
-        </div>
-        <div class="vw-video-info">
-          <div class="eyebrow">Campus Tour</div>
-          <h3>A day in the life at IIM Bangalore</h3>
-        </div>
-      </div>
-
-      <div class="vw-list">
-        <?php
-        $webinars = [
-          ['title' => 'CAT 2026 Strategy: Section-wise plan', 'date' => 'May 12, 7:00 PM', 'host' => 'By IIM-A Alumni'],
-          ['title' => 'WAT-PI Masterclass with IIM toppers', 'date' => 'May 18, 6:30 PM', 'host' => 'Live, free'],
-          ['title' => 'MBA Specialisation: Choosing wisely', 'date' => 'May 24, 7:00 PM', 'host' => 'Panel'],
-        ];
-        foreach ($webinars as $i => $w):
-          ?>
-          <div class="vw-item reveal" style="transition-delay:<?= $i * 0.1 ?>s">
-            <div class="vw-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
-            </div>
-            <div style="flex:1">
-              <div class="vw-title"><?= htmlspecialchars($w['title']) ?></div>
-              <div class="vw-meta"><?= htmlspecialchars($w['date']) ?> &bull; <?= htmlspecialchars($w['host']) ?></div>
-            </div>
-            <button class="btn btn-soft btn-sm" onclick="openApplyModal()">Register</button>
-          </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     FACULTY SPOTLIGHT
-     ============================================================ -->
-<section class="section section-alt faculty-spotlight-section">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-eyebrow">World-class minds</div>
-      <h2 class="section-title">Faculty spotlight</h2>
-    </div>
-
-    <div class="faculty-grid">
-      <?php
-      $faculty = [
-        [
-          'name' => 'Dr. Anuja Kapoor',
-          'role' => 'Strategy',
-          'image' => 'assets/images/dr-anuja.webp',
-
-          'institute' => 'IIM Ahmedabad',
-          'short' => 'IIM-A',
-          'exp' => '18 Yrs',
-          'papers' => '42 Papers',
-          'quote' => 'Strategy is not a plan. It\'s a perspective.',
-          'color' => '#e07b39',
-          'initials' => 'AK',
-          'bg' => 'linear-gradient(135deg, #f9f4ef 0%, #f3e7db 100%)',
-          'pattern' => 'circles',
-        ],
-        [
-          'name' => 'Prof. Rajiv Menon',
-          'role' => 'Finance',
-          'image' => 'assets/images/prof-rajeev.webp',
-
-          'institute' => 'IIM Bangalore',
-          'short' => 'IIM-B',
-          'exp' => '22 Yrs',
-          'papers' => '61 Papers',
-          'quote' => 'Numbers tell the story markets are afraid to.',
-          'color' => '#2d6be4',
-          'initials' => 'RM',
-          'bg' => 'linear-gradient(135deg, #f7f9fe 0%, #dde7fa 100%)',
-          'pattern' => 'lines',
-        ],
-        [
-          'name' => 'Dr. Meera Krishnan',
-          'role' => 'Marketing',
-          'image' => 'assets/images/dr-meera.webp',
-
-          'institute' => 'IIM Kozhikode',
-          'short' => 'IIM-K',
-          'exp' => '15 Yrs',
-          'papers' => '38 Papers',
-          'quote' => 'Brands are promises. Great brands keep them.',
-          'color' => '#0d9e72',
-          'initials' => 'MK',
-          'bg' => 'linear-gradient(135deg, #f4fcf8 0%, #d9f2e7 100%)',
-          'pattern' => 'dots',
-        ],
-        [
-          'name' => 'Prof. Vikram Joshi',
-          'role' => 'Analytics',
-          'image' => 'assets/images/prof-vikram.webp',
-
-          'institute' => 'IIM Calcutta',
-          'short' => 'IIM-C',
-          'exp' => '20 Yrs',
-          'papers' => '55 Papers',
-          'quote' => 'Data without context is just noise.',
-          'color' => '#7c3aed',
-          'initials' => 'VJ',
-          'bg' => 'linear-gradient(135deg, #faf7fe 0%, #e7dcfb 100%)',
-          'pattern' => 'grid',
-        ],
-      ];
-      foreach ($faculty as $i => $f):
-        ?>
-        <div class="faculty-card-pro reveal" style="transition-delay:<?= $i * 0.1 ?>s">
-
-          <!-- Top visual area -->
-          <div class="fcp-visual" style="background:<?= $f['bg'] ?>;">
-
-            <!-- Decorative SVG pattern -->
-            <div class="fcp-pattern fcp-pattern--<?= $f['pattern'] ?>"></div>
-
-            <!-- Institute badge -->
-            <div class="fcp-badge"><?= $f['short'] ?></div>
-
-            <!-- Avatar -->
-            <div class="fcp-avatar">
-              <img src="<?= $f['image'] ?>" alt="<?= htmlspecialchars($f['name']) ?>">
-            </div>
-            <!-- Hover quote overlay -->
-            <div class="fcp-quote-overlay">
-              <svg class="fcp-quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1.01-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003z" />
-              </svg>
-              <p class="fcp-quote-text">"<?= htmlspecialchars($f['quote']) ?>"</p>
-            </div>
-
-          </div>
-
-          <!-- Info area -->
-          <div class="fcp-info">
-            <div class="fcp-name"><?= htmlspecialchars($f['name']) ?></div>
-            <div class="fcp-role" style="color:<?= $f['color'] ?>"><?= htmlspecialchars($f['role']) ?> &bull;
-              <?= htmlspecialchars($f['institute']) ?></div>
-
-            <div class="fcp-stats">
-              <div class="fcp-stat">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                <?= $f['exp'] ?>
-              </div>
-              <div class="fcp-stat-divider"></div>
-              <div class="fcp-stat">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                </svg>
-                <?= $f['papers'] ?>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
 <!-- ============================================================
      BLOGS PREVIEW
      ============================================================ -->
@@ -738,7 +711,7 @@ include 'components/Navbar.php';
       <h2 class="section-title">Latest from our blog</h2>
     </div>
 
-    <div class="blogs-grid">
+    <div class="blogs-grid d-flex flex-nowrap">
       <?php foreach ($BLOGS as $i => $b): ?>
         <a href="pages/blog-details.php?slug=<?= $b['slug'] ?>" class="blog-card reveal"
           style="transition-delay:<?= $i * 0.06 ?>s">
@@ -752,6 +725,10 @@ include 'components/Navbar.php';
           </div>
         </a>
       <?php endforeach; ?>
+      
+    </div>
+    <div class="btn-blog  mt-4 d-flex align-items-center justify-content-center">
+      <a href="pages/blogs.php" class="border-0 py-1 px-3  rounded-3 text-white">View all</a>
     </div>
   </div>
 </section>
