@@ -19,7 +19,7 @@ if (!$b) {
   exit;
 }
 
-$page_title       = $b['title'] . ' — IIMs Courses';
+$page_title       = $b['title'] . ' — IIMs Colleges';
 $page_og_image    = $b['image'];
 $current_page     = 'blogs';
 $comments = [

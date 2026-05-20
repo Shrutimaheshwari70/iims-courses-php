@@ -5,8 +5,7 @@
 
 session_start();
 require_once 'data/iims.php';
-
-$page_title = 'IIMs Courses — Discover, Compare & Apply to India\'s Top IIMs';
+$page_title = 'IIMs Colleges — Discover, Compare & Apply to India\'s Top IIMs';
 $page_description = 'Explore all 14 IIMs, MBA & PGDM programmes, verified placements and rankings. Apply with free counselling.';
 $current_page = 'home';
 
@@ -40,7 +39,7 @@ include 'components/Navbar.php';
         <button class="btn btn-hero" onclick="openApplyModal()">
           Apply Now
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2">
+            stroke-width="2">c
             <line x1="5" y1="12" x2="19" y2="12" />
             <polyline points="12 5 19 12 12 19" />
           </svg>
@@ -49,16 +48,11 @@ include 'components/Navbar.php';
       </div>
 
       <div class="hero-social d-flex align-items-center gap-5 mt-4">
-
         <div class="hero-avatars d-flex">
-          <img class="rounded-5 border object-fit-cover" src="assets/images/student1.webp" alt="user"
-            class="rounded-circle" />
-          <img class="rounded-5 border object-fit-cover" src="assets/images/student2.webp" alt="user"
-            class="rounded-circle" />
-          <img class="rounded-5 border object-fit-cover" src="assets/images/student3.webp" alt="user"
-            class="rounded-circle" />
-          <img class="rounded-5 border object-fit-cover" src="assets/images/student5.webp" alt="user"
-            class="rounded-circle" />
+          <img class="rounded-5 border object-fit-cover" src="assets/images/student1.webp" alt="user" />
+          <img class="rounded-5 border object-fit-cover" src="assets/images/student2.webp" alt="user" />
+          <img class="rounded-5 border object-fit-cover" src="assets/images/student3.webp" alt="user" />
+          <img class="rounded-5 border object-fit-cover" src="assets/images/student5.webp" alt="user" />
         </div>
         <div>
           <div class="hero-stars d-flex align-items-center gap-0">
@@ -76,7 +70,7 @@ include 'components/Navbar.php';
     </div>
 
     <div class="hero-right d-flex flex-column gap-2">
-      <div class="floating-stat float-0   border-amber-50 py-4 px-3 rounded d-flex align-items-center gap-4 shadow">
+      <div class="floating-stat float-0 border-amber-50 py-4 px-3 rounded d-flex align-items-center gap-4 shadow">
         <div class="floating-stat-icon d-flex align-items-center justify-content-center text-white rounded-xl">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
@@ -114,7 +108,7 @@ include 'components/Navbar.php';
         </div>
         <div>
           <div class="floating-stat-label fw-semibold text-uppercase ls-4">Alumni Network</div>
-          <div class="floating-stat-value text-white fw-bold ">80,000+</div>
+          <div class="floating-stat-value text-white fw-bold fs-4">80,000+</div>
         </div>
       </div>
 
@@ -138,21 +132,13 @@ include 'components/Navbar.php';
       </div>
     </div>
   </div>
-
-  <div class="recruiters-strip position-absolute left-0 right-0 bottom-0 border-top py-2 px-2">
-    <div class="recruiters-track marquee d-flex gap-5 text-nowrap">
-      <?php foreach (array_merge($RECRUITERS, $RECRUITERS) as $r): ?>
-        <span class="fw-semibold"><?= htmlspecialchars($r) ?></span>
-      <?php endforeach; ?>
-    </div>
-  </div>
 </section>
 
 
 <!-- ============================================================
      NEWS TICKER
      ============================================================ -->
-<div class="news-ticker">
+<div class="news-ticker text-white d-flex overflow-hidden gap-5 py-1 text-nowrap">
   <div class="ticker-track ticker">
     <?php
     $news = [
@@ -162,8 +148,7 @@ include 'components/Navbar.php';
       '📅 IIM Indore IPMAT applications close June 5',
       '🌟 IIM Kozhikode tops gender diversity rankings',
     ];
-    foreach (array_merge($news, $news) as $item):
-      ?>
+    foreach (array_merge($news, $news) as $item): ?>
       <span><?= htmlspecialchars($item) ?></span>
     <?php endforeach; ?>
   </div>
@@ -181,7 +166,7 @@ include 'components/Navbar.php';
       <p class="section-desc">Verified rankings, fees, placements and alumni reviews — all in one place.</p>
     </div>
 
-    <div class="colleges-grid">
+    <div class="colleges-grid d-grid gap-4">
       <?php foreach (array_slice($COLLEGES, 0, 6) as $index => $college): ?>
         <div class="reveal" style="transition-delay:<?= $index * 0.07 ?>s">
           <?php include 'components/CollegeCard.php'; ?>
@@ -189,7 +174,7 @@ include 'components/Navbar.php';
       <?php endforeach; ?>
     </div>
 
-    <div class="colleges-cta">
+    <div class="colleges-cta d-flex align-items-center justify-content-center mt-5">
       <a href="pages/colleges.php" class="btn btn-navy">
         View all IIMs
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -207,80 +192,71 @@ include 'components/Navbar.php';
      ============================================================ -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="text-center mb-4 reveal">
       <div class="section-eyebrow">Programmes</div>
       <h2 class="section-title">Featured <span class="text-gradient-accent">programmes</span></h2>
       <p class="section-desc">Choose from full-time MBA, PGDM, Executive MBA, Business Analytics and more.</p>
     </div>
 
-    <div class="courses-grid">
-      <?php
-      // Dynamic asset base — root (index.php) vs /pages/
-      $assetBase = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) ? '../assets/' : 'assets/';
-
-      foreach (array_slice($COURSES, 0, 8) as $i => $c):
-        // Strip any stored ../assets/images/ or assets/images/ prefix and rebuild
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3">
+      <?php foreach (array_slice($COURSES, 0, 8) as $i => $c):
         $cImgFile = preg_replace('#^(\.\./)*assets/images/#', '', $c['image']);
         $cImgSrc = $assetBase . 'images/' . $cImgFile;
+        $pagePrefix = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) ? '' : 'pages/';
+        $totalIims = count($c['iims']);
+        $visibleIims = array_slice($c['iims'], 0, 2);
         ?>
-        <div class="course-card reveal" style="transition-delay:<?= $i * 0.05 ?>s">
-          <div class="course-img">
-            <img src="<?= htmlspecialchars($cImgSrc) ?>" alt="<?= htmlspecialchars($c['title']) ?>" loading="lazy"
-              style="display:block;width:100%;height:100%;object-fit:cover;margin:0;padding:0;border:none;" />
-            <div class="course-img-overlay"></div>
-            <span class="course-cat"><?= htmlspecialchars($c['category']) ?></span>
-            <span class="course-meta">₹<?= $c['fees'] ?>L &bull; <?= htmlspecialchars($c['duration']) ?></span>
-          </div>
-          <div class="course-body">
-            <h4 class="course-title"><?= htmlspecialchars($c['title']) ?></h4>
-            <p class="course-desc"><?= htmlspecialchars($c['description']) ?></p>
-        <div class="course-iims-list ">
+        <div class="col">
+          <div class="course-card d-flex flex-column h-100 reveal rounded-3 overflow-hidden"
+            style="transition-delay:<?= $i * 0.05 ?>s">
 
-  <?php 
-  $totalIims = count($c['iims']);
-  $visibleIims = array_slice($c['iims'], 0, 2);
+            <div class="course-img overflow-hidden">
+              <img src="<?= htmlspecialchars($cImgSrc) ?>" alt="<?= htmlspecialchars($c['title']) ?>" loading="lazy"
+                class="d-block object-fit-cover rounded-3" />
+              <div class="course-img-overlay"></div>
+              <span
+                class="course-cat fw-bold text-uppercase px-2 py-1 rounded-4"><?= htmlspecialchars($c['category']) ?></span>
+              <span class="course-meta text-white fw-semibold">₹<?= $c['fees'] ?>L &bull;
+                <?= htmlspecialchars($c['duration']) ?></span>
+            </div>
 
-  foreach ($visibleIims as $iimSlug): 
-    $iim = getCollege($iimSlug);
-    if ($iim):
-  ?>
-    <span class="course-iim-chip">
-      <?= htmlspecialchars($iim['name']) ?>
-    </span>
-  <?php 
-    endif;
-  endforeach; 
-  ?>
+            <div class="course-body d-flex flex-column py-2 px-1">
+              <h4 class="course-title overflow-hidden fw-semibold"><?= htmlspecialchars($c['title']) ?></h4>
+              <p class="course-desc overflow-hidden"><?= htmlspecialchars($c['description']) ?></p>
 
-  <?php if ($totalIims > 3): ?>
-    <a 
-      href="<?= (strpos($_SERVER['PHP_SELF'], '/pages/') !== false ? '' : 'pages/') ?>course-details.php?slug=<?= $c['slug'] ?>" 
-      class="course-iim-viewall"
-    >
-      +<?= $totalIims - 3 ?> View All
-    </a>
-  <?php endif; ?>
+              <div class="course-iims-list d-flex align-items-center gap-2 flex-nowrap overflow-hidden">
+                <?php foreach ($visibleIims as $iimSlug):
+                  $iim = getCollege($iimSlug);
+                  if ($iim): ?>
+                    <span class="course-iim-chip"><?= htmlspecialchars($iim['name']) ?></span>
+                  <?php endif; endforeach; ?>
+                <?php if ($totalIims > 3): ?>
+                  <a href="<?= $pagePrefix ?>course-details.php?slug=<?= $c['slug'] ?>" class="course-iim-viewall">
+                    +<?= $totalIims - 3 ?> View All
+                  </a>
+                <?php endif; ?>
+              </div>
 
-</div>
-            <div class="course-footer">
-              
-              <a href="<?= (strpos($_SERVER['PHP_SELF'], '/pages/') !== false ? '' : 'pages/') ?>course-details.php?slug=<?= $c['slug'] ?>"
-                class="course-link">
-                Explore
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
+              <div class="course-footer d-flex align-items-center pt-3">
+                <a href="<?= $pagePrefix ?>course-details.php?slug=<?= $c['slug'] ?>"
+                  class="course-link d-flex align-items-center text-decoration-0 fw-semibold">
+                  Explore
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       <?php endforeach; ?>
     </div>
   </div>
-  <div class="btn featured-btn d-flex align-items-center justify-content-center mt-3">
-    <a href="pages/courses.php" class="py-2 px-3 rounded-2" >View all</a>
+
+  <div class="featured-btn mt-4 fw-semibold d-flex align-items-center justify-content-center ">
+    <a href="pages/courses.php" class="py-2 px-3 rounded-2">View all</a>
   </div>
 </section>
 
@@ -288,9 +264,9 @@ include 'components/Navbar.php';
 <!-- ============================================================
      ACHIEVEMENTS
      ============================================================ -->
-<section class="achievements-section">
+<section class="achievements-section overflow-hidden py-5">
   <div class="container">
-    <div class="achievements-grid">
+    <div class="achievements-grid d-grid gap-3">
       <?php
       $stats = [
         ['value' => 14, 'label' => 'IIMs Covered', 'suffix' => '', 'icon' => 'graduation'],
@@ -304,19 +280,18 @@ include 'components/Navbar.php';
         'briefcase' => '<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
         'target' => '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
       ];
-      foreach ($stats as $s):
-        ?>
-        <div class="achievement-item reveal">
+      foreach ($stats as $s): ?>
+        <div class="achievement-item text-center text-white reveal">
           <div class="achievement-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2">
               <?= $icons[$s['icon']] ?>
             </svg>
           </div>
-          <div class="achievement-value">
+          <div class="achievement-value fs-1 fw-semibold">
             <span data-counter data-to="<?= $s['value'] ?>" data-suffix="<?= $s['suffix'] ?>">0</span>
           </div>
-          <div class="achievement-label"><?= htmlspecialchars($s['label']) ?></div>
+          <div class="achievement-label text-uppercase fw-semibold mt-2"><?= htmlspecialchars($s['label']) ?></div>
         </div>
       <?php endforeach; ?>
     </div>
@@ -335,42 +310,25 @@ include 'components/Navbar.php';
       <p class="section-desc">A clear, supported path — at every milestone.</p>
     </div>
 
-    <div class="timeline-grid">
+    <div class="timeline-grid d-grid gap-5">
       <?php
       $steps = [
-        [
-          'title' => 'Discover',
-          'desc' => 'Explore IIMs, programmes, placements & rankings.',
-          'icon' => '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'
-        ],
-        [
-          'title' => 'Compare',
-          'desc' => 'Side-by-side comparison of fees, ROI, faculty.',
-          'icon' => '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'
-        ],
-        [
-          'title' => 'Apply',
-          'desc' => 'Apply through our guided counselling.',
-          'icon' => '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'
-        ],
-        [
-          'title' => 'Succeed',
-          'desc' => 'Crack CAT, ace WAT-PI, land your dream offer.',
-          'icon' => '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>'
-        ],
+        ['title' => 'Discover', 'desc' => 'Explore IIMs, programmes, placements & rankings.', 'icon' => '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'],
+        ['title' => 'Compare', 'desc' => 'Side-by-side comparison of fees, ROI, faculty.', 'icon' => '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'],
+        ['title' => 'Apply', 'desc' => 'Apply through our guided counselling.', 'icon' => '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'],
+        ['title' => 'Succeed', 'desc' => 'Crack CAT, ace WAT-PI, land your dream offer.', 'icon' => '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>'],
       ];
-      foreach ($steps as $i => $step):
-        ?>
-        <div class="timeline-item reveal" style="transition-delay:<?= $i * 0.1 ?>s">
-          <div class="timeline-icon-wrap">
+      foreach ($steps as $i => $step): ?>
+        <div class="timeline-item text-center reveal" style="transition-delay:<?= $i * 0.1 ?>s">
+          <div class="timeline-icon-wrap rounded-2 d-flex align-items-center justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2">
               <?= $step['icon'] ?>
             </svg>
-            <div class="timeline-num"><?= $i + 1 ?></div>
+            <div class="timeline-num d-flex align-items-center justify-content-center fw-semibold"><?= $i + 1 ?></div>
           </div>
-          <h4 class="timeline-title"><?= htmlspecialchars($step['title']) ?></h4>
-          <p class="timeline-desc"><?= htmlspecialchars($step['desc']) ?></p>
+          <h6 class="timeline-title fw-semibold mt-2"><?= htmlspecialchars($step['title']) ?></h6>
+          <p class="timeline-desc mt-2"><?= htmlspecialchars($step['desc']) ?></p>
         </div>
       <?php endforeach; ?>
     </div>
@@ -378,8 +336,93 @@ include 'components/Navbar.php';
 </section>
 
 
+<!-- ==================================s==========================
+     TOP RECRUITERS  ← NEW SECTION (added before testimonials)
+     ============================================================ -->
+<?php
+$assetBase = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false)
+  ? '../assets/images/'
+  : 'assets/images/';
+
+$RECRUITERS = [
+  ['name' => 'Google', 'logo' => $assetBase . 'Google.webp'],
+  ['name' => 'Adobe', 'logo' => $assetBase . 'Adobe.webp'],
+  ['name' => 'Apple', 'logo' => $assetBase . 'Apple.webp'],
+  ['name' => 'Axis', 'logo' => $assetBase . 'Axis.webp'],
+  ['name' => 'CocoCola', 'logo' => $assetBase . 'CocoCola.webp'],
+  ['name' => 'Cognizant', 'logo' => $assetBase . 'Cognizant.webp'],
+  ['name' => 'ICICI', 'logo' => $assetBase . 'ICICI.webp'],
+  ['name' => 'Mahindra', 'logo' => $assetBase . 'Mahindra.webp'],
+  ['name' => 'Microsoft', 'logo' => $assetBase . 'Microsoft.webp'],
+  ['name' => 'Amazon', 'logo' => $assetBase . 'Amazon.webp'],
+  ['name' => 'McKinsey', 'logo' => $assetBase . 'McKinsey.webp'],
+  ['name' => 'Deloitte', 'logo' => $assetBase . 'Deloitte.webp'],
+  ['name' => 'Accenture', 'logo' => $assetBase . 'Accenture.webp'],
+  ['name' => 'Infosys', 'logo' => $assetBase . 'Infosys.webp'],
+  ['name' => 'Wipro', 'logo' => $assetBase . 'Wipro.webp'],
+  ['name' => 'KPMG', 'logo' => $assetBase . 'KPMG.webp'],
+  ['name' => 'BCG', 'logo' => $assetBase . 'BCG.webp'],
+  ['name' => 'Bain & Co', 'logo' => $assetBase . 'Bain.webp'],
+  ['name' => 'Flipkart', 'logo' => $assetBase . 'Flipkart.webp'],
+  ['name' => 'Tata Group', 'logo' => $assetBase . 'Tcs.webp'],
+  ['name' => 'Hindustan Unilever', 'logo' => $assetBase . 'Hul.webp'],
+  ['name' => 'HDFC Bank', 'logo' => $assetBase . 'HDFC.webp'],
+];
+
+?>
+
+<section class="section section-alt recruiters-section border-bottom">
+  <div class="container">
+
+    <!-- HEAD -->
+    <div class="section-head reveal text-center">
+      <div class="section-eyebrow">Placements</div>
+      <h2 class="section-title">Our <span class="text-gradient-accent">Top Recruiters</span></h2>
+      <p class="section-desc">500+ leading global and Indian companies hire from our IIM network every year.</p>
+    </div>
+
+    <!-- STAT PILLS -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+      <div class="recruiter-stat-pill"><span>500+</span> Recruiters</div>
+      <div class="recruiter-stat-pill"><span>₹1.15Cr</span> Highest CTC</div>
+      <div class="recruiter-stat-pill"><span>₹24L</span> Avg CTC</div>
+      <div class="recruiter-stat-pill"><span>98%</span> Placement Rate</div>
+    </div>
+
+  </div>
+
+  <!-- MARQUEE ROW 1 — left to right -->
+  <div class="recruiters-marquee-outer">
+    <div class="recruiters-track recruiters-track--fwd">
+      <?php foreach (array_merge($RECRUITERS, $RECRUITERS) as $r): ?>
+        <div class="recruiter-chip">
+          <img src="<?= htmlspecialchars($r['logo']) ?>" alt="<?= htmlspecialchars($r['name']) ?>" loading="lazy"
+            onerror="this.style.display='none'" />
+          <span><?= htmlspecialchars($r['name']) ?></span>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  <!-- MARQUEE ROW 2 — right to left (offset) -->
+  <div class="recruiters-marquee-outer mt-3">
+    <div class="recruiters-track recruiters-track--rev">
+      <?php
+      $shifted = array_merge(array_slice($RECRUITERS, 5), array_slice($RECRUITERS, 0, 5));
+      foreach (array_merge($shifted, $shifted) as $r): ?>
+        <div class="recruiter-chip">
+          <img src="<?= htmlspecialchars($r['logo']) ?>" alt="<?= htmlspecialchars($r['name']) ?>" loading="lazy"
+            onerror="this.style.display='none'" />
+          <span><?= htmlspecialchars($r['name']) ?></span>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+</section>
+
 <!-- ============================================================
-     TESTIMONIALS  — FIXED (images + working slider)
+     TESTIMONIALS
      ============================================================ -->
 <section class="section section-alt">
   <div class="container">
@@ -388,17 +431,9 @@ include 'components/Navbar.php';
       <h1 class="section-title">Loved by <span class="text-gradient-accent">aspirants &amp; alumni</span></h1>
     </div>
 
-    <?php
-    /*
-     * Fallback avatar colours — used as background when no photo is available,
-     * same as React (initials inside a coloured circle).
-     * If your $TESTIMONIALS array has an 'image' key, the <img> is shown instead.
-     */
-    $avatarColors = ['#6366f1', '#0ea5e9', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
-    ?>
+    <?php $avatarColors = ['#6366f1', '#0ea5e9', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6']; ?>
 
     <div class="testimonial-wrap" id="testimonial-wrap">
-
       <?php foreach ($TESTIMONIALS as $ti => $t):
         $color = $avatarColors[$ti % count($avatarColors)];
         $initials = mb_strtoupper(mb_substr(trim($t['name']), 0, 1));
@@ -407,8 +442,6 @@ include 'components/Navbar.php';
         <div class="testimonial-slide<?= $isFirst ? ' active-slide' : '' ?>" id="t-slide-<?= $ti ?>"
           style="display:<?= $isFirst ? 'block' : 'none' ?>;">
           <div class="testimonial-card">
-
-            <!-- Stars -->
             <div class="testimonial-stars">
               <?php for ($s = 0; $s < (int) $t['rating']; $s++): ?>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"
@@ -418,54 +451,42 @@ include 'components/Navbar.php';
                 </svg>
               <?php endfor; ?>
             </div>
-
-            <!-- Quote -->
             <p class="testimonial-quote">"<?= htmlspecialchars($t['quote']) ?>"</p>
-
-            <!-- Author row: photo OR initials avatar -->
             <div class="testimonial-author">
-
               <?php if (!empty($t['image'])): ?>
-                <!-- Real photo from data -->
                 <img src="<?= htmlspecialchars($t['image']) ?>" alt="<?= htmlspecialchars($t['name']) ?>"
-                  class="testimonial-avatar     -img" loading="lazy"
+                  class="testimonial-avatar-img" loading="lazy"
                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-                <!-- Fallback initials (hidden unless image errors) -->
                 <div class="testimonial-avatar"
                   style="display:none;background:<?= $color ?>;color:#fff;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">
-                  <?= $initials ?></div>
-
+                  <?= $initials ?>
+                </div>
               <?php else: ?>
-                <!-- No image in data → show initials avatar -->
                 <div class="testimonial-avatar"
                   style="background:<?= $color ?>;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">
-                  <?= $initials ?></div>
+                  <?= $initials ?>
+                </div>
               <?php endif; ?>
-
               <div>
                 <div class="testimonial-name"><?= htmlspecialchars($t['name']) ?></div>
                 <div class="testimonial-role"><?= htmlspecialchars($t['role']) ?></div>
               </div>
-            </div><!-- /author -->
-
-          </div><!-- /card -->
-        </div><!-- /slide -->
+            </div>
+          </div>
+        </div>
       <?php endforeach; ?>
 
-      <!-- Navigation -->
-      <div class="testimonial-nav">
+      <div class="testimonial-nav d-flex align-items-center justify-content-center mt-3">
         <button class="t-nav-btn" id="t-prev" aria-label="Previous testimonial">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
-
         <?php foreach ($TESTIMONIALS as $ti => $t): ?>
           <button class="t-dot<?= $ti === 0 ? ' active' : '' ?>" data-index="<?= $ti ?>"
             aria-label="Go to testimonial <?= $ti + 1 ?>"></button>
         <?php endforeach; ?>
-
         <button class="t-nav-btn" id="t-next" aria-label="Next testimonial">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
@@ -473,234 +494,11 @@ include 'components/Navbar.php';
           </svg>
         </button>
       </div>
-
-    </div><!-- /testimonial-wrap -->
+    </div>
   </div>
 </section>
 
-<!-- Testimonial avatar image style -->
-<style>
-  .featured-btn a{
-    color: white;
-    background-color: #e25c2a;
-    font-size: 0.9rem;
-    
-  }
-    .featured-btn a:hover{
-    color: #e25c2a;
-    background-color: white;
-    border: 1px solid #e25c2a;
-    font-size: 0.8rem;
-    
-  }
-  .testimonial-avatar-img {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    border: 2px solid var(--border, #e5e7eb);
-  }
 
-  .testimonial-avatar {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .testimonial-slide {
-    display: none;
-  }
-
-  .testimonial-slide.active-slide {
-    display: block;
-  }
-  /* blog grid----------------- */
-  .blogs-grid{
-  gap:20px;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-
-.blogs-grid::-webkit-scrollbar{
-  display:none;
-}
-
-.blog-card{
-  flex:0 0 calc(20% - 16px); /* 5 cards in one row */
-  width:calc(20% - 16px);
-  display:flex;
-  flex-direction:column;
-  height:100%;
-  min-height:420px;
-  border-radius:16px;
-  overflow:hidden;
-}
-
-.blog-img{
-  width:100%;
-  height:220px;
-  overflow:hidden;
-}
-
-.blog-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.blog-body{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  padding:18px;
-}
-
-.blog-title{
-  min-height:auto;
-}
-
-.blog-excerpt{
-  flex:1;
-}
-
-/* Responsive */
-@media(max-width:1200px){
-  .blog-card{
-    flex:0 0 calc(25% - 15px);
-    width:calc(25% - 15px);
-  }
-}
-
-@media(max-width:992px){
-  .blog-card{
-    flex:0 0 calc(33.33% - 14px);
-    width:calc(33.33% - 14px);
-  }
-}
-
-@media(max-width:768px){
-  .blog-card{
-    flex:0 0 calc(50% - 10px);
-    width:calc(50% - 10px);
-  }
-}
-
-@media(max-width:480px){
-  .blog-card{
-    flex:0 0 100%;
-    width:100%;
-  }
-}
-.btn-blog a{
-  background-color: #F78D37;
-}
-
-.btn-blog a:hover{
-  background-color: black;
-}
-.course-iims-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px;
-  margin-top:14px;
-  align-items:center;
-}
-
-.course-iim-chip{
-  display:inline-flex;
-  align-items:center;
-  padding:4px 8px;
-  border-radius:999px;
-  background:rgba(226,92,42,.08);
-  border:1px solid rgba(226,92,42,.15);
-  color:var(--color-accent,#e25c2a);
-  font-size:7px;
-  font-weight:600;
-  line-height:1;
-}
-
-.course-iim-viewall{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:4px 8px;
-  border-radius:999px;
-  color:grey;
-  font-size:8px;
-  font-weight:600;
-  text-decoration:none;
-  transition:.2s;
-}
-
-.course-iim-viewall:hover{
-  opacity:.9;
-  transform:translateY(-1px);
-}
-</style>
-
-<!-- Testimonial slider JS — fully self-contained, no dependencies -->
-<script>
-  (function () {
-    var total = <?= count($TESTIMONIALS) ?>;
-    var current = 0;
-    var autoTimer;
-
-    function showSlide(idx) {
-      /* hide all */
-      for (var i = 0; i < total; i++) {
-        var sl = document.getElementById('t-slide-' + i);
-        if (sl) { sl.style.display = 'none'; sl.classList.remove('active-slide'); }
-      }
-      /* show target */
-      var target = document.getElementById('t-slide-' + idx);
-      if (target) { target.style.display = 'block'; target.classList.add('active-slide'); }
-
-      /* dots */
-      var dots = document.querySelectorAll('.t-dot');
-      dots.forEach(function (d, i) {
-        d.classList.toggle('active', i === idx);
-      });
-
-      current = idx;
-    }
-
-    function next() { showSlide((current + 1) % total); }
-    function prev() { showSlide((current - 1 + total) % total); }
-
-    /* Button listeners */
-    var btnNext = document.getElementById('t-next');
-    var btnPrev = document.getElementById('t-prev');
-    if (btnNext) btnNext.addEventListener('click', function () { clearInterval(autoTimer); next(); startAuto(); });
-    if (btnPrev) btnPrev.addEventListener('click', function () { clearInterval(autoTimer); prev(); startAuto(); });
-
-    /* Dot listeners */
-    document.querySelectorAll('.t-dot').forEach(function (dot) {
-      dot.addEventListener('click', function () {
-        clearInterval(autoTimer);
-        showSlide(parseInt(this.getAttribute('data-index'), 10));
-        startAuto();
-      });
-    });
-
-    /* Auto-advance every 5 s */
-    function startAuto() { autoTimer = setInterval(next, 5000); }
-    startAuto();
-
-    /* Touch / swipe support */
-    var wrap = document.getElementById('testimonial-wrap');
-    var startX = 0;
-    if (wrap) {
-      wrap.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
-      wrap.addEventListener('touchend', function (e) {
-        var diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) { clearInterval(autoTimer); diff > 0 ? next() : prev(); startAuto(); }
-      }, { passive: true });
-    }
-  })();
-</script>
 <!-- ============================================================
      BLOGS PREVIEW
      ============================================================ -->
@@ -710,25 +508,24 @@ include 'components/Navbar.php';
       <div class="section-eyebrow">Insights</div>
       <h2 class="section-title">Latest from our blog</h2>
     </div>
-
-    <div class="blogs-grid d-flex flex-nowrap">
+    <div class="blogs-grid">
       <?php foreach ($BLOGS as $i => $b): ?>
-        <a href="pages/blog-details.php?slug=<?= $b['slug'] ?>" class="blog-card reveal"
+        <a href="pages/blog-details.php?slug=<?= $b['slug'] ?>" class="blog-card reveal border"
           style="transition-delay:<?= $i * 0.06 ?>s">
           <div class="blog-img">
             <img src="<?= htmlspecialchars($b['image']) ?>" alt="<?= htmlspecialchars($b['title']) ?>" loading="lazy" />
           </div>
-          <div class="blog-body">
-            <div class="blog-meta"><?= htmlspecialchars($b['date']) ?> &bull; <?= htmlspecialchars($b['author']) ?></div>
+          <div class="blog-body d-flex flex-column py-3 px-2">
+            <div class="blog-meta mb-1"><?= htmlspecialchars($b['date']) ?> &bull; <?= htmlspecialchars($b['author']) ?>
+            </div>
             <h4 class="blog-title"><?= htmlspecialchars($b['title']) ?></h4>
             <p class="blog-excerpt"><?= htmlspecialchars($b['excerpt']) ?></p>
           </div>
         </a>
       <?php endforeach; ?>
-      
     </div>
-    <div class="btn-blog  mt-4 d-flex align-items-center justify-content-center">
-      <a href="pages/blogs.php" class="border-0 py-1 px-3  rounded-3 text-white">View all</a>
+    <div class="btn-blog mt-4 d-flex align-items-center justify-content-center">
+      <a href="pages/blogs.php" class="border-0 py-1 px-3 rounded-3 text-white">View all</a>
     </div>
   </div>
 </section>
@@ -744,7 +541,6 @@ include 'components/Navbar.php';
       <h2 class="section-title">Frequently asked</h2>
       <p class="section-desc">Everything you need to know — and a bit more.</p>
     </div>
-
     <div class="faq-wrap">
       <?php foreach ($FAQS as $i => $faq): ?>
         <div class="faq-item">
@@ -768,43 +564,129 @@ include 'components/Navbar.php';
      ============================================================ -->
 <section class="py-3">
   <div class="container">
-
     <div class="cta-pro position-relative overflow-hidden rounded-5 p-4 p-lg-5">
-
-      <!-- Glow -->
       <div class="cta-glow"></div>
-
-      <!-- <div class="center-cta d-flex"> -->
-        <div class="row align-items-center g-4 position-relative" style="z-index:2;">
-          <!-- Left Content -->
-          <div class="col-lg-7 text-center mx-auto">
-
-            <span class="cta-badge mb-3 d-inline-flex align-items-center">
-              <i class="bi bi-stars me-2"></i>
-              Trusted by CAT Aspirants Across India
-            </span>
-
-            <h4 class="cta-content display-5 fw-bold text-white mb-2 lh-sm">
-              Start Your Journey Towards
-              <span class="cta-highlight">Top IIM Admissions</span>
-            </h4>
-
-            <p class="cta-text mb-4">
-              Get personalised guidance from experienced mentors, IIM alumni, and CAT experts.
-              From profile evaluation to final admission strategy — we help you at every step.
-            </p>
-          </div>
-<div class="text-center">
-  <button class="button-cta bg-transparent px-4 py-2" onclick="openApplyModal()">
-    Apply
-  </button>
-</div>        </div>
-      <!-- </div> -->
-
+      <div class="row align-items-center g-4 position-relative" style="z-index:2;">
+        <div class="col-lg-7 text-center mx-auto">
+          <span class="cta-badge mb-3 d-inline-flex align-items-center">
+            <i class="bi bi-stars me-2"></i>
+            Trusted by CAT Aspirants Across India
+          </span>
+          <h4 class="cta-content display-5 fw-bold text-white mb-2 lh-sm">
+            Start Your Journey Towards
+            <span class="cta-highlight">Top IIM Admissions</span>
+          </h4>
+          <p class="cta-text mb-4">
+            Get personalised guidance from experienced mentors, IIM alumni, and CAT experts.
+            From profile evaluation to final admission strategy — we help you at every step.
+          </p>
+        </div>
+        <div class="text-center">
+          <button class="button-cta bg-transparent px-4 py-2" onclick="openApplyModal()">Apply</button>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
+
+
+<!-- Testimonial slider JS -->
+<script>
+  (function () {
+    var total = <?= count($TESTIMONIALS) ?>;
+    var current = 0;
+    var autoTimer;
+
+    function showSlide(idx) {
+      for (var i = 0; i < total; i++) {
+        var sl = document.getElementById('t-slide-' + i);
+        if (sl) { sl.style.display = 'none'; sl.classList.remove('active-slide'); }
+      }
+      var target = document.getElementById('t-slide-' + idx);
+      if (target) { target.style.display = 'block'; target.classList.add('active-slide'); }
+      document.querySelectorAll('.t-dot').forEach(function (d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+      current = idx;
+    }
+
+    function next() { showSlide((current + 1) % total); }
+    function prev() { showSlide((current - 1 + total) % total); }
+
+    var btnNext = document.getElementById('t-next');
+    var btnPrev = document.getElementById('t-prev');
+    if (btnNext) btnNext.addEventListener('click', function () { clearInterval(autoTimer); next(); startAuto(); });
+    if (btnPrev) btnPrev.addEventListener('click', function () { clearInterval(autoTimer); prev(); startAuto(); });
+
+    document.querySelectorAll('.t-dot').forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        clearInterval(autoTimer);
+        showSlide(parseInt(this.getAttribute('data-index'), 10));
+        startAuto();
+      });
+    });
+
+    function startAuto() { autoTimer = setInterval(next, 5000); }
+    startAuto();
+
+    var wrap = document.getElementById('testimonial-wrap');
+    var startX = 0;
+    if (wrap) {
+      wrap.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend', function (e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { clearInterval(autoTimer); diff > 0 ? next() : prev(); startAuto(); }
+      }, { passive: true });
+    }
+  })();
+</script>
+<script>
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+<script>
+function animateCounter(el) {
+  const target = +el.getAttribute("data-to");
+  const suffix = el.getAttribute("data-suffix") || "";
+  let count = 0;
+
+  const step = Math.ceil(target / 100);
+
+  function update() {
+    count += step;
+    if (count >= target) {
+      el.innerText = target + suffix;
+    } else {
+      el.innerText = count + suffix;
+      requestAnimationFrame(update);
+    }
+  }
+
+  update();
+}
+
+const counters = document.querySelectorAll("[data-counter]");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+});
+
+counters.forEach(c => observer.observe(c));
+</script>
 <?php
 include 'components/Footer.php';
 include 'components/Modals.php';
 include 'includes/footer.php';
+
 ?>

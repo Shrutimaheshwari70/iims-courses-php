@@ -1,18 +1,3 @@
-/**
- * app.js — IIMs Courses PHP
- * Vanilla JS equivalent of React state / hooks / framer-motion behaviours
- */
-
-/* ============================================================
-   THEME (Dark / Light)
-   ============================================================ */
-function applyTheme(dark) {
-  document.body.classList.toggle('dark', dark);
-  document.getElementById('icon-sun')  && (document.getElementById('icon-sun').style.display  = dark ? 'block' : 'none');
-  document.getElementById('icon-moon') && (document.getElementById('icon-moon').style.display = dark ? 'none'  : 'block');
-  localStorage.setItem('iims-theme', dark ? 'dark' : 'light');
-}
-function toggleTheme() { applyTheme(!document.body.classList.contains('dark')); }
 
 /* ============================================================
    NAVBAR SCROLL
@@ -267,24 +252,71 @@ function initCountdown() {
   setInterval(update, 60000);
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  // Theme
-  // const saved = localStorage.getItem('iims-theme');
-  // applyTheme(saved === 'dark');
-const saved = localStorage.getItem('iims-theme');
-if (saved === 'dark') {
-    applyTheme(true);
-} else {
-    applyTheme(false);
-    localStorage.setItem('iims-theme', 'light'); // ✅ har page pe light persist hoga
-}
-  initNavbar();
-  initFaq();
-  initCounters();
-  initTestimonials();
-  initScrollReveal();
-  initCountdown();
+
+document.addEventListener('click', async function(e) {
+
+  /* ── WISHLIST ── */
+  const wlBtn = e.target.closest('.wl-toggle');
+  if (wlBtn) {
+    e.preventDefault();
+    const slug = wlBtn.dataset.slug;
+
+    // Pop animation
+    wlBtn.classList.add('cc-popping');
+    wlBtn.addEventListener('animationend', () => wlBtn.classList.remove('cc-popping'), { once: true });
+
+    try {
+      const res  = await fetch('/ajax/toggle-wishlist.php?slug=' + encodeURIComponent(slug));
+      const data = await res.json();
+
+      if (data.success) {
+        const svg = wlBtn.querySelector('svg');
+        if (data.added) {
+          wlBtn.classList.add('cc-action-btn--wish-active');
+          wlBtn.classList.remove('cd-circle-btn--active'); // college-details page class
+          if (svg) svg.setAttribute('fill', 'currentColor');
+          wlBtn.title = 'Remove from Wishlist';
+        } else {
+          wlBtn.classList.remove('cc-action-btn--wish-active');
+          wlBtn.classList.remove('cd-circle-btn--active');
+          if (svg) svg.setAttribute('fill', 'none');
+          wlBtn.title = 'Add to Wishlist';
+        }
+        if (typeof window.updateWishBadge === 'function') window.updateWishBadge(data.count);
+      }
+    } catch (err) { console.error('Wishlist error:', err); }
+    return;
+  }
+
+  /* ── COMPARE ── */
+  const cmpBtn = e.target.closest('.cmp-toggle');
+  if (cmpBtn) {
+    e.preventDefault();
+    const slug = cmpBtn.dataset.slug;
+
+    cmpBtn.classList.add('cc-popping');
+    cmpBtn.addEventListener('animationend', () => cmpBtn.classList.remove('cc-popping'), { once: true });
+
+    try {
+      const res  = await fetch('/ajax/toggle-compare.php?slug=' + encodeURIComponent(slug));
+      const data = await res.json();
+
+      if (data.success) {
+        if (data.added) {
+          cmpBtn.classList.add('cc-action-btn--cmp-active');
+          cmpBtn.classList.remove('cd-circle-btn--active');
+          cmpBtn.title = 'Remove from Compare';
+        } else {
+          cmpBtn.classList.remove('cc-action-btn--cmp-active');
+          cmpBtn.classList.remove('cd-circle-btn--active');
+          cmpBtn.title = 'Add to Compare';
+        }
+        if (typeof window.updateCmpBadge === 'function') window.updateCmpBadge(data.count);
+      } else {
+        alert(data.message || 'Max 3 colleges can be compared');
+      }
+    } catch (err) { console.error('Compare error:', err); }
+    return;
+  }
+
 });

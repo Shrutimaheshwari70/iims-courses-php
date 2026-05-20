@@ -2003,7 +2003,16 @@ $courseFaqs = $COURSE_FAQS[$course['slug']] ?? [];
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
   })();
 </script>
-
+<script>
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
 <?php
 include '../components/Footer.php';
 include '../includes/footer.php';

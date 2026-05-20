@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 /**
  * components/ui/pagination.php
  *
@@ -60,4 +60,4 @@ function paginationUrl($tpl, $p) {
     </span>
   <?php endif; ?>
 
-</nav>
+</nav> -->

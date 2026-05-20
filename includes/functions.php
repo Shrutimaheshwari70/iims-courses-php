@@ -14,7 +14,7 @@ function e(mixed $val): string {
 /**
  * Format a number with Indian-style formatting (e.g. 1,00,000).
  */
-function indian_number(int|float $n): string {
+function sindian_number(int|float $n): string {
     if ($n < 1000) return (string)$n;
     $last3 = $n % 1000;
     $rest  = (int)($n / 1000);
