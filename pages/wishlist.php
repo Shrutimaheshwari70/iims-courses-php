@@ -23,7 +23,7 @@ if (isset($_GET['wl_action']) && isset($_GET['wl_slug'])) {
   exit;
 }
 
-$page_title = 'Your Wishlist — IIMs Colleges';
+$page_title = 'Your Wishlist — IIMs Courses';
 $page_description = 'Your saved IIMs.';
 $current_page = 'wishlist';
 

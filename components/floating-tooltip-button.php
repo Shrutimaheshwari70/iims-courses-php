@@ -22,7 +22,8 @@
 }
 
 .button.visible {
-  right: 55px;
+  right: 65px;
+  top:60%;
 }
 
 .button__text {

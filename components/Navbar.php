@@ -1102,7 +1102,7 @@ $categories_json = json_encode($categories);
                         <img src="<?= $asset_base ?>assets/images/logo.webp" alt="Logo">
                     </div>
                     <div class="navbar-logo-text">
-                        <span class="logo-title">IIMs Colleges</span>
+                        <span class="logo-title">IIMs Courses</span>
                         <span class="logo-sub">India's MBA Discovery</span>
                     </div>
                 </a>

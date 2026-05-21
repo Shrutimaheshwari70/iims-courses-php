@@ -4,7 +4,7 @@
  * Exact same UI as TypeScript version
  */
 session_start();
-$page_title = 'Careers at IIMs Colleges';
+$page_title = 'Careers at IIMs Courses';
 $page_description = 'Join a team helping 50,000+ aspirants find their dream IIM.';
 $current_page = 'careers';
 

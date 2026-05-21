@@ -5,7 +5,7 @@
 
 session_start();
 require_once 'data/iims.php';
-$page_title = 'IIMs Colleges — Discover, Compare & Apply to India\'s Top IIMs';
+$page_title = 'IIMs Courses — Discover, Compare & Apply to India\'s Top IIMs';
 $page_description = 'Explore all 14 IIMs, MBA & PGDM programmes, verified placements and rankings. Apply with free counselling.';
 $current_page = 'home';
 

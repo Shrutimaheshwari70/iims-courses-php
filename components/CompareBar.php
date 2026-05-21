@@ -20,7 +20,8 @@ if (isset($_GET['remove']) && !empty($_GET['remove'])) {
 }
 
 $compareList = $_SESSION['compare'] ?? [];
-if (empty($compareList)) return;
+if (empty($compareList))
+  return;
 
 $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compareList)));
 ?>
@@ -37,7 +38,7 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
       <?php for ($i = 0; $i < 3; $i++): ?>
         <?php if (isset($colleges[$i])):
           $c = $colleges[$i]; ?>
-          
+
           <div class="compare-slot filled">
             <div class="compare-slot-logo">
 
@@ -46,9 +47,8 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
                 $pageBase = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) ? '../' : '';
                 $imgPath = preg_replace('#^(\.\./)*#', '', $c['image']);
                 ?>
-                <img src="<?= $pageBase . htmlspecialchars($imgPath) ?>"
-                     alt="<?= htmlspecialchars($c['name']) ?>"
-                     class="compare-slot-img">
+                <img src="<?= $pageBase . htmlspecialchars($imgPath) ?>" alt="<?= htmlspecialchars($c['name']) ?>"
+                  class="compare-slot-img">
               <?php else: ?>
                 <span class="compare-slot-initials">IIM</span>
               <?php endif; ?>
@@ -64,15 +64,14 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
               </span>
             </div>
 
-            <a href="?remove=<?= urlencode($c['slug']) ?>"
-               class="compare-slot-remove"
-               title="Remove <?= htmlspecialchars($c['name']) ?>">
+            <a href="?remove=<?= urlencode($c['slug']) ?>" class="compare-slot-remove"
+              title="Remove <?= htmlspecialchars($c['name']) ?>">
               ✕
             </a>
           </div>
 
         <?php else: ?>
-          
+
           <div class="compare-slot empty">
             <div class="compare-slot-add-icon">+</div>
             <a href="<?= $b ?>pages/colleges.php">
@@ -306,8 +305,13 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
 
   /* ── Tablet (≤900px) ── */
   @media (max-width: 900px) {
-    .compare-bar-label { display: none; }
-    .compare-bar-divider { display: none; }
+    .compare-bar-label {
+      display: none;
+    }
+
+    .compare-bar-divider {
+      display: none;
+    }
 
     .compare-bar-inner {
       gap: 10px;
@@ -339,13 +343,22 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
 
   /* ── Mobile (≤540px) ── */
   @media (max-width: 540px) {
-    .compare-bar { padding: 10px 12px; }
+    .compare-bar {
+      padding: 10px 12px;
+    }
 
-    .compare-bar-slots { gap: 6px; }
+    .compare-bar-slots {
+      gap: 6px;
+    }
 
-    .compare-slot { gap: 6px; padding: 5px 8px; }
+    .compare-slot {
+      gap: 6px;
+      padding: 5px 8px;
+    }
 
-    .compare-slot-sub { display: none; }
+    .compare-slot-sub {
+      display: none;
+    }
 
     .compare-slot-logo {
       width: 26px;
@@ -353,7 +366,9 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
       border-radius: 6px;
     }
 
-    .compare-slot-name { font-size: 11px; }
+    .compare-slot-name {
+      font-size: 11px;
+    }
 
     .compare-slot-remove {
       width: 18px;
@@ -365,10 +380,17 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
       height: 16px;
     }
 
-    .compare-slot-label { font-size: 11px; }
+    .compare-slot-label {
+      font-size: 11px;
+    }
 
-    .compare-btn-primary { padding: 9px 14px; font-size: 12px; }
+    .compare-btn-primary {
+      padding: 9px 14px;
+      font-size: 12px;
+    }
 
-    .compare-btn-clear { font-size: 11px; }
+    .compare-btn-clear {
+      font-size: 11px;
+    }
   }
 </style>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * components/Modals.php
  * Include once per page (before </body>) — modals are hidden by default.

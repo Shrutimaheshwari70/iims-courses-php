@@ -4,7 +4,7 @@
  * includes/header.php
  */
 
-$page_title = $page_title ?? 'IIMs Colleges — Discover, Compare & Apply to India\'s Top IIMs';
+$page_title = $page_title ?? 'IIMs Courses — Discover, Compare & Apply to India\'s Top IIMs';
 $page_description = $page_description ?? 'Explore all 14 IIMs, MBA & PGDM programmes, verified placements and rankings. Apply with free counselling.';
 $body_class = $body_class ?? '';
 

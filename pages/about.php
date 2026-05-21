@@ -4,7 +4,7 @@
  * Exact same UI as TypeScript version — same layout, same sections, same styles
  */
 session_start();
-$page_title = 'About — IIMs Colleges';
+$page_title = 'About — IIMs Courses';
 $page_description = 'India\'s most trusted IIM platform. Founded by IIM alumni to make admissions transparent and fair.';
 $current_page = 'about';
 
