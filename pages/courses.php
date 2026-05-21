@@ -656,8 +656,6 @@ html,body{
 }
 
 </style>
-
-
 <!-- ============================================================
      HERO
      ============================================================ -->
@@ -677,7 +675,6 @@ html,body{
 
     <div class="cp-stats">
       <div>
-        i
         <div class="cp-stat-num"><?= count($COURSES) ?>+</div>
         <div class="cp-stat-label">Programmes</div>
       </div>

@@ -178,7 +178,7 @@
 ══════════════════════════════════════════ -->
 <script>
   /* ─────────────────────────────────────────
-     APPLY MODAL
+     APPLY MODAL — open / close / submit
   ───────────────────────────────────────── */
   function openApplyModal() {
     var modal = document.getElementById('apply-modal');
@@ -214,28 +214,87 @@
   }
 
   /* ─────────────────────────────────────────
+     AUTO POPUP — APPLY MODAL
+     Timing (har naye page pe fresh start):
+       Pehli baar  → turant (0 sec)
+       1st close   → 10 sec baad
+       2nd close   → 20 sec baad
+       3rd close   → us session mein band
+     Login modal open ho toh apply popup nahi aayega.
+  ───────────────────────────────────────── */
+  (function () {
+    var DELAYS = [5000, 15000, 30000];       // 0s, 10s, 20s
+    var _n     = 0;                       // page load pe hamesha 0 se start
+    var _timer = null;
+
+    function getN()  { return _n; }
+    function bumpN() { _n++; }
+
+    function schedule() {
+      var n = getN();
+      if (n >= DELAYS.length) return;          // teesri dismiss ke baad band
+      clearTimeout(_timer);
+      _timer = setTimeout(function () {
+        var am = document.getElementById('apply-modal');
+        if (!am || am.style.display === 'flex') return;
+        var lm = document.getElementById('loginModal');
+        if (lm && lm.classList.contains('open')) return;
+        openApplyModal();
+      }, DELAYS[n]);
+    }
+
+    /* closeApplyModal ko wrap karo */
+    var _orig = window.closeApplyModal;
+    window.closeApplyModal = function () {
+      _orig();
+      bumpN();
+      schedule();
+    };
+
+    /* Page load pe pehla timer */
+    schedule();
+  })();
+
+  /* ─────────────────────────────────────────
      LOGIN / SIGNUP MODAL — tab switcher
-     (open/close is handled by Navbar.php's initModal())
+     "Sign up" link pe signup form dikhao,
+     "Login" link pe login form wapas lao.
   ───────────────────────────────────────── */
   function switchLoginTab(tab) {
-    var lf = document.getElementById('loginFields');
-    var sf = document.getElementById('signupFields');
-    var tl = document.getElementById('tabLoginBtn');
-    var ts = document.getElementById('tabSignupBtn');
-    if (!lf || !sf || !tl || !ts) return;
+    var lf  = document.getElementById('loginFields');
+    var sf  = document.getElementById('signupFields');
+    var tl  = document.getElementById('tabLoginBtn');
+    var ts  = document.getElementById('tabSignupBtn');
+    var h3  = document.querySelector('#loginModal .modal-header h3');
+    var sub = document.querySelector('#loginModal .modal-subtitle');
 
-    if (tab === 'login') {
-      lf.style.display = 'block';  sf.style.display = 'none';
-      tl.style.background  = '#ffffff'; tl.style.color      = '#0f172a';
-      tl.style.boxShadow   = '0 1px 3px rgba(0,0,0,.08)';
-      ts.style.background  = 'transparent'; ts.style.color  = '#64748b';
-      ts.style.boxShadow   = 'none';
+    if (!lf || !sf) return;
+
+    if (tab === 'signup') {
+      lf.style.display = 'none';
+      sf.style.display = 'block';
+      if (h3)  h3.textContent  = 'Create account';
+      if (sub) sub.textContent = 'Sign up to track applications and saved colleges.';
     } else {
-      sf.style.display = 'block';  lf.style.display = 'none';
-      ts.style.background  = '#ffffff'; ts.style.color      = '#0f172a';
-      ts.style.boxShadow   = '0 1px 3px rgba(0,0,0,.08)';
-      tl.style.background  = 'transparent'; tl.style.color  = '#64748b';
-      tl.style.boxShadow   = 'none';
+      lf.style.display = 'block';
+      sf.style.display = 'none';
+      if (h3)  h3.textContent  = 'Welcome back';
+      if (sub) sub.textContent = 'Login to track applications and saved colleges.';
+    }
+
+    /* Tab buttons styling — only if they exist */
+    if (tl && ts) {
+      if (tab === 'login') {
+        tl.style.background = '#ffffff'; tl.style.color = '#0f172a';
+        tl.style.boxShadow  = '0 1px 3px rgba(0,0,0,.08)';
+        ts.style.background = 'transparent'; ts.style.color = '#64748b';
+        ts.style.boxShadow  = 'none';
+      } else {
+        ts.style.background = '#ffffff'; ts.style.color = '#0f172a';
+        ts.style.boxShadow  = '0 1px 3px rgba(0,0,0,.08)';
+        tl.style.background = 'transparent'; tl.style.color = '#64748b';
+        tl.style.boxShadow  = 'none';
+      }
     }
   }
 
