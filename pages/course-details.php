@@ -17,10 +17,10 @@ if (!$c) {
   include '../includes/header.php';
   include '../components/Navbar.php';
   echo '<section style="padding-top:8rem;text-align:center;max-width:600px;margin:auto;">
-            <h1 style="font-size:2rem;font-weight:800;margin-bottom:1rem;">Course Not Found</h1>
-            <p style="color:var(--muted-foreground);">The course you are looking for does not exist or may have been moved.</p>
-            <a href="courses.php" class="btn btn-hero" style="display:inline-flex;margin-top:1.5rem">← Back to Courses</a>
-          </section>';
+              <h1 style="font-size:2rem;font-weight:800;margin-bottom:1rem;">Course Not Found</h1>
+              <p style="color:var(--muted-foreground);">The course you are looking for does not exist or may have been moved.</p>
+              <a href="courses.php" class="btn btn-hero" style="display:inline-flex;margin-top:1.5rem">← Back to Courses</a>
+            </section>';
   include '../components/Footer.php';
   include '../includes/footer.php';
   exit;
@@ -53,7 +53,6 @@ foreach ($COURSES as $c) {
     break;
   }
 }
-
 if (!$course) {
   echo "Course not found";
   exit;
@@ -64,8 +63,8 @@ if (!$course) {
 
 <style>
   /* ══════════════════════════════════════════════════════
-   COURSE DETAIL PAGE — FULL STYLES
-══════════════════════════════════════════════════════ */
+    COURSE DETAIL PAGE — FULL STYLES
+  ══════════════════════════════════════════════════════ */
   *,
   *::before,
   *::after {
@@ -105,15 +104,22 @@ if (!$course) {
   #ccd-toast.show {
     transform: translateX(-50%) translateY(0);
   }
-
-
   /* ─── Hero ─────────────────────────────────── */
   .ccd-hero {
+    position: relative;
+    overflow: hidden;
     height: 72vh;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
   }
 
-  /* Background Image */
   .ccd-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     filter: brightness(.55);
     transform: scale(1.06);
     transition: transform 8s ease;
@@ -123,23 +129,33 @@ if (!$course) {
     transform: scale(1);
   }
 
-  /* Overlay */
   .ccd-hero-overlay {
+    position: absolute;
+    inset: 0;
     background: linear-gradient(to top,
         rgba(0, 0, 0, .92) 0%,
         rgba(0, 0, 0, .55) 45%,
         rgba(0, 0, 0, .10) 100%);
+    z-index: 1;
   }
 
-  /* Content */
+  .ccd-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 0 3rem;
+  }
+
   .ccd-hero-inner {
+    max-width: 900px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: .85rem;
   }
 
-  /* Eyebrow */
   .ccd-eyebrow {
+    display: inline-flex;
+    align-items: center;
     gap: .4rem;
     background: rgba(255, 255, 255, .15);
     backdrop-filter: blur(8px);
@@ -147,64 +163,100 @@ if (!$course) {
     border-radius: 9999px;
     padding: .28rem .9rem;
     font-size: .68rem;
+    font-weight: 600;
     letter-spacing: .1em;
-    margin-bottom: .85rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .9);
     width: fit-content;
   }
 
-  /* Title */
+  .ccd-eyebrow i {
+    font-size: 13px;
+  }
+
   .ccd-hero-title {
     font-size: 3rem;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -.025em;
+    color: #fff;
+    margin: 0;
   }
 
-  /* Pills Container */
   .ccd-hero-sub {
+    display: flex;
+    flex-wrap: wrap;
     gap: .6rem .5rem;
+    align-items: center;
     color: rgba(255, 255, 255, .78);
   }
 
-  /* Pills */
   .ccd-hero-sub-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
     background: rgba(255, 255, 255, .12);
     border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 9999px;
+    padding: .28rem .75rem;
     font-size: .78rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .82);
+  }
+
+  .ccd-hero-sub-pill i {
+    font-size: 13px;
+    color: rgba(255, 255, 255, .65);
+  }
+
+  .ccd-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem;
+    margin-top: .1rem;
   }
 
   .ccd-btn-brochure {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
     padding: .7rem 1.4rem;
     border-radius: .65rem;
     background: rgba(255, 255, 255, .12);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, .3);
     font-size: .875rem;
+    font-weight: 600;
+    color: #fff;
     cursor: pointer;
-    transition: .2s;
+    transition: background .2s, transform .15s;
   }
 
   .ccd-btn-brochure:hover {
     background: rgba(255, 255, 255, .2);
+    transform: translateY(-1px);
   }
 
-  /* =========================
-Responsive
-========================= */
+  .ccd-btn-brochure:active {
+    transform: scale(.98);
+  }
 
+  /* ── Responsive ── */
   @media (max-width: 768px) {
-
     .ccd-hero {
       height: auto;
-      min-height: unset;
+      min-height: 480px;
+      padding-bottom: 0;
+    }
+
+    .ccd-hero-content {
+      padding-bottom: 2.5rem;
     }
 
     .ccd-hero-title {
       font-size: clamp(1.5rem, 6vw, 2.4rem);
-    }
-
-    .ccd-hero-sub {
-      gap: .45rem .4rem;
     }
 
     .ccd-hero-sub-pill {
@@ -217,10 +269,12 @@ Responsive
       font-size: .82rem;
       padding: .65rem 1.1rem;
     }
-
   }
 
   @media (max-width: 480px) {
+    .ccd-hero {
+      min-height: 520px;
+    }
 
     .ccd-hero-title {
       font-size: clamp(1.35rem, 7vw, 2rem);
@@ -234,8 +288,8 @@ Responsive
     .btn-hero,
     .ccd-btn-brochure {
       width: 100%;
+      justify-content: center;
     }
-
   }
 
   /* ── Quick-stat bar ── */
@@ -1145,9 +1199,7 @@ Responsive
 
   /* ── Responsive ── */
   @media(max-width:640px) {
-    .ccd-hero {
-      height: 70vh
-    }
+
 
     .ccd-body {
       padding: 2rem 1rem 4rem

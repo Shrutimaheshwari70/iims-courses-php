@@ -19,10 +19,15 @@ include '../components/Navbar.php';
 <style id="bs-scope-style"></style>
 
 <style>
+  /* ── Reset / box-sizing ──────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  /* ── HERO ───────────────────────────────────────────────────── */
   .bs .c-hero {
     background: linear-gradient(135deg, #1a2340 0%, #2d3d6b 100%);
     min-height: 30rem;
     position: relative;
+    padding: 3rem 1rem;          /* safe horizontal padding on mobile */
   }
 
   .bs .c-hero::after {
@@ -33,14 +38,19 @@ include '../components/Navbar.php';
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
   }
 
-  .bs .c-hero h1 span {
-    color: #f97316;
-  }
+  .bs .c-hero h1 span { color: #f97316; }
 
   .bs .c-hero p {
     max-width: 500px;
+    font-size: clamp(.9rem, 2.5vw, 1rem); /* scales on narrow screens */
   }
 
+  .bs .c-hero h1 {
+    font-size: clamp(1.6rem, 5vw, 2.75rem);
+    line-height: 1.2;
+  }
+
+  /* ── BADGE / BUTTONS ─────────────────────────────────────────── */
   .bs .c-badge {
     background: rgba(249, 115, 22, .18);
     color: #fdba74;
@@ -48,13 +58,34 @@ include '../components/Navbar.php';
     letter-spacing: .1em;
   }
 
-  .bs .c-card {
-    transition: box-shadow .2s;
+  .bs .c-btn-send {
+    background-image: var(--gradient-accent, linear-gradient(135deg, #1a2340, #2d3d6b));
+    cursor: pointer;
+    transition: transform .18s, box-shadow .18s;
+  }
+  .bs .c-btn-send:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26, 35, 64, .25);
   }
 
-  .bs .c-card:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, .10);
+  .bs .c-btn-outline { transition: border-color .18s; }
+  .bs .c-btn-outline:hover { border-color: #fff; }
+
+  /* ── HERO BUTTON ROW ─────────────────────────────────────────── */
+  .bs .c-hero .d-flex.gap-3 {
+    flex-wrap: wrap;
+    gap: .75rem !important;
   }
+  .bs .c-hero .c-btn-send,
+  .bs .c-hero .c-btn-outline {
+    width: auto;
+    min-width: 140px;
+    text-align: center;
+  }
+
+  /* ── CARDS ───────────────────────────────────────────────────── */
+  .bs .c-card { transition: box-shadow .2s; }
+  .bs .c-card:hover { box-shadow: 0 8px 32px rgba(0, 0, 0, .10); }
 
   .bs .icon-box {
     width: 48px;
@@ -63,83 +94,30 @@ include '../components/Navbar.php';
     flex-shrink: 0;
   }
 
-  .bs .info-label {
-    font-size: .65rem;
-    letter-spacing: .12em;
-    color: var(--c-muted);
-  }
+  .bs .info-label   { font-size: .65rem; letter-spacing: .12em; color: var(--c-muted); }
+  .bs .info-value   { font-size: .90rem; }
+  .bs .info-link    { font-size: .82rem; color: #f97316; }
+  .bs .info-link:hover { text-decoration: underline; }
 
-  .bs .info-value {
-    font-size: .90rem;
-  }
-
-  .bs .info-link {
-    font-size: .82rem;
-    color: #f97316;
-  }
-
-  .bs .info-link:hover {
-    text-decoration: underline;
-  }
-
-  .bs .c-btn-send {
-    background-image: var(--gradient-accent, linear-gradient(135deg, #1a2340, #2d3d6b));
-    cursor: pointer;
-    transition: transform .18s, box-shadow .18s;
-  }
-
-  .bs .c-btn-send:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(26, 35, 64, .25);
-  }
-
-  .bs .c-btn-outline {
-    transition: border-color .18s;
-  }
-
-  .bs .c-btn-outline:hover {
-    border-color: #fff;
-  }
-
+  /* ── TOAST ───────────────────────────────────────────────────── */
   @keyframes cToastIn {
-    from {
-      transform: translateY(20px);
-      opacity: 0
-    }
-
-    to {
-      transform: translateY(0);
-      opacity: 1
-    }
+    from { transform: translateY(20px); opacity: 0 }
+    to   { transform: translateY(0);    opacity: 1 }
   }
 
-  @media(max-width:767px) {
-    .bs .c-strip .d-flex {
-      flex-direction: column;
-      gap: .75rem;
-      text-align: center;
-    }
-
-    .bs .map-wrap iframe {
-      height: 260px;
-    }
-  }
-
+  /* ── OUR STORY GRID ──────────────────────────────────────────── */
   .about-story-grid {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-  }
-
-  @media (max-width: 768px) {
-    .about-story-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+    align-items: center;
+    gap: 3rem;
   }
 
   .about-story-img {
     width: 100%;
     border-radius: 1.5rem;
     box-shadow: var(--shadow-elegant);
+    display: block;
   }
 
   .about-text {
@@ -148,14 +126,11 @@ include '../components/Navbar.php';
     font-size: .97rem;
   }
 
+  /* ── MISSION / VISION / VALUES ───────────────────────────────── */
   .mvv-grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    .mvv-grid {
-      grid-template-columns: 1fr;
-    }
+    gap: 1rem;
   }
 
   .mvv-card {
@@ -164,49 +139,98 @@ include '../components/Navbar.php';
     box-shadow: var(--shadow-soft);
     transition: box-shadow .2s, transform .2s;
   }
-
   .mvv-card:hover {
     box-shadow: var(--shadow-card);
     transform: translateY(-3px);
   }
 
-  .mvv-icon {
-    width: 40px;
-    height: 40px;
-    color: var(--accent);
-  }
-
-  .mvv-icon svg {
-    width: 100%;
-    height: 100%;
-  }
+  .mvv-icon { width: 40px; height: 40px; color: var(--accent); }
+  .mvv-icon svg { width: 100%; height: 100%; }
 
   .mvv-title {
     font-family: var(--font-display);
     color: var(--foreground);
   }
 
-  .mvv-desc {
-    font-size: .875rem;
-    color: var(--muted-foreground);
-  }
+  .mvv-desc { font-size: .875rem; color: var(--muted-foreground); }
 
+  /* ── ANIMATIONS ──────────────────────────────────────────────── */
   @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp .6s ease both; }
 
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  /* ══════════════════════════════════════════════════════════════
+     RESPONSIVE BREAKPOINTS
+     ══════════════════════════════════════════════════════════════ */
+
+  /* ── Large tablets / small desktops  (≤ 991px) ─────────────── */
+  @media (max-width: 991px) {
+    .mvv-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  .fade-up {
-    animation: fadeUp .6s ease both;
+  /* ── Tablets  (≤ 768px) ──────────────────────────────────────── */
+  @media (max-width: 768px) {
+    /* Story grid → single column */
+    .about-story-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* MVV → single column */
+    .mvv-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Strip fix (kept from original) */
+    .bs .c-strip .d-flex {
+      flex-direction: column;
+      gap: .75rem;
+      text-align: center;
+    }
+
+    /* Map */
+    .bs .map-wrap iframe { height: 260px; }
+
+    /* CTA pro section */
+    .cta-pro { padding: 2rem 1.25rem !important; }
+  }
+
+  /* ── Mobile  (≤ 576px) ───────────────────────────────────────── */
+  @media (max-width: 576px) {
+    /* Hero buttons: stack vertically */
+    .bs .c-hero .d-flex.gap-3 {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .bs .c-hero .c-btn-send,
+    .bs .c-hero .c-btn-outline {
+      width: 100%;
+    }
+
+    /* Story image: full radius kept, natural width */
+    .about-story-img { border-radius: 1rem; }
+
+    /* Section padding tighter */
+    .section { padding: 2.5rem 0; }
+
+    /* CTA box */
+    .cta-box { padding: 1.5rem 1rem; }
+
+    /* MVV card text */
+    .mvv-card { padding: 1.25rem !important; }
+  }
+
+  /* ── Very small  (≤ 380px) ───────────────────────────────────── */
+  @media (max-width: 380px) {
+    .bs .c-hero h1 { font-size: 1.4rem; }
+    .bs .c-hero { min-height: auto; padding: 2.5rem 1rem 3rem; }
   }
 </style>
+
 <!-- ============================================================
      HERO  — gradient-hero dark banner (same as TSX)
      ============================================================ -->
@@ -231,16 +255,16 @@ include '../components/Navbar.php';
     </div>
   </section>
 </div>
+
 <!-- ============================================================
      OUR STORY  — image left, text right (same as TSX grid)
      ============================================================ -->
 <section class="section">
   <div class="container">
-    <div class="about-story-grid d-flex gap-5 align-items-center">
+    <div class="about-story-grid align-items-center">
 
       <div class="reveal ">
-        <img src="../assets/images/students.jpg" alt="IIM Students" class="about-story-img" loading="lazy"
-          class="rounded-4 object-fit-cover d-block" />
+        <img src="../assets/images/students.jpg" alt="IIM Students" class="about-story-img" loading="lazy" />
       </div>
 
       <div class="reveal" style="transition-delay:.1s">
@@ -257,32 +281,33 @@ include '../components/Navbar.php';
     </div>
   </div>
 </section>
+
 <!-- ============================================================
      MISSION / VISION / VALUES  — 3-col card grid (same as TSX)
      ============================================================ -->
 <section class="section section-alt">
   <div class="container">
-    <div class="mvv-grid d-grid gap-3">
+    <div class="mvv-grid">
 
       <?php
       $mvv = [
         [
           'title' => 'Mission',
-          'desc' => 'Make IIM admissions transparent and fair for all.',
+          'desc'  => 'Make IIM admissions transparent and fair for all.',
           'delay' => '0s',
-          'icon' => '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+          'icon'  => '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
         ],
         [
           'title' => 'Vision',
-          'desc' => 'Be the default platform for MBA aspirants in India.',
+          'desc'  => 'Be the default platform for MBA aspirants in India.',
           'delay' => '.1s',
-          'icon' => '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+          'icon'  => '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
         ],
         [
           'title' => 'Values',
-          'desc' => 'Honesty, data-first, student-first, always.',
+          'desc'  => 'Honesty, data-first, student-first, always.',
           'delay' => '.2s',
-          'icon' => '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>',
+          'icon'  => '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>',
         ],
       ];
       foreach ($mvv as $card): ?>
@@ -301,6 +326,7 @@ include '../components/Navbar.php';
     </div>
   </div>
 </section>
+
 <!-- ============================================================
      CTA BANNER  — same gradient-hero dark box as TSX
      ============================================================ -->
@@ -321,6 +347,7 @@ include '../components/Navbar.php';
     </div>
   </div>
 </section>
+
 <!-- ============================================================
      FINAL CTA
      ============================================================ -->
@@ -332,7 +359,6 @@ include '../components/Navbar.php';
       <!-- Glow -->
       <div class="cta-glow"></div>
 
-      <!-- <div class="center-cta d-flex"> -->
       <div class="row align-items-center g-4 position-relative" style="z-index:2;">
         <!-- Left Content -->
         <div class="col-lg-7 text-center mx-auto">
@@ -364,6 +390,5 @@ include '../components/Navbar.php';
 <?php
 include '../components/Footer.php';
 include '../components/Modals.php';
-
 include '../includes/footer.php';
 ?>
