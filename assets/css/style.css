@@ -44,7 +44,7 @@
   --gradient-accent: linear-gradient(135deg, #de732c 0%, #ff963b 100%);
   --gradient-overlay: linear-gradient(
     180deg,
-    rgba(26, 35, 64, 0.55) 0%,
+    rgba(13, 19, 38, 0.903) 0%,
     rgba(20, 26, 50, 0.85) 100%
   );
 
@@ -180,6 +180,9 @@ button {
 .hero {
   position: relative;
   min-height: 90vh;
+}
+.hero img {
+  object-fit: contain;
 }
 .hero-bg {
   position: absolute;
@@ -326,7 +329,7 @@ button {
 .recruiters-track {
   display: flex;
   gap: 0.75rem;
-  
+
   width: max-content;
 }
 
@@ -767,7 +770,7 @@ button {
   gap: 0.25rem;
   margin-bottom: 1rem;
 }
-.compare-bar{
+.compare-bar {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -776,10 +779,10 @@ button {
   color: #fff;
   z-index: 9999;
   padding: 10px 15px;
-  box-shadow: 0 -5px 20px rgba(0,0,0,.2);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.compare-inner{
+.compare-inner {
   max-width: 1200px;
   margin: auto;
   display: flex;
@@ -789,20 +792,20 @@ button {
   flex-wrap: wrap;
 }
 
-.compare-text{
+.compare-text {
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.compare-items{
+.compare-items {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.compare-chip{
+.compare-chip {
   background: #1e293b;
   padding: 5px 10px;
   border-radius: 20px;
@@ -812,18 +815,18 @@ button {
   gap: 6px;
 }
 
-.compare-chip .remove{
+.compare-chip .remove {
   color: #f87171;
   text-decoration: none;
   font-weight: bold;
 }
 
-.compare-actions{
+.compare-actions {
   display: flex;
   gap: 10px;
 }
 
-.btn-compare{
+.btn-compare {
   background: #f97316;
   color: #fff;
   padding: 6px 14px;
@@ -832,12 +835,12 @@ button {
   font-weight: 600;
 }
 
-.btn-clear{
+.btn-clear {
   color: #cbd5e1;
   text-decoration: none;
   font-size: 13px;
-}c
-.testimonial-stars svg {
+}
+c .testimonial-stars svg {
   width: 20px;
   height: 20px;
   fill: var(--orange);
@@ -1103,7 +1106,7 @@ button {
     width: 100%;
   }
 }
-.blog-meta{
+.blog-meta {
   font-size: 0.8rem;
 }
 .btn-blog a {

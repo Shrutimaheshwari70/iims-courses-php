@@ -5,12 +5,12 @@
  */
 
 // Detect base URL automatically
-$protocol  = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$host      = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 // Find the project root relative to document root
 $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 // Walk up until we find index.php at root
-$base      = rtrim($scriptDir, '/') . '/';
+$base = rtrim($scriptDir, '/') . '/';
 
 // Simpler: just define base as '/' or subfolder
 define('BASE_URL', '/');           // Change to '/iims-courses-php/' if in subfolder

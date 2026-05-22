@@ -31,16 +31,16 @@ include '../components/Navbar.php';
 
 <style>
   /* Reading progress bar */
-#reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent, #e25c2a), var(--color-primary, #1a3c6e));
-  z-index: 9999;
-  transition: width 0.1s linear;
-}
+  #reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent, #e25c2a), var(--color-primary, #1a3c6e));
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
 
   /* ── Design variables ── */
   .bs {
@@ -212,7 +212,8 @@ include '../components/Navbar.php';
   }
 </style>
 <!-- Reading progress bar -->
-<div id="reading-progress"></div></div>
+<div id="reading-progress"></div>
+</div>
 <div class="bs">
   <!-- HERO -->
   <section class="c-hero">
@@ -448,15 +449,15 @@ include '../components/Navbar.php';
 </script>
 <!-- ----------------reading progress  -->
 <script>
-  (function() {
-  var bar = document.getElementById('reading-progress');
-  window.addEventListener('scroll', function() {
-    var d = document.documentElement;
-    var scrollTop = d.scrollTop || document.body.scrollTop;
-    var total = d.scrollHeight - d.clientHeight;
-    bar.style.width = (total > 0 ? (scrollTop / total * 100) : 0) + '%';
-  }, { passive: true });
-})();
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', function () {
+      var d = document.documentElement;
+      var scrollTop = d.scrollTop || document.body.scrollTop;
+      var total = d.scrollHeight - d.clientHeight;
+      bar.style.width = (total > 0 ? (scrollTop / total * 100) : 0) + '%';
+    }, { passive: true });
+  })();
 
 </script>
 <script>

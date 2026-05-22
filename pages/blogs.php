@@ -19,120 +19,6 @@ include '../components/Navbar.php';
 <!-- Bootstrap CSS scoped ONLY inside .bs via a style tag trick -->
 <style id="bs-scope-style"></style>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
-
-<div class="bs">
-  <!-- HERO -->
-  <section class="c-hero d-flex align-items-center">
-    <div class="container position-relative" style="z-index:1;">
-      <div class="c-badge d-inline-flex px-3 py-1 rounded align-items-center mb-2 text-uppercase gap-2">
-        <i class="bi bi-mortarboard-fill"></i> Blogs
-      </div>
-      <h1 class="text-white fw-bold ">Blogs <span>insights</span></h1>
-      <p class="text-light"> CAT prep, MBA strategy, placements and IIM stories — written by alumni &amp; experts.
-      </p>
-      <div class="d-flex gap-3 mt-4 flex-wrap">
-        <button class="c-btn-send px-4 rounded text-white w-auto py-3 border-0" onclick="openApplyModal()">
-          <i class="bi bi-send-fill"></i> Apply Now
-        </button>
-        <a href="contact.php" class="c-btn-outline px-4 rounded text-white w-auto py-3 border ">
-          <i class="bi bi-chat-dots "></i> Contact Us
-        </a>
-      </div>
-    </div>
-  </section>
-</div>
-
-
-<!-- ============================================================
-     BLOG GRID  —  md:grid-cols-2 lg:grid-cols-3  (same as TSX)
-     ============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="blogs-page-grid d-grid gap-3">
-
-      <?php foreach ($BLOGS as $i => $b): ?>
-        <a href="blog-details.php?slug=<?= urlencode($b['slug']) ?>"
-          class="blog-page-card rounded-4 overflow-hidden d-flex flex-column reveal"
-          style="transition-delay:<?= $i * 0.06 ?>s">
-          <!-- Image -->
-          <div class="blog-page-img overflow-hidden">
-            <img src="../<?= htmlspecialchars($b['image']) ?>" alt="<?= htmlspecialchars($b['title']) ?>" loading="lazy"
-              class="object-fit-cover d-block">
-          </div>
-
-          <!-- Body -->
-          <div class="blog-page-body d-flex flex-column p-2">
-            <div class="blog-page-meta">
-              <?= htmlspecialchars($b['date']) ?> &bull; <?= htmlspecialchars($b['author']) ?>
-            </div>
-
-            <h3 class="blog-page-title fw-semibold fs-6 mt-1"><?= htmlspecialchars($b['title']) ?></h3>
-
-            <p class="blog-page-excerpt mt-1 overflow-hidden"><?= htmlspecialchars($b['excerpt']) ?></p>
-
-            <div class="blog-page-footer d-flex align-items-center justify-content-between mt-2 mb-3">
-              <span class="blog-page-likes d-inline-flex align-items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-                <?= (int) ($b['likes'] ?? 0) ?>
-              </span>
-              <span class="blog-page-read">Read latest →</span>
-            </div>
-          </div>
-        </a>
-      <?php endforeach; ?>
-
-    </div>
-  </div>
-</section>
-<!-- ============================================================
-     FINAL CTA
-     ============================================================ -->
-<section class="py-3">
-  <div class="container">
-
-    <div class="cta-pro position-relative overflow-hidden rounded-5 p-4 p-lg-5">
-
-      <!-- Glow -->
-      <div class="cta-glow"></div>
-
-      <!-- <div class="center-cta d-flex"> -->
-      <div class="row align-items-center g-4 position-relative" style="z-index:2;">
-        <!-- Left Content -->
-        <div class="col-lg-7 text-center mx-auto">
-
-          <span class="cta-badge mb-3 d-inline-flex align-items-center">
-            <i class="bi bi-stars me-2"></i>
-            Trusted by CAT Aspirants Across India
-          </span>
-
-          <h4 class="cta-content display-5 fw-bold text-white mb-2 lh-sm">
-            Start Your Journey Towards
-            <span class="cta-highlight">Top IIM Admissions</span>
-          </h4>
-
-          <p class="cta-text mb-4">
-            Get personalised guidance from experienced mentors, IIM alumni, and CAT experts.
-            From profile evaluation to final admission strategy — we help you at every step.
-          </p>
-        </div>
-        <div class="text-center">
-          <button class="button-cta bg-transparent px-4 py-2" onclick="openApplyModal()">
-            Apply
-          </button>
-        </div>
-      </div>
-      <!-- </div> -->
-
-    </div>
-</section>
-
 <style>
   .bs {
     font-family: var(--font-sans, sans-serif);
@@ -340,6 +226,120 @@ include '../components/Navbar.php';
     animation: fadeUp .6s ease both;
   }
 </style>
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+
+<div class="bs">
+  <!-- HERO -->
+  <section class="c-hero d-flex align-items-center">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="c-badge d-inline-flex px-3 py-1 rounded align-items-center mb-2 text-uppercase gap-2">
+        <i class="bi bi-mortarboard-fill"></i> Blogs
+      </div>
+      <h1 class="text-white fw-bold ">Blogs <span>insights</span></h1>
+      <p class="text-light"> CAT prep, MBA strategy, placements and IIM stories — written by alumni &amp; experts.
+      </p>
+      <div class="d-flex gap-3 mt-4 flex-wrap">
+        <button class="c-btn-send px-4 rounded text-white w-auto py-3 border-0" onclick="openApplyModal()">
+          <i class="bi bi-send-fill"></i> Apply Now
+        </button>
+        <a href="contact.php" class="c-btn-outline px-4 rounded text-white w-auto py-3 border ">
+          <i class="bi bi-chat-dots "></i> Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============================================================
+     BLOG GRID  —  md:grid-cols-2 lg:grid-cols-3  (same as TSX)
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="blogs-page-grid d-grid gap-3">
+
+      <?php foreach ($BLOGS as $i => $b): ?>
+        <a href="blog-details.php?slug=<?= urlencode($b['slug']) ?>"
+          class="blog-page-card rounded-4 overflow-hidden d-flex flex-column reveal"
+          style="transition-delay:<?= $i * 0.06 ?>s">
+          <!-- Image -->
+          <div class="blog-page-img overflow-hidden">
+            <img src="../<?= htmlspecialchars($b['image']) ?>" alt="<?= htmlspecialchars($b['title']) ?>" loading="lazy"
+              class="object-fit-cover d-block">
+          </div>
+
+          <!-- Body -->
+          <div class="blog-page-body d-flex flex-column p-2">
+            <div class="blog-page-meta">
+              <?= htmlspecialchars($b['date']) ?> &bull; <?= htmlspecialchars($b['author']) ?>
+            </div>
+
+            <h3 class="blog-page-title fw-semibold fs-6 mt-1"><?= htmlspecialchars($b['title']) ?></h3>
+
+            <p class="blog-page-excerpt mt-1 overflow-hidden"><?= htmlspecialchars($b['excerpt']) ?></p>
+
+            <div class="blog-page-footer d-flex align-items-center justify-content-between mt-2 mb-3">
+              <span class="blog-page-likes d-inline-flex align-items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                <?= (int) ($b['likes'] ?? 0) ?>
+              </span>
+              <span class="blog-page-read">Read latest →</span>
+            </div>
+          </div>
+        </a>
+      <?php endforeach; ?>
+
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="py-3">
+  <div class="container">
+
+    <div class="cta-pro position-relative overflow-hidden rounded-5 p-4 p-lg-5">
+
+      <!-- Glow -->
+      <div class="cta-glow"></div>
+
+      <!-- <div class="center-cta d-flex"> -->
+      <div class="row align-items-center g-4 position-relative" style="z-index:2;">
+        <!-- Left Content -->
+        <div class="col-lg-7 text-center mx-auto">
+
+          <span class="cta-badge mb-3 d-inline-flex align-items-center">
+            <i class="bi bi-stars me-2"></i>
+            Trusted by CAT Aspirants Across India
+          </span>
+
+          <h4 class="cta-content display-5 fw-bold text-white mb-2 lh-sm">
+            Start Your Journey Towards
+            <span class="cta-highlight">Top IIM Admissions</span>
+          </h4>
+
+          <p class="cta-text mb-4">
+            Get personalised guidance from experienced mentors, IIM alumni, and CAT experts.
+            From profile evaluation to final admission strategy — we help you at every step.
+          </p>
+        </div>
+        <div class="text-center">
+          <button class="button-cta bg-transparent px-4 py-2" onclick="openApplyModal()">
+            Apply
+          </button>
+        </div>
+      </div>
+      <!-- </div> -->
+
+    </div>
+</section>
+
 
 
 <?php

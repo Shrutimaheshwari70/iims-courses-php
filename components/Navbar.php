@@ -401,23 +401,25 @@ $categories_json = json_encode($categories);
             padding-bottom: 10px;
             border-bottom: 1px solid #f1f5f9;
         }
-/* Dropdown mega menu cards */
-#megaColleges .college-card,
-#megaCourses .course-card {
-  border: 1px solid var(--border, #e2e8f0);
-  border-radius: 10px;
-  background: var(--card, #fff);
-  transition: border-color 0.2s, box-shadow 0.2s;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
 
-#megaColleges .college-card:hover,
-#megaCourses .course-card:hover {
-  border-color: #ff6600;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
+        /* Dropdown mega menu cards */
+        #megaColleges .college-card,
+        #megaCourses .course-card {
+            border: 1px solid var(--border, #e2e8f0);
+            border-radius: 10px;
+            background: var(--card, #fff);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        #megaColleges .college-card:hover,
+        #megaCourses .course-card:hover {
+            border-color: #ff6600;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
         .content-header>div:first-child {
             flex: 1;
             min-width: 0;
@@ -1074,8 +1076,8 @@ $categories_json = json_encode($categories);
 
         @media (max-width: 570px) {
             .icon-btn[href*="compare.php"] {
-  display: none;
-}
+                display: none;
+            }
         }
 
         @media (max-width: 570px) {

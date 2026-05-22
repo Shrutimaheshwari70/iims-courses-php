@@ -3,12 +3,19 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-/* ── BASE URL FIX (IMPORTANT) ── */
+/* ── BASE URL FIX ── */
 $b = $asset_base ?? (function () {
   $__script = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
   $__parts = explode('/', trim($__script, '/'));
   return '/' . ($__parts[0] ?? '') . '/';
 })();
+
+/* ── Clear all ── */
+if (isset($_GET['clear'])) {
+  $_SESSION['compare'] = [];
+  header('Location: ' . $b . 'pages/compare.php');
+  exit;
+}
 
 /* ── Remove single ── */
 if (isset($_GET['remove']) && !empty($_GET['remove'])) {
@@ -25,78 +32,6 @@ if (empty($compareList))
 
 $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compareList)));
 ?>
-
-<div class="compare-bar" id="compare-bar">
-  <div class="compare-bar-inner">
-
-    <div class="compare-bar-label">
-      <span class="compare-bar-accent"></span>
-      Compare
-    </div>
-
-    <div class="compare-bar-slots">
-      <?php for ($i = 0; $i < 3; $i++): ?>
-        <?php if (isset($colleges[$i])):
-          $c = $colleges[$i]; ?>
-
-          <div class="compare-slot filled">
-            <div class="compare-slot-logo">
-
-              <?php if (!empty($c['image'])): ?>
-                <?php
-                $pageBase = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) ? '../' : '';
-                $imgPath = preg_replace('#^(\.\./)*#', '', $c['image']);
-                ?>
-                <img src="<?= $pageBase . htmlspecialchars($imgPath) ?>" alt="<?= htmlspecialchars($c['name']) ?>"
-                  class="compare-slot-img">
-              <?php else: ?>
-                <span class="compare-slot-initials">IIM</span>
-              <?php endif; ?>
-
-            </div>
-
-            <div class="compare-slot-info">
-              <span class="compare-slot-name">
-                <?= htmlspecialchars($c['name']) ?>
-              </span>
-              <span class="compare-slot-sub">
-                <?= htmlspecialchars($c['location'] ?? 'MBA · PGP') ?>
-              </span>
-            </div>
-
-            <a href="?remove=<?= urlencode($c['slug']) ?>" class="compare-slot-remove"
-              title="Remove <?= htmlspecialchars($c['name']) ?>">
-              ✕
-            </a>
-          </div>
-
-        <?php else: ?>
-
-          <div class="compare-slot empty">
-            <div class="compare-slot-add-icon">+</div>
-            <a href="<?= $b ?>pages/colleges.php">
-              <span class="compare-slot-label">Add College</span>
-            </a>
-          </div>
-
-        <?php endif; ?>
-      <?php endfor; ?>
-    </div>
-
-    <div class="compare-bar-divider"></div>
-
-    <div class="compare-bar-actions">
-
-      <a href="<?= $b ?>pages/compare.php" class="compare-btn-primary">
-        Compare now
-      </a>
-
-      <a href="?clear=1" class="compare-btn-clear">Clear all</a>
-
-    </div>
-
-  </div>
-</div>
 <style>
   .compare-bar {
     position: fixed;
@@ -249,12 +184,14 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #94A3B8;
   }
 
   .compare-slot-label {
     font-size: 12px;
     color: #94A3B8;
     font-weight: 500;
+    text-decoration: none;
   }
 
   .compare-bar-divider {
@@ -289,6 +226,7 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
   .compare-btn-primary:hover {
     background: #C73D06;
     transform: translateY(-1px);
+    color: #fff;
   }
 
   .compare-btn-clear {
@@ -297,6 +235,7 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
     color: #94A3B8;
     text-decoration: none;
     transition: color .12s;
+    white-space: nowrap;
   }
 
   .compare-btn-clear:hover {
@@ -394,3 +333,61 @@ $colleges = array_values(array_filter(array_map(fn($s) => getCollege($s), $compa
     }
   }
 </style>
+<div class="compare-bar" id="compare-bar">
+  <div class="compare-bar-inner">
+
+    <div class="compare-bar-label">
+      <span class="compare-bar-accent"></span>
+      Compare
+    </div>
+
+    <div class="compare-bar-slots">
+      <?php for ($i = 0; $i < 3; $i++): ?>
+        <?php if (isset($colleges[$i])):
+          $c = $colleges[$i]; ?>
+
+          <div class="compare-slot filled">
+            <div class="compare-slot-logo">
+              <?php if (!empty($c['image'])): ?>
+                <?php
+                $pageBase = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) ? '../' : '';
+                $imgPath = preg_replace('#^(\.\./)*#', '', $c['image']);
+                ?>
+                <img src="<?= $pageBase . htmlspecialchars($imgPath) ?>" alt="<?= htmlspecialchars($c['name']) ?>"
+                  class="compare-slot-img">
+              <?php else: ?>
+                <span class="compare-slot-initials">IIM</span>
+              <?php endif; ?>
+            </div>
+
+            <div class="compare-slot-info">
+              <span class="compare-slot-name"><?= htmlspecialchars($c['name']) ?></span>
+              <span class="compare-slot-sub"><?= htmlspecialchars($c['location'] ?? 'MBA · PGP') ?></span>
+            </div>
+
+            <a href="?remove=<?= urlencode($c['slug']) ?>" class="compare-slot-remove"
+              title="Remove <?= htmlspecialchars($c['name']) ?>">✕</a>
+          </div>
+
+        <?php else: ?>
+
+          <div class="compare-slot empty">
+            <div class="compare-slot-add-icon">+</div>
+            <a href="<?= $b ?>pages/colleges.php">
+              <span class="compare-slot-label">Add College</span>
+            </a>
+          </div>
+
+        <?php endif; ?>
+      <?php endfor; ?>
+    </div>
+
+    <div class="compare-bar-divider"></div>
+
+    <div class="compare-bar-actions">
+      <a href="<?= $b ?>pages/compare.php" class="compare-btn-primary">Compare now</a>
+      <a href="<?= $b ?>pages/compare.php?clear=1" class="compare-btn-clear">Clear all</a>
+    </div>
+
+  </div>
+</div>

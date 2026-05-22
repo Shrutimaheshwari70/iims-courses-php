@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * components/Modals.php
  * Include once per page (before </body>) — modals are hidden by default.
@@ -9,21 +9,18 @@
 <!-- ══════════════════════════════════════════
      APPLY MODAL
 ══════════════════════════════════════════ -->
-<div id="apply-modal"
-  style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.55);
+<div id="apply-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.55);
          align-items:center; justify-content:center; padding:1rem;">
 
   <!-- Backdrop click-catcher -->
-  <div onclick="closeApplyModal()"
-    style="position:absolute; inset:0; z-index:0;"></div>
+  <div onclick="closeApplyModal()" style="position:absolute; inset:0; z-index:0;"></div>
 
   <div style="position:relative; z-index:1; background:#fff; border-radius:16px; width:100%;
               max-width:460px; padding:1.3rem; box-shadow:0 20px 60px rgba(0,0,0,.25);
               max-height:90vh; overflow-y:auto;">
 
     <!-- Close -->
-    <button onclick="closeApplyModal()"
-      style="position:absolute; top:1rem; right:1rem; background:none; border:none;
+    <button onclick="closeApplyModal()" style="position:absolute; top:1rem; right:1rem; background:none; border:none;
              cursor:pointer; color:#6b7280; width:2rem; height:2rem;
              display:flex; align-items:center; justify-content:center;
              border-radius:50%; font-size:1.2rem; z-index:2; line-height:1;">
@@ -41,46 +38,101 @@
     <form method="post" action="actions/apply.php" id="apply-form" onsubmit="handleApplySubmit(event)">
 
       <div style="margin-bottom:1rem;">
-        <label for="apply-name" style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Full Name</label>
-        <input id="apply-name" name="name" required placeholder="Enter your name..."
-          style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
-                 font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
-                 transition:border-color .18s;"
-          onfocus="this.style.borderColor='#2d3d6b'" onblur="this.style.borderColor='#e5e7eb'" />
+        <label for="apply-name" style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Full
+          Name</label>
+        <input id="apply-name" name="name" required placeholder="Enter your name..." style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
+             font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
+             transition:border-color .18s;" onfocus="this.style.borderColor='#2d3d6b'"
+          onblur="this.style.borderColor='#e5e7eb'" />
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
         <div>
-          <label for="apply-email" style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Email</label>
-          <input id="apply-email" name="email" type="email" required placeholder="you@email.com"
-            style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
-                   font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
-                   transition:border-color .18s;"
-            onfocus="this.style.borderColor='#2d3d6b'" onblur="this.style.borderColor='#e5e7eb'" />
+          <label for="apply-email"
+            style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Email</label>
+          <input id="apply-email" name="email" type="email" required placeholder="you@email.com" style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
+               font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
+               transition:border-color .18s;" onfocus="this.style.borderColor='#2d3d6b'"
+            onblur="this.style.borderColor='#e5e7eb'" />
         </div>
+
         <div>
-          <label for="apply-phone" style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Phone</label>
-          <input id="apply-phone" name="phone" required placeholder="+91 ..."
-            style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
-                   font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
-                   transition:border-color .18s;"
-            onfocus="this.style.borderColor='#2d3d6b'" onblur="this.style.borderColor='#e5e7eb'" />
+          <label for="apply-phone"
+            style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Phone</label>
+          <input id="apply-phone" name="phone" required placeholder="+91 ..." style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
+               font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
+               transition:border-color .18s;" onfocus="this.style.borderColor='#2d3d6b'"
+            onblur="this.style.borderColor='#e5e7eb'" />
         </div>
+      </div>
+
+      <!-- Country & State -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+
+        <div>
+          <label for="apply-country"
+            style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.30rem;">Country</label>
+          <select id="apply-country" name="country" required style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
+               font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
+               background:#fff; transition:border-color .18s;" onfocus="this.style.borderColor='#2d3d6b'"
+            onblur="this.style.borderColor='#e5e7eb'">
+            <option value="">Select Country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+            <option value="Australia">Australia</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="apply-state"
+            style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">State</label>
+          <select id="apply-state" name="state" required style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
+               font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
+               background:#fff; transition:border-color .18s;" onfocus="this.style.borderColor='#2d3d6b'"
+            onblur="this.style.borderColor='#e5e7eb'">
+            <option value="">Select State</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Karnataka">Karnataka</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Course -->
+      <div style="margin-bottom:1rem;">
+        <label for="apply-course" style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Select
+          Course</label>
+        <select id="apply-course" name="course" required style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.55rem .9rem;
+             font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
+             background:#fff; transition:border-color .18s;" onfocus="this.style.borderColor='#2d3d6b'"
+          onblur="this.style.borderColor='#e5e7eb'">
+          <option value="">Choose Course</option>
+          <option value="Online MBA">Online MBA</option>
+          <option value="Executive MBA">Executive MBA</option>
+          <option value="PGDM">PGDM</option>
+          <option value="BBA">BBA</option>
+          <option value="Data Science">Data Science</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+        </select>
       </div>
 
       <div style="margin-bottom:1.5rem;">
-        <label for="apply-msg" style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Message (optional)</label>
-        <textarea id="apply-msg" name="message" rows="3" placeholder="Tell us about your goals"
-          style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
-                 font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
-                 resize:vertical; transition:border-color .18s;"
-          onfocus="this.style.borderColor='#2d3d6b'" onblur="this.style.borderColor='#e5e7eb'"></textarea>
+        <label for="apply-msg" style="display:block; font-size:.82rem; font-weight:500; margin-bottom:.35rem;">Message
+          (optional)</label>
+        <textarea id="apply-msg" name="message" rows="3" placeholder="Tell us about your goals" style="width:100%; border:1px solid #e5e7eb; border-radius:8px; padding:.40rem .9rem;
+             font-size:.8rem; outline:none; box-sizing:border-box; font-family:inherit;
+             resize:vertical; transition:border-color .18s;" onfocus="this.style.borderColor='#2d3d6b'"
+          onblur="this.style.borderColor='#e5e7eb'"></textarea>
       </div>
 
-      <button type="submit" class="btn btn-hero" id="apply-submit-btn"
-        style="width:100%; padding:.65rem; border:none; border-radius:10px; cursor:pointer;
-               font-size:0.9rem; font-weight:500; font-family:inherit; display:flex;
-               align-items:center; justify-content:center; gap:.5rem;">
+      <button type="submit" class="btn btn-hero" id="apply-submit-btn" style="width:100%; padding:.65rem; border:none; border-radius:10px; cursor:pointer;
+           font-size:0.9rem; font-weight:500; font-family:inherit; display:flex;
+           align-items:center; justify-content:center; gap:.5rem;">
         Submit Application &rarr;
       </button>
 
@@ -89,7 +141,8 @@
     <!-- Success message (hidden initially) -->
     <div id="apply-success" style="display:none; text-align:center; padding:2rem 0;">
       <div style="font-size:2.5rem; margin-bottom:.5rem;">🎉</div>
-      <div style="font-family:var(--font-display,sans-serif); font-size:1.2rem; font-weight:700;">Application received!</div>
+      <div style="font-family:var(--font-display,sans-serif); font-size:1.2rem; font-weight:700;">Application received!
+      </div>
       <div style="color:#6b7280; margin-top:.4rem;">We'll call you within 24 hours.</div>
     </div>
 
@@ -192,22 +245,22 @@
     if (!modal) return;
     modal.style.display = 'none';
     document.body.style.overflow = '';
-    var form    = document.getElementById('apply-form');
+    var form = document.getElementById('apply-form');
     var success = document.getElementById('apply-success');
-    var btn     = document.getElementById('apply-submit-btn');
-    if (form)    { form.style.display = 'block'; form.reset(); }
+    var btn = document.getElementById('apply-submit-btn');
+    if (form) { form.style.display = 'block'; form.reset(); }
     if (success) { success.style.display = 'none'; }
-    if (btn)     { btn.disabled = false; btn.innerHTML = 'Submit Application &rarr;'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = 'Submit Application &rarr;'; }
   }
 
   function handleApplySubmit(e) {
     e.preventDefault();
-    var form    = document.getElementById('apply-form');
+    var form = document.getElementById('apply-form');
     var success = document.getElementById('apply-success');
-    var btn     = document.getElementById('apply-submit-btn');
+    var btn = document.getElementById('apply-submit-btn');
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
     setTimeout(function () {
-      if (form)    form.style.display    = 'none';
+      if (form) form.style.display = 'none';
       if (success) success.style.display = 'block';
       setTimeout(function () { closeApplyModal(); }, 2500);
     }, 800);
@@ -224,10 +277,10 @@
   ───────────────────────────────────────── */
   (function () {
     var DELAYS = [5000, 15000, 30000];       // 0s, 10s, 20s
-    var _n     = 0;                       // page load pe hamesha 0 se start
+    var _n = 0;                       // page load pe hamesha 0 se start
     var _timer = null;
 
-    function getN()  { return _n; }
+    function getN() { return _n; }
     function bumpN() { _n++; }
 
     function schedule() {
@@ -261,11 +314,11 @@
      "Login" link pe login form wapas lao.
   ───────────────────────────────────────── */
   function switchLoginTab(tab) {
-    var lf  = document.getElementById('loginFields');
-    var sf  = document.getElementById('signupFields');
-    var tl  = document.getElementById('tabLoginBtn');
-    var ts  = document.getElementById('tabSignupBtn');
-    var h3  = document.querySelector('#loginModal .modal-header h3');
+    var lf = document.getElementById('loginFields');
+    var sf = document.getElementById('signupFields');
+    var tl = document.getElementById('tabLoginBtn');
+    var ts = document.getElementById('tabSignupBtn');
+    var h3 = document.querySelector('#loginModal .modal-header h3');
     var sub = document.querySelector('#loginModal .modal-subtitle');
 
     if (!lf || !sf) return;
@@ -273,12 +326,12 @@
     if (tab === 'signup') {
       lf.style.display = 'none';
       sf.style.display = 'block';
-      if (h3)  h3.textContent  = 'Create account';
+      if (h3) h3.textContent = 'Create account';
       if (sub) sub.textContent = 'Sign up to track applications and saved colleges.';
     } else {
       lf.style.display = 'block';
       sf.style.display = 'none';
-      if (h3)  h3.textContent  = 'Welcome back';
+      if (h3) h3.textContent = 'Welcome back';
       if (sub) sub.textContent = 'Login to track applications and saved colleges.';
     }
 
@@ -286,14 +339,14 @@
     if (tl && ts) {
       if (tab === 'login') {
         tl.style.background = '#ffffff'; tl.style.color = '#0f172a';
-        tl.style.boxShadow  = '0 1px 3px rgba(0,0,0,.08)';
+        tl.style.boxShadow = '0 1px 3px rgba(0,0,0,.08)';
         ts.style.background = 'transparent'; ts.style.color = '#64748b';
-        ts.style.boxShadow  = 'none';
+        ts.style.boxShadow = 'none';
       } else {
         ts.style.background = '#ffffff'; ts.style.color = '#0f172a';
-        ts.style.boxShadow  = '0 1px 3px rgba(0,0,0,.08)';
+        ts.style.boxShadow = '0 1px 3px rgba(0,0,0,.08)';
         tl.style.background = 'transparent'; tl.style.color = '#64748b';
-        tl.style.boxShadow  = 'none';
+        tl.style.boxShadow = 'none';
       }
     }
   }
@@ -303,7 +356,7 @@
   ───────────────────────────────────────── */
   function handleLoginSubmit(e) {
     e.preventDefault();
-    var email    = document.getElementById('loginEmail').value.trim();
+    var email = document.getElementById('loginEmail').value.trim();
     var password = document.getElementById('loginPassword').value;
     if (!email || !password) { alert('Please fill in all fields.'); return; }
 
@@ -328,8 +381,8 @@
   ───────────────────────────────────────── */
   function handleSignupSubmit(e) {
     e.preventDefault();
-    var name     = document.getElementById('signupName').value.trim();
-    var email    = document.getElementById('signupEmail').value.trim();
+    var name = document.getElementById('signupName').value.trim();
+    var email = document.getElementById('signupEmail').value.trim();
     var password = document.getElementById('signupPassword').value;
     if (!name || !email || !password) { alert('Please fill in all fields.'); return; }
 

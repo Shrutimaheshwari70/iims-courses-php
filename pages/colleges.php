@@ -136,340 +136,6 @@ include '../components/Navbar.php';
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-<!-- =====================================================================
-     COLLEGES LIST PAGE
-===================================================================== -->
-
-<!-- HERO -->
-<section class="c-hero">
-  <div class="container position-relative" style="z-index:1;">
-    <h1 class="text-white fw-bold">Discover all <span>IIMs</span></h1>
-    <p class="text-light">Verified data on rankings, fees, placements and reviews — all IIMs in one place.</p>
-    <div class="c-hero-btns">
-      <button class="c-btn-send" onclick="openApplyModal()">
-        <i class="bi bi-send-fill"></i> Apply Now
-      </button>
-      <a href="contact.php" class="c-btn-outline">
-        <i class="bi bi-chat-dots"></i> Contact Us
-      </a>
-    </div>
-    <!-- Search bar -->
-    <div class="cl-search-wrap">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        class="cl-search-icon" width="20" height="20">
-        <circle cx="11" cy="11" r="8" />
-        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-      </svg>
-      <input type="text" id="cl-search" value="<?= htmlspecialchars($q) ?>" placeholder="Search IIM by name or city"
-        class="cl-search-input" autocomplete="off" />
-    </div>
-  </div>
-</section>
-
-<!-- ── Layout: sidebar + grid ── -->
-<section class="cl-layout-section">
-  <div class="cl-container">
-    <div class="cl-layout">
-
-      <!-- ── Sidebar (desktop only) ── -->
-      <aside class="cl-sidebar" id="cl-sidebar">
-        <div class="cl-filter-card">
-          <div class="cl-filter-header">
-            <span class="cl-filter-title">
-              Filters
-              <?php if ($activeCount > 0): ?>
-                <span class="cl-filter-badge"><?= $activeCount ?></span>
-              <?php endif; ?>
-            </span>
-          </div>
-          <form method="GET" action="colleges.php" id="filter-form">
-            <input type="hidden" name="q" id="fq" value="<?= htmlspecialchars($q) ?>">
-            <input type="hidden" name="sort" id="fsort" value="<?= htmlspecialchars($sortBy) ?>">
-            <input type="hidden" name="page" value="1">
-
-            <!-- Course Type -->
-            <div class="cl-fg">
-              <div class="cl-fg-label">Course Type</div>
-              <div class="cl-chips">
-                <?php foreach ($CATS as $cat):
-                  $active = in_array($cat, $selCats); ?>
-                  <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
-                    <input type="checkbox" name="cats[]" value="<?= htmlspecialchars($cat) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
-                      onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);liveFilter();">
-                    <?= htmlspecialchars($cat) ?>
-                  </label>
-                <?php endforeach; ?>
-              </div>
-            </div>
-
-            <!-- Entrance Exam -->
-            <div class="cl-fg">
-              <div class="cl-fg-label">Entrance Exam</div>
-              <div class="cl-chips">
-                <?php foreach ($EXAMS as $ex):
-                  $active = in_array($ex, $selExams); ?>
-                  <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
-                    <input type="checkbox" name="exams[]" value="<?= htmlspecialchars($ex) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
-                      onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);liveFilter();">
-                    <?= htmlspecialchars($ex) ?>
-                  </label>
-                <?php endforeach; ?>
-              </div>
-            </div>
-
-            <!-- Budget / Fee Range -->
-            <div class="cl-fg">
-              <div class="cl-fg-label">
-                Budget (Fees)
-                <span style="font-weight:700;color:var(--accent,#f97316);">
-                  ₹<span id="fee-min-lbl"><?= $feeMin ?></span>L – ₹<span id="fee-max-lbl"><?= $feeMax ?></span>L
-                </span>
-              </div>
-              <div style="margin-bottom:.35rem;">
-                <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Min</span>
-                <input type="range" name="fee_min" id="fee-min-range" min="0" max="30" value="<?= $feeMin ?>"
-                  class="cl-range"
-                  oninput="var mn=parseInt(this.value),mx=parseInt(document.getElementById('fee-max-range').value);if(mn>mx){this.value=mx;mn=mx;}document.getElementById('fee-min-lbl').textContent=mn;liveFilter();">
-              </div>
-              <div>
-                <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Max</span>
-                <input type="range" name="fee_max" id="fee-max-range" min="0" max="30" value="<?= $feeMax ?>"
-                  class="cl-range"
-                  oninput="var mx=parseInt(this.value),mn=parseInt(document.getElementById('fee-min-range').value);if(mx<mn){this.value=mn;mx=mn;}document.getElementById('fee-max-lbl').textContent=mx;liveFilter();">
-              </div>
-              <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem;">
-                <button type="button" class="cl-chip" style="font-size:.7rem;" onclick="setFeePreset(0,15)">Under
-                  ₹15L</button>
-                <button type="button" class="cl-chip" style="font-size:.7rem;"
-                  onclick="setFeePreset(15,25)">₹15–25L</button>
-                <button type="button" class="cl-chip" style="font-size:.7rem;"
-                  onclick="setFeePreset(25,30)">₹25L+</button>
-              </div>
-            </div>
-
-            <a href="colleges.php" class="btn btn-outline cl-reset-btn">Reset filters</a>
-          </form>
-        </div>
-      </aside>
-
-      <!-- ── Main grid ── -->
-      <div class="cl-main">
-        <div class="cl-main-header">
-          <div class="cl-count" id="cl-count">
-            <?= $totalFiltered ?> IIMs found
-            <?php if ($totalPages > 1): ?>
-              <span style="color:var(--muted-foreground,#94a3b8);font-size:.8rem;margin-left:.4rem;">(Page
-                <?= $currentPage ?> of <?= $totalPages ?>)</span>
-            <?php endif; ?>
-          </div>
-
-          <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
-            <!-- Sort dropdown -->
-            <div class="cl-sort-wrap">
-              <label for="cl-sort" class="cl-sort-label">Sort by:</label>
-              <select id="cl-sort" class="cl-sort-select" onchange="applySort(this.value)">
-                <option value="ranking" <?= $sortBy === 'ranking' ? 'selected' : '' ?>>NIRF Ranking</option>
-                <option value="fees_asc" <?= $sortBy === 'fees_asc' ? 'selected' : '' ?>>Fees: Low → High</option>
-                <option value="fees_desc" <?= $sortBy === 'fees_desc' ? 'selected' : '' ?>>Fees: High → Low</option>
-                <option value="placement" <?= $sortBy === 'placement' ? 'selected' : '' ?>>Best Placement</option>
-                <option value="location" <?= $sortBy === 'location' ? 'selected' : '' ?>>Location (A–Z)</option>
-              </select>
-            </div>
-
-            <!-- Mobile filter toggle -->
-            <button class="cl-mobile-filter-btn" id="cl-filter-toggle-btn" onclick="toggleMobileFilter()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" width="15" height="15">
-                <line x1="4" y1="6" x2="20" y2="6" />
-                <line x1="8" y1="12" x2="16" y2="12" />
-                <line x1="11" y1="18" x2="13" y2="18" />
-              </svg>
-              Filters<?php if ($activeCount > 0): ?><span
-                  class="cl-mob-filter-badge"><?= $activeCount ?></span><?php endif; ?>
-            </button>
-          </div>
-        </div>
-
-        <!-- ── Mobile Filter Drawer ── -->
-        <div class="cl-mobile-filter" id="cl-mobile-filter">
-          <div class="cl-mobile-filter-inner">
-            <div class="cl-mobile-filter-top">
-              <span class="cl-filter-title">
-                Filters
-                <?php if ($activeCount > 0): ?><span class="cl-filter-badge"><?= $activeCount ?></span><?php endif; ?>
-              </span>
-              <button type="button" class="cl-mobile-filter-close" onclick="toggleMobileFilter()"
-                aria-label="Close filters">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2" width="20" height="20">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
-
-            <form method="GET" action="colleges.php" id="mobile-filter-form">
-              <input type="hidden" name="q" value="<?= htmlspecialchars($q) ?>">
-              <input type="hidden" name="sort" value="<?= htmlspecialchars($sortBy) ?>">
-              <input type="hidden" name="page" value="1">
-
-              <div class="cl-fg">
-                <div class="cl-fg-label">Course Type</div>
-                <div class="cl-chips">
-                  <?php foreach ($CATS as $cat):
-                    $active = in_array($cat, $selCats); ?>
-                    <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
-                      <input type="checkbox" name="cats[]" value="<?= htmlspecialchars($cat) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
-                        onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);">
-                      <?= htmlspecialchars($cat) ?>
-                    </label>
-                  <?php endforeach; ?>
-                </div>
-              </div>
-
-              <div class="cl-fg">
-                <div class="cl-fg-label">Entrance Exam</div>
-                <div class="cl-chips">
-                  <?php foreach ($EXAMS as $ex):
-                    $active = in_array($ex, $selExams); ?>
-                    <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
-                      <input type="checkbox" name="exams[]" value="<?= htmlspecialchars($ex) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
-                        onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);">
-                      <?= htmlspecialchars($ex) ?>
-                    </label>
-                  <?php endforeach; ?>
-                </div>
-              </div>
-
-              <div class="cl-fg">
-                <div class="cl-fg-label">
-                  Budget (Fees)
-                  <span style="font-weight:700;color:var(--accent,#f97316);">
-                    ₹<span id="m-fee-min-lbl"><?= $feeMin ?></span>L – ₹<span id="m-fee-max-lbl"><?= $feeMax ?></span>L
-                  </span>
-                </div>
-                <div style="margin-bottom:.35rem;">
-                  <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Min</span>
-                  <input type="range" name="fee_min" id="m-fee-min-range" min="0" max="30" value="<?= $feeMin ?>"
-                    class="cl-range"
-                    oninput="var mn=parseInt(this.value),mx=parseInt(document.getElementById('m-fee-max-range').value);if(mn>mx){this.value=mx;mn=mx;}document.getElementById('m-fee-min-lbl').textContent=mn;">
-                </div>
-                <div>
-                  <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Max</span>
-                  <input type="range" name="fee_max" id="m-fee-max-range" min="0" max="30" value="<?= $feeMax ?>"
-                    class="cl-range"
-                    oninput="var mx=parseInt(this.value),mn=parseInt(document.getElementById('m-fee-min-range').value);if(mx<mn){this.value=mn;mx=mn;}document.getElementById('m-fee-max-lbl').textContent=mx;">
-                </div>
-                <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem;">
-                  <button type="button" class="cl-chip" style="font-size:.7rem;"
-                    onclick="setMobileFeePreset(0,15)">Under ₹15L</button>
-                  <button type="button" class="cl-chip" style="font-size:.7rem;"
-                    onclick="setMobileFeePreset(15,25)">₹15–25L</button>
-                  <button type="button" class="cl-chip" style="font-size:.7rem;"
-                    onclick="setMobileFeePreset(25,30)">₹25L+</button>
-                </div>
-              </div>
-
-              <div class="cl-mobile-filter-actions">
-                <a href="colleges.php" class="btn btn-outline" style="flex:1;text-align:center;">Reset</a>
-                <button type="submit" class="btn btn-hero" style="flex:1;">Apply Filters</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- ── End Mobile Filter Drawer ── -->
-
-        <!-- Cards grid -->
-        <?php if (empty($pageItems)): ?>
-          <div class="cl-empty">
-            <p style="color:var(--muted-foreground)">No IIMs match these filters.</p>
-            <a href="colleges.php" class="btn btn-outline" style="margin-top:1rem;display:inline-flex">Reset</a>
-          </div>
-        <?php else: ?>
-          <div class="colleges-grid" id="cl-grid">
-            <?php foreach ($pageItems as $index => $college): ?>
-              <div class="cl-card-wrap reveal" style="transition-delay:<?= $index * 0.06 ?>s"
-                data-name="<?= strtolower(htmlspecialchars($college['name'])) ?>"
-                data-loc="<?= strtolower(htmlspecialchars($college['location'])) ?>"
-                data-fees="<?= (int) $college['fees'] ?>" data-placement="<?= (int) $college['placement'] ?>"
-                data-rating="<?= (float) $college['rating'] ?>"
-                data-cats="<?= strtolower(htmlspecialchars(implode(',', $college['category']))) ?>"
-                data-exams="<?= strtolower(htmlspecialchars(implode(',', $college['exams']))) ?>">
-                <?php include '../components/CollegeCard.php'; ?>
-              </div>
-            <?php endforeach; ?>
-          </div>
-
-          <!-- ── Pagination ── -->
-          <?php if ($totalPages > 1): ?>
-            <nav class="cl-pagination" aria-label="Colleges pagination">
-              <?php
-              if ($currentPage > 1):
-                echo '<a href="' . htmlspecialchars(buildUrl(['page' => $currentPage - 1])) . '" class="cl-page-btn cl-page-prev" aria-label="Previous page">';
-                echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>';
-                echo 'Prev</a>';
-              else:
-                echo '<span class="cl-page-btn cl-page-disabled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>Prev</span>';
-              endif;
-              $startP = max(1, $currentPage - 2);
-              $endP = min($totalPages, $currentPage + 2);
-              if ($startP > 1)
-                echo '<span class="cl-page-ellipsis">…</span>';
-              for ($p = $startP; $p <= $endP; $p++) {
-                $isCur = ($p === $currentPage);
-                echo '<a href="' . htmlspecialchars(buildUrl(['page' => $p])) . '" class="cl-page-btn cl-page-num' . ($isCur ? ' cl-page-active' : '') . '" aria-current="' . ($isCur ? 'page' : 'false') . '">' . $p . '</a>';
-              }
-              if ($endP < $totalPages)
-                echo '<span class="cl-page-ellipsis">…</span>';
-              if ($currentPage < $totalPages):
-                echo '<a href="' . htmlspecialchars(buildUrl(['page' => $currentPage + 1])) . '" class="cl-page-btn cl-page-next" aria-label="Next page">';
-                echo 'Next<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="9 18 15 12 9 6"/></svg></a>';
-              else:
-                echo '<span class="cl-page-btn cl-page-disabled">Next<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="9 18 15 12 9 6"/></svg></span>';
-              endif;
-              ?>
-            </nav>
-          <?php endif; ?>
-
-        <?php endif; ?>
-      </div><!-- /cl-main -->
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FINAL CTA
-============================================================ -->
-<section class="py-3 py-md-4">
-  <div class="container">
-    <div class="cta-pro position-relative overflow-hidden rounded-5 p-4 p-lg-5">
-      <div class="cta-glow"></div>
-      <div class="row align-items-center g-4 position-relative" style="z-index:2;">
-        <div class="col-12 col-lg-7 text-center mx-auto">
-          <span class="cta-badge mb-3 d-inline-flex align-items-center">
-            <i class="bi bi-stars me-2"></i>
-            Trusted by CAT Aspirants Across India
-          </span>
-          <h4 class="cta-content display-5 fw-bold text-white mb-2 lh-sm">
-            Start Your Journey Towards
-            <span class="cta-highlight">Top IIM Admissions</span>
-          </h4>
-          <p class="cta-text mb-4">
-            Get personalised guidance from experienced mentors, IIM alumni, and CAT experts.
-            From profile evaluation to final admission strategy — we help you at every step.
-          </p>
-        </div>
-        <div class="col-12 text-center">
-          <button class="button-cta bg-transparent px-4 py-2" onclick="openApplyModal()">Apply</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Colleges Grid ── -->
 <style>
   /* ── College Detail Hero ── */
   .cd-hero {
@@ -1732,6 +1398,340 @@ include '../components/Navbar.php';
     }
   }
 </style>
+
+<!-- =====================================================================
+     COLLEGES LIST PAGE
+===================================================================== -->
+
+<!-- HERO -->
+<section class="c-hero">
+  <div class="container position-relative" style="z-index:1;">
+    <h1 class="text-white fw-bold">Discover all <span>IIMs</span></h1>
+    <p class="text-light">Verified data on rankings, fees, placements and reviews — all IIMs in one place.</p>
+    <div class="c-hero-btns">
+      <button class="c-btn-send" onclick="openApplyModal()">
+        <i class="bi bi-send-fill"></i> Apply Now
+      </button>
+      <a href="contact.php" class="c-btn-outline">
+        <i class="bi bi-chat-dots"></i> Contact Us
+      </a>
+    </div>
+    <!-- Search bar -->
+    <div class="cl-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        class="cl-search-icon" width="20" height="20">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      <input type="text" id="cl-search" value="<?= htmlspecialchars($q) ?>" placeholder="Search IIM by name or city"
+        class="cl-search-input" autocomplete="off" />
+    </div>
+  </div>
+</section>
+
+<!-- ── Layout: sidebar + grid ── -->
+<section class="cl-layout-section">
+  <div class="cl-container">
+    <div class="cl-layout">
+
+      <!-- ── Sidebar (desktop only) ── -->
+      <aside class="cl-sidebar" id="cl-sidebar">
+        <div class="cl-filter-card">
+          <div class="cl-filter-header">
+            <span class="cl-filter-title">
+              Filters
+              <?php if ($activeCount > 0): ?>
+                <span class="cl-filter-badge"><?= $activeCount ?></span>
+              <?php endif; ?>
+            </span>
+          </div>
+          <form method="GET" action="colleges.php" id="filter-form">
+            <input type="hidden" name="q" id="fq" value="<?= htmlspecialchars($q) ?>">
+            <input type="hidden" name="sort" id="fsort" value="<?= htmlspecialchars($sortBy) ?>">
+            <input type="hidden" name="page" value="1">
+
+            <!-- Course Type -->
+            <div class="cl-fg">
+              <div class="cl-fg-label">Course Type</div>
+              <div class="cl-chips">
+                <?php foreach ($CATS as $cat):
+                  $active = in_array($cat, $selCats); ?>
+                  <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
+                    <input type="checkbox" name="cats[]" value="<?= htmlspecialchars($cat) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
+                      onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);liveFilter();">
+                    <?= htmlspecialchars($cat) ?>
+                  </label>
+                <?php endforeach; ?>
+              </div>
+            </div>
+
+            <!-- Entrance Exam -->
+            <div class="cl-fg">
+              <div class="cl-fg-label">Entrance Exam</div>
+              <div class="cl-chips">
+                <?php foreach ($EXAMS as $ex):
+                  $active = in_array($ex, $selExams); ?>
+                  <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
+                    <input type="checkbox" name="exams[]" value="<?= htmlspecialchars($ex) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
+                      onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);liveFilter();">
+                    <?= htmlspecialchars($ex) ?>
+                  </label>
+                <?php endforeach; ?>
+              </div>
+            </div>
+
+            <!-- Budget / Fee Range -->
+            <div class="cl-fg">
+              <div class="cl-fg-label">
+                Budget (Fees)
+                <span style="font-weight:700;color:var(--accent,#f97316);">
+                  ₹<span id="fee-min-lbl"><?= $feeMin ?></span>L – ₹<span id="fee-max-lbl"><?= $feeMax ?></span>L
+                </span>
+              </div>
+              <div style="margin-bottom:.35rem;">
+                <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Min</span>
+                <input type="range" name="fee_min" id="fee-min-range" min="0" max="30" value="<?= $feeMin ?>"
+                  class="cl-range"
+                  oninput="var mn=parseInt(this.value),mx=parseInt(document.getElementById('fee-max-range').value);if(mn>mx){this.value=mx;mn=mx;}document.getElementById('fee-min-lbl').textContent=mn;liveFilter();">
+              </div>
+              <div>
+                <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Max</span>
+                <input type="range" name="fee_max" id="fee-max-range" min="0" max="30" value="<?= $feeMax ?>"
+                  class="cl-range"
+                  oninput="var mx=parseInt(this.value),mn=parseInt(document.getElementById('fee-min-range').value);if(mx<mn){this.value=mn;mx=mn;}document.getElementById('fee-max-lbl').textContent=mx;liveFilter();">
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem;">
+                <button type="button" class="cl-chip" style="font-size:.7rem;" onclick="setFeePreset(0,15)">Under
+                  ₹15L</button>
+                <button type="button" class="cl-chip" style="font-size:.7rem;"
+                  onclick="setFeePreset(15,25)">₹15–25L</button>
+                <button type="button" class="cl-chip" style="font-size:.7rem;"
+                  onclick="setFeePreset(25,30)">₹25L+</button>
+              </div>
+            </div>
+
+            <a href="colleges.php" class="btn btn-outline cl-reset-btn">Reset filters</a>
+          </form>
+        </div>
+      </aside>
+
+      <!-- ── Main grid ── -->
+      <div class="cl-main">
+        <div class="cl-main-header">
+          <div class="cl-count" id="cl-count">
+            <?= $totalFiltered ?> IIMs found
+            <?php if ($totalPages > 1): ?>
+              <span style="color:var(--muted-foreground,#94a3b8);font-size:.8rem;margin-left:.4rem;">(Page
+                <?= $currentPage ?> of <?= $totalPages ?>)</span>
+            <?php endif; ?>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
+            <!-- Sort dropdown -->
+            <div class="cl-sort-wrap">
+              <label for="cl-sort" class="cl-sort-label">Sort by:</label>
+              <select id="cl-sort" class="cl-sort-select" onchange="applySort(this.value)">
+                <option value="ranking" <?= $sortBy === 'ranking' ? 'selected' : '' ?>>NIRF Ranking</option>
+                <option value="fees_asc" <?= $sortBy === 'fees_asc' ? 'selected' : '' ?>>Fees: Low → High</option>
+                <option value="fees_desc" <?= $sortBy === 'fees_desc' ? 'selected' : '' ?>>Fees: High → Low</option>
+                <option value="placement" <?= $sortBy === 'placement' ? 'selected' : '' ?>>Best Placement</option>
+                <option value="location" <?= $sortBy === 'location' ? 'selected' : '' ?>>Location (A–Z)</option>
+              </select>
+            </div>
+
+            <!-- Mobile filter toggle -->
+            <button class="cl-mobile-filter-btn" id="cl-filter-toggle-btn" onclick="toggleMobileFilter()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" width="15" height="15">
+                <line x1="4" y1="6" x2="20" y2="6" />
+                <line x1="8" y1="12" x2="16" y2="12" />
+                <line x1="11" y1="18" x2="13" y2="18" />
+              </svg>
+              Filters<?php if ($activeCount > 0): ?><span
+                  class="cl-mob-filter-badge"><?= $activeCount ?></span><?php endif; ?>
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Mobile Filter Drawer ── -->
+        <div class="cl-mobile-filter" id="cl-mobile-filter">
+          <div class="cl-mobile-filter-inner">
+            <div class="cl-mobile-filter-top">
+              <span class="cl-filter-title">
+                Filters
+                <?php if ($activeCount > 0): ?><span class="cl-filter-badge"><?= $activeCount ?></span><?php endif; ?>
+              </span>
+              <button type="button" class="cl-mobile-filter-close" onclick="toggleMobileFilter()"
+                aria-label="Close filters">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" width="20" height="20">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            <form method="GET" action="colleges.php" id="mobile-filter-form">
+              <input type="hidden" name="q" value="<?= htmlspecialchars($q) ?>">
+              <input type="hidden" name="sort" value="<?= htmlspecialchars($sortBy) ?>">
+              <input type="hidden" name="page" value="1">
+
+              <div class="cl-fg">
+                <div class="cl-fg-label">Course Type</div>
+                <div class="cl-chips">
+                  <?php foreach ($CATS as $cat):
+                    $active = in_array($cat, $selCats); ?>
+                    <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
+                      <input type="checkbox" name="cats[]" value="<?= htmlspecialchars($cat) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
+                        onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);">
+                      <?= htmlspecialchars($cat) ?>
+                    </label>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+
+              <div class="cl-fg">
+                <div class="cl-fg-label">Entrance Exam</div>
+                <div class="cl-chips">
+                  <?php foreach ($EXAMS as $ex):
+                    $active = in_array($ex, $selExams); ?>
+                    <label class="cl-chip <?= $active ? 'cl-chip-active' : '' ?>">
+                      <input type="checkbox" name="exams[]" value="<?= htmlspecialchars($ex) ?>" <?= $active ? 'checked' : '' ?> style="display:none"
+                        onchange="this.closest('label').classList.toggle('cl-chip-active',this.checked);">
+                      <?= htmlspecialchars($ex) ?>
+                    </label>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+
+              <div class="cl-fg">
+                <div class="cl-fg-label">
+                  Budget (Fees)
+                  <span style="font-weight:700;color:var(--accent,#f97316);">
+                    ₹<span id="m-fee-min-lbl"><?= $feeMin ?></span>L – ₹<span id="m-fee-max-lbl"><?= $feeMax ?></span>L
+                  </span>
+                </div>
+                <div style="margin-bottom:.35rem;">
+                  <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Min</span>
+                  <input type="range" name="fee_min" id="m-fee-min-range" min="0" max="30" value="<?= $feeMin ?>"
+                    class="cl-range"
+                    oninput="var mn=parseInt(this.value),mx=parseInt(document.getElementById('m-fee-max-range').value);if(mn>mx){this.value=mx;mn=mx;}document.getElementById('m-fee-min-lbl').textContent=mn;">
+                </div>
+                <div>
+                  <span style="font-size:.7rem;color:var(--muted-foreground,#64748b);">Max</span>
+                  <input type="range" name="fee_max" id="m-fee-max-range" min="0" max="30" value="<?= $feeMax ?>"
+                    class="cl-range"
+                    oninput="var mx=parseInt(this.value),mn=parseInt(document.getElementById('m-fee-min-range').value);if(mx<mn){this.value=mn;mx=mn;}document.getElementById('m-fee-max-lbl').textContent=mx;">
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem;">
+                  <button type="button" class="cl-chip" style="font-size:.7rem;"
+                    onclick="setMobileFeePreset(0,15)">Under ₹15L</button>
+                  <button type="button" class="cl-chip" style="font-size:.7rem;"
+                    onclick="setMobileFeePreset(15,25)">₹15–25L</button>
+                  <button type="button" class="cl-chip" style="font-size:.7rem;"
+                    onclick="setMobileFeePreset(25,30)">₹25L+</button>
+                </div>
+              </div>
+
+              <div class="cl-mobile-filter-actions">
+                <a href="colleges.php" class="btn btn-outline" style="flex:1;text-align:center;">Reset</a>
+                <button type="submit" class="btn btn-hero" style="flex:1;">Apply Filters</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- ── End Mobile Filter Drawer ── -->
+
+        <!-- Cards grid -->
+        <?php if (empty($pageItems)): ?>
+          <div class="cl-empty">
+            <p style="color:var(--muted-foreground)">No IIMs match these filters.</p>
+            <a href="colleges.php" class="btn btn-outline" style="margin-top:1rem;display:inline-flex">Reset</a>
+          </div>
+        <?php else: ?>
+          <div class="colleges-grid" id="cl-grid">
+            <?php foreach ($pageItems as $index => $college): ?>
+              <div class="cl-card-wrap reveal" style="transition-delay:<?= $index * 0.06 ?>s"
+                data-name="<?= strtolower(htmlspecialchars($college['name'])) ?>"
+                data-loc="<?= strtolower(htmlspecialchars($college['location'])) ?>"
+                data-fees="<?= (int) $college['fees'] ?>" data-placement="<?= (int) $college['placement'] ?>"
+                data-rating="<?= (float) $college['rating'] ?>"
+                data-cats="<?= strtolower(htmlspecialchars(implode(',', $college['category']))) ?>"
+                data-exams="<?= strtolower(htmlspecialchars(implode(',', $college['exams']))) ?>">
+                <?php include '../components/CollegeCard.php'; ?>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
+          <!-- ── Pagination ── -->
+          <?php if ($totalPages > 1): ?>
+            <nav class="cl-pagination" aria-label="Colleges pagination">
+              <?php
+              if ($currentPage > 1):
+                echo '<a href="' . htmlspecialchars(buildUrl(['page' => $currentPage - 1])) . '" class="cl-page-btn cl-page-prev" aria-label="Previous page">';
+                echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>';
+                echo 'Prev</a>';
+              else:
+                echo '<span class="cl-page-btn cl-page-disabled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>Prev</span>';
+              endif;
+              $startP = max(1, $currentPage - 2);
+              $endP = min($totalPages, $currentPage + 2);
+              if ($startP > 1)
+                echo '<span class="cl-page-ellipsis">…</span>';
+              for ($p = $startP; $p <= $endP; $p++) {
+                $isCur = ($p === $currentPage);
+                echo '<a href="' . htmlspecialchars(buildUrl(['page' => $p])) . '" class="cl-page-btn cl-page-num' . ($isCur ? ' cl-page-active' : '') . '" aria-current="' . ($isCur ? 'page' : 'false') . '">' . $p . '</a>';
+              }
+              if ($endP < $totalPages)
+                echo '<span class="cl-page-ellipsis">…</span>';
+              if ($currentPage < $totalPages):
+                echo '<a href="' . htmlspecialchars(buildUrl(['page' => $currentPage + 1])) . '" class="cl-page-btn cl-page-next" aria-label="Next page">';
+                echo 'Next<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="9 18 15 12 9 6"/></svg></a>';
+              else:
+                echo '<span class="cl-page-btn cl-page-disabled">Next<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="9 18 15 12 9 6"/></svg></span>';
+              endif;
+              ?>
+            </nav>
+          <?php endif; ?>
+
+        <?php endif; ?>
+      </div><!-- /cl-main -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="py-3 py-md-4">
+  <div class="container">
+    <div class="cta-pro position-relative overflow-hidden rounded-5 p-4 p-lg-5">
+      <div class="cta-glow"></div>
+      <div class="row align-items-center g-4 position-relative" style="z-index:2;">
+        <div class="col-12 col-lg-7 text-center mx-auto">
+          <span class="cta-badge mb-3 d-inline-flex align-items-center">
+            <i class="bi bi-stars me-2"></i>
+            Trusted by CAT Aspirants Across India
+          </span>
+          <h4 class="cta-content display-5 fw-bold text-white mb-2 lh-sm">
+            Start Your Journey Towards
+            <span class="cta-highlight">Top IIM Admissions</span>
+          </h4>
+          <p class="cta-text mb-4">
+            Get personalised guidance from experienced mentors, IIM alumni, and CAT experts.
+            From profile evaluation to final admission strategy — we help you at every step.
+          </p>
+        </div>
+        <div class="col-12 text-center">
+          <button class="button-cta bg-transparent px-4 py-2" onclick="openApplyModal()">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Colleges Grid ── -->
 
 <script>
   /* Sort dropdown */

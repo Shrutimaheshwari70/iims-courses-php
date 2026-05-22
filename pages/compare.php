@@ -57,8 +57,8 @@ include '../components/Navbar.php';
 
 <style>
   /* ──────────────────────────────────────────
-   DESIGN TOKENS
-   ────────────────────────────────────────── */
+    DESIGN TOKENS
+    ────────────────────────────────────────── */
   :root {
     --cn: #1a2340;
     --cn2: #2d3d6b;
@@ -75,8 +75,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   HERO — completely unchanged, scoped to .bs
-   ────────────────────────────────────────── */
+    HERO — completely unchanged, scoped to .bs
+    ────────────────────────────────────────── */
   .bs {
     font-family: var(--font-sans, sans-serif);
   }
@@ -133,8 +133,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   SECTION WRAPPER
-   ────────────────────────────────────────── */
+    SECTION WRAPPER
+    ────────────────────────────────────────── */
   .cmp-wrap {
     background: var(--cbg);
     padding: 4.5rem 0 5rem;
@@ -147,8 +147,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   PAGE HEADER
-   ────────────────────────────────────────── */
+    PAGE HEADER
+    ────────────────────────────────────────── */
   .cmp-hdr {
     display: flex;
     align-items: flex-start;
@@ -209,8 +209,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   CARDS GRID
-   ────────────────────────────────────────── */
+    CARDS GRID
+    ────────────────────────────────────────── */
   /* ── CARDS GRID ── */
   .cmp-grid {
     display: flex;
@@ -258,8 +258,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   COLLEGE CARD
-   ────────────────────────────────────────── */
+    COLLEGE CARD
+    ────────────────────────────────────────── */
   .cmp-card {
     background: var(--ccard);
     border: 1px solid var(--cborder);
@@ -423,8 +423,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   COMPARISON TABLE
-   ────────────────────────────────────────── */
+    COMPARISON TABLE
+    ────────────────────────────────────────── */
   .cmp-tbl-wrap {
     background: var(--ccard);
     border: 1px solid var(--cborder);
@@ -523,8 +523,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   ADD MORE STRIP
-   ────────────────────────────────────────── */
+    ADD MORE STRIP
+    ────────────────────────────────────────── */
   .cmp-more {
     display: flex;
     align-items: center;
@@ -557,8 +557,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   EMPTY STATE
-   ────────────────────────────────────────── */
+    EMPTY STATE
+    ────────────────────────────────────────── */
   .cmp-empty {
     background: var(--cbg);
     padding: 5.5rem 0 5rem;
@@ -669,8 +669,8 @@ include '../components/Navbar.php';
   }
 
   /* ──────────────────────────────────────────
-   RESPONSIVE
-   ────────────────────────────────────────── */
+    RESPONSIVE
+    ────────────────────────────────────────── */
   @media (max-width: 900px) {
     .cmp-grid.g3 {
       grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -17,10 +17,10 @@ include 'components/Navbar.php';
      HERO SECTION
      ============================================================ -->
 <section class="hero d-flex align-items-center overflow-hidden">
-  <img src="assets/images/hero-campus.jpg" alt="IIM campus at sunset" class="hero-bg" />
+  <img src="assets/images/hero-banner.webp" alt="IIM campus at sunset" class="hero-bg" />
   <div class="hero-overlay"></div>
 
-  <div class="hero-inner">
+  <div class="hero-inner mt-4">
     <div class="fade-up" style="color:#fff">
       <span class="hero-badge">
         <span class="hero-badge-dot animate-pulse"></span>
@@ -641,48 +641,48 @@ $RECRUITERS = [
   })();
 </script>
 <script>
-document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
   });
-});
 </script>
 <script>
-function animateCounter(el) {
-  const target = +el.getAttribute("data-to");
-  const suffix = el.getAttribute("data-suffix") || "";
-  let count = 0;
+  function animateCounter(el) {
+    const target = +el.getAttribute("data-to");
+    const suffix = el.getAttribute("data-suffix") || "";
+    let count = 0;
 
-  const step = Math.ceil(target / 100);
+    const step = Math.ceil(target / 100);
 
-  function update() {
-    count += step;
-    if (count >= target) {
-      el.innerText = target + suffix;
-    } else {
-      el.innerText = count + suffix;
-      requestAnimationFrame(update);
+    function update() {
+      count += step;
+      if (count >= target) {
+        el.innerText = target + suffix;
+      } else {
+        el.innerText = count + suffix;
+        requestAnimationFrame(update);
+      }
     }
+
+    update();
   }
 
-  update();
-}
+  const counters = document.querySelectorAll("[data-counter]");
 
-const counters = document.querySelectorAll("[data-counter]");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      observer.unobserve(entry.target);
-    }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
   });
-});
 
-counters.forEach(c => observer.observe(c));
+  counters.forEach(c => observer.observe(c));
 </script>
 <?php
 include 'components/Footer.php';

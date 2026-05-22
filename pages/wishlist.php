@@ -59,14 +59,16 @@ include '../components/Navbar.php';
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
 
   :root {
-    --accent-2:  #f5a623;
-    --dark:      #0d1117;
+    --accent-2: #f5a623;
+    --dark: #0d1117;
     --hero-grad: linear-gradient(135deg, #0d1117 0%, #1a1f35 45%, #0f3460 100%);
     --tr: .3s cubic-bezier(.4, 0, .2, 1);
     --radius: 1.1rem;
   }
 
-  body { font-family: 'DM Sans', sans-serif; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+  }
 
   /* ── Hero ── */
   .wl-hero {
@@ -75,6 +77,7 @@ include '../components/Navbar.php';
     overflow: hidden;
     padding: 110px 0 80px;
   }
+
   .wl-hero::before,
   .wl-hero::after {
     content: '';
@@ -83,15 +86,21 @@ include '../components/Navbar.php';
     filter: blur(90px);
     pointer-events: none;
   }
+
   .wl-hero::before {
-    width: 420px; height: 420px;
-    background: rgba(233,69,96,.18);
-    top: -110px; right: -70px;
+    width: 420px;
+    height: 420px;
+    background: rgba(233, 69, 96, .18);
+    top: -110px;
+    right: -70px;
   }
+
   .wl-hero::after {
-    width: 320px; height: 320px;
-    background: rgba(15,52,96,.5);
-    bottom: -80px; left: 10%;
+    width: 320px;
+    height: 320px;
+    background: rgba(15, 52, 96, .5);
+    bottom: -80px;
+    left: 10%;
   }
 
   /* Eyebrow badge */
@@ -104,22 +113,34 @@ include '../components/Navbar.php';
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--accent);
-    background: rgba(233,69,96,.12);
-    border: 1px solid rgba(233,69,96,.28);
+    background: rgba(233, 69, 96, .12);
+    border: 1px solid rgba(233, 69, 96, .28);
     padding: .35rem .95rem;
     border-radius: 999px;
     margin-bottom: 22px;
   }
+
   .wl-eyebrow-dot {
-    width: 6px; height: 6px;
+    width: 6px;
+    height: 6px;
     background: var(--accent);
     border-radius: 50%;
     animation: wlBlink 1.7s ease infinite;
     flex-shrink: 0;
   }
+
   @keyframes wlBlink {
-    0%,100%{ opacity:1; transform:scale(1) }
-    50%    { opacity:.4; transform:scale(1.6) }
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1)
+    }
+
+    50% {
+      opacity: .4;
+      transform: scale(1.6)
+    }
   }
 
   /* Hero heading */
@@ -129,6 +150,7 @@ include '../components/Navbar.php';
     color: #fff;
     line-height: 1.16;
   }
+
   .wl-hero h1 em {
     font-style: normal;
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -145,20 +167,38 @@ include '../components/Navbar.php';
     margin-top: 28px;
     font-size: .82rem;
     font-weight: 600;
-    color: rgba(255,255,255,.7);
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.14);
+    color: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .14);
     padding: .4rem 1rem;
     border-radius: 999px;
   }
-  .wl-hero-count svg { width:14px; height:14px; stroke:var(--accent); }
+
+  .wl-hero-count svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--accent);
+  }
 
   /* Wave divider */
-  .wl-wave { display:block; width:100%; overflow:hidden; line-height:0; background:var(--hero-grad); }
-  .wl-wave svg { display:block; width:100%; height:48px; }
+  .wl-wave {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    background: var(--hero-grad);
+  }
+
+  .wl-wave svg {
+    display: block;
+    width: 100%;
+    height: 48px;
+  }
 
   /* Section bg */
-  .wl-section { background: #f5f7fb; }
+  .wl-section {
+    background: #f5f7fb;
+  }
 
   /* Section header badge */
   .wl-sh-badge {
@@ -166,7 +206,7 @@ include '../components/Navbar.php';
     font-weight: 600;
     color: #6c757d;
     background: #e8eaf0;
-    border: 1px solid rgba(0,0,0,.06);
+    border: 1px solid rgba(0, 0, 0, .06);
     padding: .3rem .85rem;
     border-radius: 999px;
   }
@@ -177,47 +217,56 @@ include '../components/Navbar.php';
     border-radius: var(--radius);
     background: #fff;
   }
+
   .wl-empty-icon {
-    width: 64px; height: 64px;
-    background: rgba(233,69,96,.08);
+    width: 64px;
+    height: 64px;
+    background: rgba(233, 69, 96, .08);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
   }
-  .wl-empty-icon svg { width:30px; height:30px; stroke:var(--accent); fill:none; }
+
+  .wl-empty-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke: var(--accent);
+    fill: none;
+  }
 
   /* Primary button */
-.wl-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: .85rem;
-  font-weight: 700;
-  color: #fff !important;
-  background: linear-gradient(135deg, var(--accent), #c73652);
-  border: none;
-  padding: .7rem 1.5rem;
-  border-radius: 999px;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(233,69,96,.35);
-  transition: transform var(--tr), box-shadow var(--tr);
-  text-decoration: none;
+  .wl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: .85rem;
+    font-weight: 700;
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--accent), #c73652);
+    border: none;
+    padding: .7rem 1.5rem;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(233, 69, 96, .35);
+    transition: transform var(--tr), box-shadow var(--tr);
+    text-decoration: none;
 
-  white-space: nowrap;
-}
+    white-space: nowrap;
+  }
+
   .wl-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(233,69,96,.45);
+    box-shadow: 0 8px 24px rgba(233, 69, 96, .45);
   }
 
   /* Card */
   .wl-card {
     background: #fff;
     border-radius: var(--radius);
-    border: 1px solid rgba(0,0,0,.07);
-    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    border: 1px solid rgba(0, 0, 0, .07);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -225,86 +274,196 @@ include '../components/Navbar.php';
     transform: translateY(28px);
     transition: opacity .52s ease, transform .52s ease, box-shadow var(--tr);
   }
-  .wl-card.is-visible { opacity:1; transform:translateY(0); }
+
+  .wl-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .wl-card:hover {
     transform: translateY(-6px) !important;
-    box-shadow: 0 20px 48px rgba(0,0,0,.16);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, .16);
   }
 
   /* Card image */
-  .wl-ci { position:relative; aspect-ratio:16/9; overflow:hidden; flex-shrink:0; }
-  .wl-ci img { width:100%; height:100%; object-fit:cover; transition:transform .52s ease; }
-  .wl-card:hover .wl-ci img { transform:scale(1.07); }
+  .wl-ci {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .wl-ci img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .52s ease;
+  }
+
+  .wl-card:hover .wl-ci img {
+    transform: scale(1.07);
+  }
+
   .wl-ci-overlay {
-    position:absolute; inset:0;
-    background: linear-gradient(180deg, transparent 35%, rgba(13,17,23,.6) 100%);
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 35%, rgba(13, 17, 23, .6) 100%);
   }
+
   .wl-ci-badge {
-    position:absolute; top:11px; left:11px;
-    font-size:.58rem; font-weight:700; letter-spacing:.1em;
-    text-transform:uppercase; color:#fff;
-    background:var(--accent);
-    padding:.27rem .68rem; border-radius:999px;
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    padding: .27rem .68rem;
+    border-radius: 999px;
   }
+
   .wl-ci-rank {
-    position:absolute; bottom:11px; right:11px;
-    font-size:.68rem; font-weight:700; color:#fff;
-    background:rgba(0,0,0,.45); backdrop-filter:blur(6px);
-    padding:.25rem .65rem; border-radius:6px;
+    position: absolute;
+    bottom: 11px;
+    right: 11px;
+    font-size: .68rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0, 0, 0, .45);
+    backdrop-filter: blur(6px);
+    padding: .25rem .65rem;
+    border-radius: 6px;
   }
 
   /* Card body */
-  .wl-cb { padding:1.1rem 1.2rem 1.3rem; display:flex; flex-direction:column; flex:1; }
+  .wl-cb {
+    padding: 1.1rem 1.2rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
   .wl-cb-name {
-    font-size:.97rem; font-weight:700; color:#1a1a2e; line-height:1.38;
-    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin:0;
+    font-size: .97rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.38;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
   }
 
   /* Remove / toggle button */
   .wl-remove {
-    display:inline-flex; align-items:center; justify-content:center;
-    width:32px; height:32px; border-radius:50%;
-    border:1.5px solid rgba(233,69,96,.25);
-    background:rgba(233,69,96,.06);
-    color:var(--accent); cursor:pointer; flex-shrink:0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(233, 69, 96, .25);
+    background: rgba(233, 69, 96, .06);
+    color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
     transition: background var(--tr), border-color var(--tr), transform var(--tr);
-    text-decoration:none;
+    text-decoration: none;
   }
+
   .wl-remove:hover {
-    background:var(--accent); border-color:var(--accent); color:#fff; transform:scale(1.12);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: scale(1.12);
   }
-  .wl-remove svg { width:14px; height:14px; fill:currentColor; }
+
+  .wl-remove svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
 
   /* Location */
-  .wl-cb-location { font-size:.78rem; color:#6c757d; }
-  .wl-cb-location svg { width:11px; height:11px; stroke:#6c757d; fill:none; flex-shrink:0; }
+  .wl-cb-location {
+    font-size: .78rem;
+    color: #6c757d;
+  }
+
+  .wl-cb-location svg {
+    width: 11px;
+    height: 11px;
+    stroke: #6c757d;
+    fill: none;
+    flex-shrink: 0;
+  }
 
   /* Stats */
-  .wl-cb-stat-val { font-size:.82rem; font-weight:700; color:#1a1a2e; line-height:1; }
-  .wl-cb-stat-key { font-size:.62rem; color:#6c757d; margin-top:3px; white-space:nowrap; }
+  .wl-cb-stat-val {
+    font-size: .82rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1;
+  }
+
+  .wl-cb-stat-key {
+    font-size: .62rem;
+    color: #6c757d;
+    margin-top: 3px;
+    white-space: nowrap;
+  }
 
   /* Chips */
   .wl-chip {
-    font-size:.58rem; font-weight:600;
-    padding:.2rem .58rem; border-radius:999px;
-    background:#f0f2f5; color:#495057;
-    border:1px solid rgba(0,0,0,.06);
+    font-size: .58rem;
+    font-weight: 600;
+    padding: .2rem .58rem;
+    border-radius: 999px;
+    background: #f0f2f5;
+    color: #495057;
+    border: 1px solid rgba(0, 0, 0, .06);
     transition: background var(--tr), color var(--tr);
   }
-  .wl-card:hover .wl-chip { background:rgba(233,69,96,.09); color:var(--accent); }
+
+  .wl-card:hover .wl-chip {
+    background: rgba(233, 69, 96, .09);
+    color: var(--accent);
+  }
 
   /* View details link */
   .wl-cb-link {
-    font-size:.78rem; font-weight:700; color:var(--accent);
-    display:inline-flex; align-items:center; gap:4px;
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     transition: gap var(--tr);
-    text-decoration:none;
+    text-decoration: none;
   }
-  .wl-card:hover .wl-cb-link { gap:8px; }
-  .wl-cb-link svg { width:12px; height:12px; transition:transform var(--tr); }
-  .wl-card:hover .wl-cb-link svg { transform:translateX(3px); }
 
-  @media (max-width:768px){ .wl-hero{ padding:90px 0 60px; } }
+  .wl-card:hover .wl-cb-link {
+    gap: 8px;
+  }
+
+  .wl-cb-link svg {
+    width: 12px;
+    height: 12px;
+    transition: transform var(--tr);
+  }
+
+  .wl-card:hover .wl-cb-link svg {
+    transform: translateX(3px);
+  }
+
+  @media (max-width:768px) {
+    .wl-hero {
+      padding: 90px 0 60px;
+    }
+  }
 </style>
 
 <!-- ══════════════════════════ HERO ══════════════════════════ -->
@@ -317,16 +476,19 @@ include '../components/Navbar.php';
     </p>
     <div class="wl-hero-count">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
-      <span id="wlHeroCount"><?= count($savedColleges) ?></span>&nbsp;college<?= count($savedColleges) !== 1 ? 's' : '' ?> saved
+      <span
+        id="wlHeroCount"><?= count($savedColleges) ?></span>&nbsp;college<?= count($savedColleges) !== 1 ? 's' : '' ?>
+      saved
     </div>
   </div>
 </section>
 
 <div class="wl-wave">
   <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,32 C360,0 1080,64 1440,16 L1440,0 L0,0 Z" fill="#f5f7fb"/>
+    <path d="M0,32 C360,0 1080,64 1440,16 L1440,0 L0,0 Z" fill="#f5f7fb" />
   </svg>
 </div>
 
@@ -340,7 +502,8 @@ include '../components/Navbar.php';
       <div class="wl-empty text-center py-5 px-4" id="wlEmptyState">
         <div class="wl-empty-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
         </div>
         <h2 class="fw-bold mb-2" style="font-size:1.35rem; color:#1a1a2e;">Nothing saved yet</h2>
@@ -349,8 +512,10 @@ include '../components/Navbar.php';
         </p>
         <a href="colleges.php" class="wl-btn">
           Browse IIMs
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
           </svg>
         </a>
       </div>
@@ -368,16 +533,13 @@ include '../components/Navbar.php';
         <?php foreach ($savedColleges as $index => $college): ?>
 
           <div class="col">
-            <div class="wl-card h-100"
-                 data-slug="<?= htmlspecialchars($college['slug']) ?>"
-                 style="transition-delay:<?= min($index * 0.06, 0.48) ?>s"
-                 data-reveal>
+            <div class="wl-card h-100" data-slug="<?= htmlspecialchars($college['slug']) ?>"
+              style="transition-delay:<?= min($index * 0.06, 0.48) ?>s" data-reveal>
 
               <!-- Image -->
               <div class="wl-ci">
                 <img src="<?= htmlspecialchars($college['image'] ?? '') ?>"
-                     alt="<?= htmlspecialchars($college['name'] ?? '') ?>"
-                     loading="lazy"/>
+                  alt="<?= htmlspecialchars($college['name'] ?? '') ?>" loading="lazy" />
                 <div class="wl-ci-overlay"></div>
                 <?php if (!empty($college['type'])): ?>
                   <span class="wl-ci-badge"><?= htmlspecialchars($college['type']) ?></span>
@@ -393,12 +555,11 @@ include '../components/Navbar.php';
                 <!-- Name + remove -->
                 <div class="d-flex align-items-start justify-content-between gap-2">
                   <h3 class="wl-cb-name"><?= htmlspecialchars($college['name'] ?? '') ?></h3>
-                  <button type="button"
-                          class="wl-remove wl-toggle active"
-                          data-slug="<?= htmlspecialchars($college['slug']) ?>"
-                          title="Remove from wishlist">
+                  <button type="button" class="wl-remove wl-toggle active"
+                    data-slug="<?= htmlspecialchars($college['slug']) ?>" title="Remove from wishlist">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                      <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                     </svg>
                   </button>
                 </div>
@@ -406,8 +567,8 @@ include '../components/Navbar.php';
                 <?php if (!empty($college['location'])): ?>
                   <p class="wl-cb-location d-flex align-items-center gap-1 mt-1 mb-0">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                      <circle cx="12" cy="10" r="3"/>
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
                     </svg>
                     <?= htmlspecialchars($college['location']) ?>
                   </p>
@@ -449,8 +610,10 @@ include '../components/Navbar.php';
                   </div>
                   <a href="college-details.php?slug=<?= urlencode($college['slug']) ?>" class="wl-cb-link">
                     View details
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
                     </svg>
                   </a>
                 </div>
@@ -537,7 +700,7 @@ include '../components/Navbar.php';
   // ─── Show empty state if no cards left ───────────────────────────────────────
   function checkEmpty() {
     var grid = document.getElementById('wlGrid');
-    var sh   = document.getElementById('wlSh');
+    var sh = document.getElementById('wlSh');
     if (!grid) return;
     var remaining = grid.querySelectorAll('.wl-card').length;
     updateCounts(remaining);
@@ -553,8 +716,8 @@ include '../components/Navbar.php';
     var card = document.querySelector('.wl-card[data-slug="' + slug + '"]');
     if (!card) return;
     card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    card.style.opacity    = '0';
-    card.style.transform  = 'scale(0.94)';
+    card.style.opacity = '0';
+    card.style.transform = 'scale(0.94)';
     setTimeout(function () {
       // Remove the wrapping .col div too so grid doesn't leave a gap
       var col = card.closest('.col') || card;
@@ -584,19 +747,19 @@ include '../components/Navbar.php';
         }
       }
     )
-    .then(function (res) {
-      return res.json();
-    })
-    .then(function (data) {
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
 
-      if (data.action === 'remove') {
-        removeCardBySlug(slug);
-      }
+        if (data.action === 'remove') {
+          removeCardBySlug(slug);
+        }
 
-    })
-    .catch(function (err) {
-      console.error(err);
-    });
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
 
   });
 </script>

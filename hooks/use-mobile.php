@@ -11,7 +11,8 @@
 /**
  * Returns true when the request likely comes from a mobile device.
  */
-function is_mobile(): bool {
+function is_mobile(): bool
+{
     $ua = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
     return (bool) preg_match(
         '/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i',
@@ -23,9 +24,12 @@ function is_mobile(): bool {
  * Returns the breakpoint hint for server-side rendering.
  * Values: 'mobile' | 'tablet' | 'desktop'
  */
-function device_hint(): string {
+function device_hint(): string
+{
     $ua = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
-    if (preg_match('/ipad|tablet|android(?!.*mobile)/i', $ua)) return 'tablet';
-    if (preg_match('/mobile|iphone|ipod|android.*mobile/i', $ua))  return 'mobile';
+    if (preg_match('/ipad|tablet|android(?!.*mobile)/i', $ua))
+        return 'tablet';
+    if (preg_match('/mobile|iphone|ipod|android.*mobile/i', $ua))
+        return 'mobile';
     return 'desktop';
 }

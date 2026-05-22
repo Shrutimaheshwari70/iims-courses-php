@@ -1,4 +1,3 @@
-
 <?php
 /**
  * course-details.php
@@ -49,15 +48,15 @@ $slug = $_GET['slug'] ?? '';
 $course = null;
 
 foreach ($COURSES as $c) {
-    if ($c['slug'] === $slug) {
-        $course = $c;
-        break;
-    }
+  if ($c['slug'] === $slug) {
+    $course = $c;
+    break;
+  }
 }
 
 if (!$course) {
-    echo "Course not found";
-    exit;
+  echo "Course not found";
+  exit;
 }
 ?>
 <!-- Tabler Icons CDN -->
@@ -86,253 +85,159 @@ if (!$course) {
   }
 
   /* ══ HERO ══════════════════════════════════════════ */
-     #ccd-toast {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(120%);
-      background: #1e293b;
-      color: #fff;
-      padding: .65rem 1.4rem;
-      border-radius: 9999px;
-      font-size: .82rem;
-      font-weight: 600;
-      box-shadow: 0 8px 32px rgba(0,0,0,.35);
-      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
-      z-index: 9999;
-      white-space: nowrap;
-    }
-    #ccd-toast.show { transform: translateX(-50%) translateY(0); }
- 
-    /* ─── Modal ────────────────────────────────── */
-    #ccd-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.6);
-      backdrop-filter: blur(6px);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    #ccd-modal.open { display: flex; }
-    .ccd-modal-box {
-      background: #fff;
-      border-radius: 1.25rem;
-      padding: 2.5rem 2rem;
-      width: 100%;
-      max-width: 440px;
-      position: relative;
-      box-shadow: 0 24px 64px rgba(0,0,0,.3);
-    }
-    .ccd-modal-box h2 { font-size: 1.35rem; font-weight: 700; color: #0f2167; margin-bottom: 1.25rem; }
-    .ccd-modal-close {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: none; border: none;
-      cursor: pointer; font-size: 1.3rem; color: #64748b;
-    }
-    .ccd-modal-close:hover { color: #0f2167; }
-    .ccd-form-group { margin-bottom: 1rem; }
-    .ccd-form-group label { display: block; font-size: .8rem; font-weight: 600; color: #334155; margin-bottom: .35rem; }
-    .ccd-form-group input, .ccd-form-group select {
-      width: 100%;
-      padding: .65rem .9rem;
-      border: 1.5px solid #e2e8f0;
-      border-radius: .6rem;
-      font-size: .875rem;
-      font-family: inherit;
-      color: #0f172a;
-      outline: none;
-      transition: border-color .2s;
-    }
-    .ccd-form-group input:focus, .ccd-form-group select:focus { border-color: #0f2167; }
-    .ccd-form-submit {
-      width: 100%;
-      padding: .75rem;
-      background: #0f2167;
-      color: #fff;
-      border: none;
-      border-radius: .7rem;
-      font-size: .9rem;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      margin-top: .5rem;
-      transition: background .2s;
-    }
-    .ccd-form-submit:hover { background: #1a35a8; }
- 
-    /* ─── Hero ─────────────────────────────────── */
+  #ccd-toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background: #1e293b;
+    color: #fff;
+    padding: .65rem 1.4rem;
+    border-radius: 9999px;
+    font-size: .82rem;
+    font-weight: 600;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .35);
+    transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
+    z-index: 9999;
+    white-space: nowrap;
+  }
+
+  #ccd-toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+
+  /* ─── Hero ─────────────────────────────────── */
+  .ccd-hero {
+    height: 72vh;
+  }
+
+  /* Background Image */
+  .ccd-hero-img {
+    filter: brightness(.55);
+    transform: scale(1.06);
+    transition: transform 8s ease;
+  }
+
+  .ccd-hero-img.loaded {
+    transform: scale(1);
+  }
+
+  /* Overlay */
+  .ccd-hero-overlay {
+    background: linear-gradient(to top,
+        rgba(0, 0, 0, .92) 0%,
+        rgba(0, 0, 0, .55) 45%,
+        rgba(0, 0, 0, .10) 100%);
+  }
+
+  /* Content */
+  .ccd-hero-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Eyebrow */
+  .ccd-eyebrow {
+    gap: .4rem;
+    background: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 9999px;
+    padding: .28rem .9rem;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    margin-bottom: .85rem;
+    width: fit-content;
+  }
+
+  /* Title */
+  .ccd-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.025em;
+  }
+
+  /* Pills Container */
+  .ccd-hero-sub {
+    gap: .6rem .5rem;
+    color: rgba(255, 255, 255, .78);
+  }
+
+  /* Pills */
+  .ccd-hero-sub-pill {
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .2);
+    font-size: .78rem;
+  }
+
+  .ccd-btn-brochure {
+    padding: .7rem 1.4rem;
+    border-radius: .65rem;
+    background: rgba(255, 255, 255, .12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, .3);
+    font-size: .875rem;
+    cursor: pointer;
+    transition: .2s;
+  }
+
+  .ccd-btn-brochure:hover {
+    background: rgba(255, 255, 255, .2);
+  }
+
+  /* =========================
+Responsive
+========================= */
+
+  @media (max-width: 768px) {
+
     .ccd-hero {
-      position: relative;
-      height: 62vh;
-      min-height: 400px;
-      overflow: hidden;
+      height: auto;
+      min-height: unset;
     }
- 
-    .ccd-hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(.55);
-      transform: scale(1.06);
-      transition: transform 8s ease;
-    }
-    .ccd-hero-img.loaded { transform: scale(1); }
- 
-    .ccd-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,.92) 0%,
-        rgba(0,0,0,.55) 45%,
-        rgba(0,0,0,.10) 100%
-      );
-    }
- 
-    .ccd-hero-inner {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      max-width: 82rem;
-      margin: 0 auto;
-      padding: 0 1.5rem 3.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      color: #fff;
-    }
- 
-    .ccd-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      background: rgba(255,255,255,.15);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,.22);
-      border-radius: 9999px;
-      padding: .28rem .9rem;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: .85rem;
-      width: fit-content;
-    }
- 
+
     .ccd-hero-title {
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -.025em;
-      max-width: 54rem;
-      margin: 0 0 .85rem;
+      font-size: clamp(1.5rem, 6vw, 2.4rem);
     }
- 
+
     .ccd-hero-sub {
-      color: rgba(255,255,255,.78);
-      font-size: clamp(.875rem, 1.5vw, 1.05rem);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: .6rem .5rem;
-      margin-bottom: 1.6rem;
+      gap: .45rem .4rem;
     }
- 
+
     .ccd-hero-sub-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: .35rem;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 999px;
-      padding: .22rem .75rem;
-      font-size: .78rem;
-      font-weight: 600;
+      font-size: .72rem;
+      padding: .2rem .6rem;
     }
-    .ccd-hero-sub-pill i { font-size: 13px; }
- 
-    .ccd-hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      align-items: center;
-    }
- 
-    /* Brochure */
+
+    .btn-hero,
     .ccd-btn-brochure {
-      display: inline-flex;
-      align-items: center;
-      gap: .45rem;
-      padding: .7rem 1.4rem;
-      border-radius: .65rem;
-      background: rgba(255,255,255,.12);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,.3);
-      color: #fff;
-      font-size: .875rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .2s, color .2s;
-      font-family: inherit;
+      font-size: .82rem;
+      padding: .65rem 1.1rem;
     }
-    /* ─── Responsive ────────────────────────────── */
-    @media (max-width: 768px) {
-      .ccd-hero {
-        height: auto;
-        min-height: unset;
-        padding-bottom: 0;
-      }
-      .ccd-hero-inner {
-        padding: 5rem 1.25rem 2.5rem;
-        justify-content: flex-end;
-        min-height: 60vw;
-      }
-      .ccd-hero-title {
-        font-size: clamp(1.5rem, 6vw, 2.4rem);
-      }
-      .ccd-hero-sub {
-        gap: .45rem .4rem;
-      }
-      .ccd-hero-sub-pill {
-        font-size: .72rem;
-        padding: .2rem .6rem;
-      }
-      .btn-hero,
-      .ccd-btn-brochure {
-        font-size: .82rem;
-        padding: .65rem 1.1rem;
-      }
+
+  }
+
+  @media (max-width: 480px) {
+
+    .ccd-hero-title {
+      font-size: clamp(1.35rem, 7vw, 2rem);
     }
- 
-    @media (max-width: 480px) {
-      .ccd-hero-inner {
-        padding: 4rem 1rem 2rem;
-        min-height: 72vw;
-      }
-      .ccd-hero-title {
-        font-size: clamp(1.35rem, 7vw, 2rem);
-      }
-      .ccd-hero-actions {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: .55rem;
-      }
-      .btn-hero,
-      .ccd-btn-brochure {
-        width: 100%;
-        justify-content: center;
-      }
-      .ccd-modal-box {
-        padding: 2rem 1.25rem 1.5rem;
-      }
+
+    .ccd-hero-actions {
+      flex-direction: column;
+      align-items: stretch;
     }
+
+    .btn-hero,
+    .ccd-btn-brochure {
+      width: 100%;
+    }
+
+  }
+
   /* ── Quick-stat bar ── */
   .ccd-statbar {
     background: var(--card);
@@ -342,21 +247,14 @@ if (!$course) {
   .ccd-statbar-inner {
     max-width: 82rem;
     margin: 0 auto;
-    padding: .85rem 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
     gap: 0;
     align-items: stretch;
   }
 
   .ccd-statbar-item {
     flex: 1 1 160px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: .6rem 1rem;
     border-right: 1px solid var(--border);
-    text-align: center;
   }
 
   .ccd-statbar-item:last-child {
@@ -372,11 +270,8 @@ if (!$course) {
 
   .ccd-statbar-label {
     font-size: .7rem;
-    font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: .07em;
     color: var(--muted-foreground);
-    margin-top: 2px;
   }
 
   @media(max-width:600px) {
@@ -1276,76 +1171,109 @@ if (!$course) {
 <div id="ccd-progress"></div>
 
 <!-- ══════════════ HERO ══════════════ -->
-<section class="ccd-hero">
-  <img class="ccd-hero-img" src="<?= htmlspecialchars($c['image'] ?? '../assets/images/default-course.jpg') ?>"
+
+<section class="ccd-hero position-relative overflow-hidden">
+
+  <!-- Background Image -->
+  <img class="ccd-hero-img img-fluid w-100 h-100 position-absolute top-0 start-0 object-fit-cover"
+    src="<?= htmlspecialchars($c['image'] ?? '../assets/images/default-course.jpg') ?>"
     alt="<?= htmlspecialchars($c['title']) ?>" onload="this.classList.add('loaded')">
-  <div class="ccd-hero-overlay"></div>
-  <div class="ccd-hero-inner">
 
-    <span class="ccd-eyebrow">
-      <i class="ti ti-school" style="font-size:11px"></i>
-      <?= htmlspecialchars($c['category']) ?>
-    </span>
+  <!-- Overlay -->
+  <div class="ccd-hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
-    <h1 class="ccd-hero-title"><?= htmlspecialchars($c['title']) ?></h1>
+  <!-- Content -->
+  <div class="container h-100 position-relative z-2">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
 
-    <div class="ccd-hero-sub">
-      <span class="ccd-hero-sub-pill">
-        <i class="ti ti-clock"></i>
-        <?= htmlspecialchars($c['duration'] ?? '2 Years') ?>
-      </span>
-      <span class="ccd-hero-sub-pill">
-        <i class="ti ti-currency-rupee"></i>
-        ₹<?= htmlspecialchars((string) ($c['fees'] ?? '')) ?>L Total Fees
-      </span>
-      <span class="ccd-hero-sub-pill">
-        <i class="ti ti-layout-grid"></i>
-        <?= htmlspecialchars($c['mode'] ?? 'Full Time') ?>
-      </span>
-      <span class="ccd-hero-sub-pill">
-        <i class="ti ti-users"></i>
-        <?= count($iims) ?> IIMs Offering
-      </span>
+        <div class="ccd-hero-inner text-white">
+
+          <!-- Eyebrow -->
+          <span class="ccd-eyebrow d-inline-flex align-items-center fw-semibold text-uppercase">
+            <i class="ti ti-school small me-1"></i>
+            <?= htmlspecialchars($c['category']) ?>
+          </span>
+
+          <!-- Title -->
+          <h1 class="ccd-hero-title mb-3">
+            <?= htmlspecialchars($c['title']) ?>
+          </h1>
+
+          <!-- Pills -->
+          <div class="ccd-hero-sub d-flex flex-wrap align-items-center mb-4">
+
+            <span class="ccd-hero-sub-pill d-inline-flex align-items-center gap-2 py-1 px-2 rounded-5">
+              <i class="ti ti-clock"></i>
+              <?= htmlspecialchars($c['duration'] ?? '2 Years') ?>
+            </span>
+
+            <span class="ccd-hero-sub-pill d-inline-flex align-items-center gap-2 py-1 px-2 rounded-5">
+              <i class="ti ti-currency-rupee"></i>
+              ₹<?= htmlspecialchars((string) ($c['fees'] ?? '')) ?>L Total Fees
+            </span>
+
+            <span class="ccd-hero-sub-pill d-inline-flex align-items-center gap-2 py-1 px-2 rounded-5">
+              <i class="ti ti-layout-grid"></i>
+              <?= htmlspecialchars($c['mode'] ?? 'Full Time') ?>
+            </span>
+
+            <span class="ccd-hero-sub-pill d-inline-flex align-items-center gap-2 py-1 px-2 rounded-5">
+              <i class="ti ti-users"></i>
+              <?= count($iims) ?> IIMs Offering
+            </span>
+
+          </div>
+
+          <!-- Buttons -->
+          <div class="ccd-hero-actions d-flex flex-wrap align-items-center gap-2">
+
+            <button class="btn btn-hero d-inline-flex align-items-center justify-content-center"
+              onclick="openApplyModal()">
+              Apply Now
+              <i class="ti ti-arrow-right ms-2"></i>
+            </button>
+
+            <button
+              class="ccd-btn-brochure d-inline-flex align-items-center justify-content-center text-white fw-semibold"
+              onclick="ccdToast('Brochure download started!')">
+              <i class="ti ti-download me-2"></i>
+              Download Brochure
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
     </div>
-
-    <div class="ccd-hero-actions">
-      <button class="btn btn-hero" style="font-size:.9rem"
-        onclick="document.getElementById('ccd-modal').classList.add('open')">
-        Apply Now
-        <i class="ti ti-arrow-right" style="font-size:15px"></i>
-      </button>
-      <button class="ccd-btn-brochure" onclick="ccdToast('Brochure download started!')">
-        <i class="ti ti-download" style="font-size:15px"></i>
-        Download Brochure
-      </button>
-    </div>
-
   </div>
+
 </section>
 
 <!-- ══ QUICK-STAT BAR ══ -->
 <div class="ccd-statbar">
-  <div class="ccd-statbar-inner">
-    <div class="ccd-statbar-item">
+  <div class="ccd-statbar-inner d-flex flex-wrap py-2 px-3">
+    <div class="ccd-statbar-item d-flex flex-column align-items-center text-center">
       <div class="ccd-statbar-num">₹28L</div>
-      <div class="ccd-statbar-label">Avg. Package</div>
+      <div class="ccd-statbar-label fw-semibold text-upperase mt-1">Avg. Package</div>
     </div>
-    <div class="ccd-statbar-item">
+    <div class="ccd-statbar-item d-flex flex-column align-items-center text-center">
       <div class="ccd-statbar-num">98%</div>
-      <div class="ccd-statbar-label">Placement Rate</div>
+      <div class="ccd-statbar-label fw-semibold text-upperase mt-1">Placement Rate</div>
     </div>
-    <div class="ccd-statbar-item">
+    <div class="ccd-statbar-item d-flex flex-column align-items-center text-center">
       <div class="ccd-statbar-num">500+</div>
-      <div class="ccd-statbar-label">Recruiters</div>
+      <div class="ccd-statbar-label fw-semibold text-upperase mt-1">Recruiters</div>
     </div>
-    <div class="ccd-statbar-item">
+    <div class="ccd-statbar-item d-flex flex-column align-items-center text-center">
       <div class="ccd-statbar-num"><?= count($iims) ?></div>
-      <div class="ccd-statbar-label">IIMs Offering</div>
+      <div class="ccd-statbar-label fw-semibold text-upperase mt-1">IIMs Offering</div>
     </div>
-    <div class="ccd-statbar-item">
+    <div class="ccd-statbar-item d-flex flex-column align-items-center text-center">
       <div class="ccd-statbar-num">4.8<i class="ti ti-star-filled"
           style="font-size:1rem;color:var(--color-accent,#e25c2a)"></i></div>
-      <div class="ccd-statbar-label">Student Rating</div>
+      <div class="ccd-statbar-label fw-semibold text-upperase mt-1">Student Rating</div>
     </div>
   </div>
 </div>
@@ -1735,39 +1663,39 @@ if (!$course) {
     </section>
 
     <!-- FAQs -->
- <?php
-$courseFaqs = $COURSE_FAQS[$course['slug']] ?? [];
-?>
+    <?php
+    $courseFaqs = $COURSE_FAQS[$course['slug']] ?? [];
+    ?>
 
-<!-- ── FAQ ── -->
-<?php if (!empty($courseFaqs)): ?>
-<section id="cd-FAQ" class="cd-section reveal">
-    <h2 class="cd-section-heading">Frequently Asked</h2>
+    <!-- ── FAQ ── -->
+    <?php if (!empty($courseFaqs)): ?>
+      <section id="cd-FAQ" class="cd-section reveal">
+        <h2 class="cd-section-heading">Frequently Asked</h2>
 
-    <div class="faq-wrap" style="max-width:100%">
+        <div class="faq-wrap" style="max-width:100%">
 
-        <?php foreach ($courseFaqs as $faq): ?>
+          <?php foreach ($courseFaqs as $faq): ?>
             <div class="faq-item">
 
-                <div class="faq-question">
-                    <?= htmlspecialchars($faq['q']) ?>
+              <div class="faq-question">
+                <?= htmlspecialchars($faq['q']) ?>
 
-                    <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </div>
+                <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
 
-                <div class="faq-answer">
-                    <?= htmlspecialchars($faq['a']) ?>
-                </div>
+              <div class="faq-answer">
+                <?= htmlspecialchars($faq['a']) ?>
+              </div>
 
             </div>
-        <?php endforeach; ?>
+          <?php endforeach; ?>
 
-    </div>
-</section>
-<?php endif; ?>
+        </div>
+      </section>
+    <?php endif; ?>
   </div><!-- /ccd-left -->
 
   <!-- ── SIDEBAR ── -->
@@ -1892,48 +1820,9 @@ $courseFaqs = $COURSE_FAQS[$course['slug']] ?? [];
   </div>
 <?php endif; ?>
 
-<!-- ══════════════ APPLY MODAL ══════════════ -->
-<div id="ccd-modal" class="ccd-modal-backdrop" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="ccd-modal-box">
-    <button class="ccd-modal-close" onclick="document.getElementById('ccd-modal').classList.remove('open')">
-      <i class="ti ti-x"></i>
-    </button>
-    <div class="ccd-modal-h">Apply for <?= htmlspecialchars($c['title']) ?></div>
-    <p class="ccd-modal-sub">Fill in your details — our counsellor will reach out within 24 hours with the next steps.
-    </p>
-    <form class="ccd-form" onsubmit="return ccdHandleApply(event)" novalidate>
-      <input type="hidden" name="course" value="<?= htmlspecialchars($c['title']) ?>">
-      <div class="ccd-field">
-        <label class="ccd-label">Full Name</label>
-        <input type="text" class="ccd-input" name="name" placeholder="Full name" required>
-      </div>
-      <div class="ccd-field">
-        <label class="ccd-label">Email Address</label>
-        <input type="email" class="ccd-input" name="email" placeholder="you@example.com" required>
-      </div>
-      <div class="ccd-field">
-        <label class="ccd-label">Phone Number</label>
-        <input type="tel" class="ccd-input" name="phone" placeholder="+91 98765 43210" required>
-      </div>
-      <div class="ccd-field">
-        <label class="ccd-label">Current CAT Percentile (if attempted)</label>
-        <input type="text" class="ccd-input" name="cat" placeholder="e.g. 92.5 or Not yet attempted">
-      </div>
-      <button type="submit" class="btn btn-hero" style="width:100%;justify-content:center;margin-top:.1rem">
-        Submit Application
-        <i class="ti ti-arrow-right" style="font-size:15px"></i>
-      </button>
-    </form>
-  </div>
-</div>
 
 <!-- TOAST -->
 <div class="ccd-toast" id="ccd-toast"></div>
-
-<!-- Scroll to top -->
-<button id="ccd-scroll-top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="ti ti-arrow-up"></i>
-</button>
 
 <!-- ══════════════ SCRIPTS ══════════════ -->
 <script>
@@ -1988,11 +1877,6 @@ $courseFaqs = $COURSE_FAQS[$course['slug']] ?? [];
     return false;
   }
 
-  /* Scroll-to-top visibility */
-  window.addEventListener('scroll', function () {
-    document.getElementById('ccd-scroll-top').classList.toggle('visible', window.scrollY > 500);
-  }, { passive: true });
-
   /* Reveal on scroll */
   (function () {
     var io = new IntersectionObserver(function (entries) {
@@ -2004,14 +1888,14 @@ $courseFaqs = $COURSE_FAQS[$course['slug']] ?? [];
   })();
 </script>
 <script>
-document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
   });
-});
 </script>
 <?php
 include '../components/Footer.php';

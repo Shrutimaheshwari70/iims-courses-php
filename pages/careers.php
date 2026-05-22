@@ -147,36 +147,65 @@ $filter = $_GET['dept'] ?? 'All';
     /* ================================================================
    1. WHY JOIN US
    ================================================================ */
-.cc-why { background: var(--cc-bg); }
-.cc-why-card {
-  background: var(--cc-card);
-  border: 1.5px solid var(--cc-border);
-  position: relative;
-  transition: all .9s cubic-bezier(.34,1.56,.64,1);
-  height: 100%;
-}
-.cc-why-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--cc-orange), #ef4444);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .35s ease;
-}
-.cc-why-card:hover { transform: translateY(-5px); box-shadow: var(--cc-shadow-lg); border-color: transparent; }
-.cc-why-card:hover::after { transform: scaleX(1); }
-.cc-why-icon {
-  width: 52px; height: 52px;
-  background: var(--cc-orange-bg);
- color: var(--cc-orange);
-  transition: all .3s;
-}
-.cc-why-card:hover .cc-why-icon { background: linear-gradient(135deg, var(--cc-navy), var(--cc-navy2)); color: #fff; }
-.cc-why-title {  color: var(--cc-navy);  }
-.cc-why-body { color: var(--cc-muted); font-size: .875rem; line-height: 1.75; margin: 0; }
- 
+    .cc-why {
+      background: var(--cc-bg);
+    }
+
+    .cc-why-card {
+      background: var(--cc-card);
+      border: 1.5px solid var(--cc-border);
+      position: relative;
+      transition: all .9s cubic-bezier(.34, 1.56, .64, 1);
+      height: 100%;
+    }
+
+    .cc-why-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cc-orange), #ef4444);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+
+    .cc-why-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--cc-shadow-lg);
+      border-color: transparent;
+    }
+
+    .cc-why-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .cc-why-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--cc-orange-bg);
+      color: var(--cc-orange);
+      transition: all .3s;
+    }
+
+    .cc-why-card:hover .cc-why-icon {
+      background: linear-gradient(135deg, var(--cc-navy), var(--cc-navy2));
+      color: #fff;
+    }
+
+    .cc-why-title {
+      color: var(--cc-navy);
+    }
+
+    .cc-why-body {
+      color: var(--cc-muted);
+      font-size: .875rem;
+      line-height: 1.75;
+      margin: 0;
+    }
+
 
     /* ================================================================
    2. QUICK STATS STRIP
@@ -184,6 +213,7 @@ $filter = $_GET['dept'] ?? 'All';
     .cc-stats-strip {
       background: linear-gradient(135deg, var(--cc-navy) 0%, var(--cc-navy2) 100%);
     }
+
     .cc-stats-inner {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -247,6 +277,7 @@ $filter = $_GET['dept'] ?? 'All';
       background: var(--cc-bg);
       color: var(--cc-muted)
     }
+
     .cc-job-card {
       border: 1.5px solid var(--cc-border);
       transition: all .25s;
@@ -338,7 +369,7 @@ $filter = $_GET['dept'] ?? 'All';
     }
 
     .cc-no-jobs i {
-      font-size: 2.5rem;  
+      font-size: 2.5rem;
       display: block;
       margin-bottom: 1rem;
       color: var(--cc-border)
@@ -366,6 +397,7 @@ $filter = $_GET['dept'] ?? 'All';
       cursor: pointer;
       transition: all .22s;
     }
+
     .cc-btn-solid:hover {
       background: linear-gradient(135deg, var(--cc-orange), #ef4444);
       transform: translateY(-2px);
@@ -378,10 +410,12 @@ $filter = $_GET['dept'] ?? 'All';
     .cc-process {
       background: var(--cc-bg)
     }
+
     .cc-process-grid {
       grid-template-columns: repeat(5, 1fr);
       position: relative
     }
+
     .cc-process-grid::before {
       content: '';
       position: absolute;
@@ -437,10 +471,12 @@ $filter = $_GET['dept'] ?? 'All';
       background: var(--cc-orange);
       color: #fff
     }
+
     .cc-ptitle {
       font-size: .9rem;
       color: var(--cc-navy);
     }
+
     .cc-pdesc {
       color: var(--cc-muted);
       font-size: .78rem;
@@ -450,273 +486,277 @@ $filter = $_GET['dept'] ?? 'All';
     /* ================================================================
    5. PERKS
    ================================================================ */
-.cc-perks {
-  background: #fff;
-}
+    .cc-perks {
+      background: #fff;
+    }
 
-.cc-perk-card {
-  background: var(--cc-bg);
-  border: 1.5px solid var(--cc-border);
-  border-radius: var(--cc-radius-lg);
-  padding: 1.75rem;
-  transition: all .3s ease;
-}
+    .cc-perk-card {
+      background: var(--cc-bg);
+      border: 1.5px solid var(--cc-border);
+      border-radius: var(--cc-radius-lg);
+      padding: 1.75rem;
+      transition: all .3s ease;
+    }
 
-.cc-perk-card:hover {
-  background: #fff;
-  box-shadow: var(--cc-shadow-lg);
-  transform: translateY(-3px);
-  border-color: var(--cc-orange);
-}
+    .cc-perk-card:hover {
+      background: #fff;
+      box-shadow: var(--cc-shadow-lg);
+      transform: translateY(-3px);
+      border-color: var(--cc-orange);
+    }
 
-.cc-perk-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--cc-navy), var(--cc-navy2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 1.15rem;
-  transition: all .3s ease;
-}
+    .cc-perk-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cc-navy), var(--cc-navy2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.15rem;
+      transition: all .3s ease;
+    }
 
-.cc-perk-card:hover .cc-perk-icon {
-  background: linear-gradient(135deg, var(--cc-orange), #ef4444);
-}
+    .cc-perk-card:hover .cc-perk-icon {
+      background: linear-gradient(135deg, var(--cc-orange), #ef4444);
+    }
 
-.cc-perk-title {
-  font-weight: 600;
-  font-size: .92rem;
-  color: var(--cc-navy);
-  margin-bottom: .35rem;
-}
+    .cc-perk-title {
+      font-weight: 600;
+      font-size: .92rem;
+      color: var(--cc-navy);
+      margin-bottom: .35rem;
+    }
 
-.cc-perk-body {
-  color: var(--cc-muted);
-  font-size: .84rem;
-  line-height: 1.7;
-}
+    .cc-perk-body {
+      color: var(--cc-muted);
+      font-size: .84rem;
+      line-height: 1.7;
+    }
+
     /* ================================================================
    6. LIFE AT COMPANY
    ================================================================ */
-   .cc-life {
-  background: var(--cc-bg);
-}
+    .cc-life {
+      background: var(--cc-bg);
+    }
 
-.cc-life-card {
-  background: #fff;
-  border: 1.5px solid var(--cc-border);
-  border-radius: var(--cc-radius);
-  padding: 1.25rem 1.5rem;
-  transition: all .3s ease;
-}
+    .cc-life-card {
+      background: #fff;
+      border: 1.5px solid var(--cc-border);
+      border-radius: var(--cc-radius);
+      padding: 1.25rem 1.5rem;
+      transition: all .3s ease;
+    }
 
-.cc-life-card:hover {
-  border-color: #fdba74;
-  box-shadow: var(--cc-shadow);
-  transform: translateX(4px);
-}
+    .cc-life-card:hover {
+      border-color: #fdba74;
+      box-shadow: var(--cc-shadow);
+      transform: translateX(4px);
+    }
 
-.cc-life-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.05rem;
-  transition: all .3s ease;
-}
+    .cc-life-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      transition: all .3s ease;
+    }
 
-.cc-life-icon.ora {
-  background: var(--cc-orange-bg);
-  color: var(--cc-orange);
-}
+    .cc-life-icon.ora {
+      background: var(--cc-orange-bg);
+      color: var(--cc-orange);
+    }
 
-.cc-life-icon.nvy {
-  background: #eff6ff;
-  color: #1d4ed8;
-}
+    .cc-life-icon.nvy {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
 
-.cc-life-icon.grn {
-  background: #f0fdf4;
-  color: #15803d;
-}
+    .cc-life-icon.grn {
+      background: #f0fdf4;
+      color: #15803d;
+    }
 
-.cc-life-card:hover .cc-life-icon {
-  background: linear-gradient(135deg, var(--cc-navy), var(--cc-navy2));
-  color: #fff;
-}
+    .cc-life-card:hover .cc-life-icon {
+      background: linear-gradient(135deg, var(--cc-navy), var(--cc-navy2));
+      color: #fff;
+    }
 
-.cc-life-title {
-  font-weight: 600;
-  font-size: .9rem;
-  color: var(--cc-navy);
-  margin-bottom: .2rem;
-}
+    .cc-life-title {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--cc-navy);
+      margin-bottom: .2rem;
+    }
 
-.cc-life-body {
-  color: var(--cc-muted);
-  font-size: .82rem;
-  line-height: 1.65;
-}
+    .cc-life-body {
+      color: var(--cc-muted);
+      font-size: .82rem;
+      line-height: 1.65;
+    }
 
-/* Stats */
-.cc-lstat {
-  background: #fff;
-  border: 1.5px solid var(--cc-border);
-  border-radius: var(--cc-radius-lg);
-  padding: 1.75rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: all .3s ease;
-}
+    /* Stats */
+    .cc-lstat {
+      background: #fff;
+      border: 1.5px solid var(--cc-border);
+      border-radius: var(--cc-radius-lg);
+      padding: 1.75rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all .3s ease;
+    }
 
-.cc-lstat::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--cc-orange), #ef4444);
-}
+    .cc-lstat::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cc-orange), #ef4444);
+    }
 
-.cc-lstat:hover {
-  box-shadow: var(--cc-shadow-lg);
-  transform: translateY(-3px);
-}
+    .cc-lstat:hover {
+      box-shadow: var(--cc-shadow-lg);
+      transform: translateY(-3px);
+    }
 
-.cc-lstat-val {
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--cc-navy);
-  display: block;
-  line-height: 1;
-  letter-spacing: -.02em;
-}
+    .cc-lstat-val {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--cc-navy);
+      display: block;
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
 
-.cc-lstat-lbl {
-  color: var(--cc-muted);
-  font-size: .78rem;
-  margin-top: .4rem;
-  display: block;
-  line-height: 1.5;
-}
+    .cc-lstat-lbl {
+      color: var(--cc-muted);
+      font-size: .78rem;
+      margin-top: .4rem;
+      display: block;
+      line-height: 1.5;
+    }
 
-.cc-lstat-icon {
-  font-size: 1.5rem;
-  margin-bottom: .6rem;
-  display: block;
-}
-@media (max-width: 576px) {
-  .cc-lstat {
-    padding: 1.2rem;
-  }
+    .cc-lstat-icon {
+      font-size: 1.5rem;
+      margin-bottom: .6rem;
+      display: block;
+    }
 
-  .cc-lstat-val {
-    font-size: 1.45rem;
-  }
+    @media (max-width: 576px) {
+      .cc-lstat {
+        padding: 1.2rem;
+      }
 
-  .cc-lstat-lbl {
-    font-size: .72rem;
-    line-height: 1.4;
-  }
+      .cc-lstat-val {
+        font-size: 1.45rem;
+      }
 
-  .cc-lstat-icon {
-    font-size: 1.2rem;
-    margin-bottom: .45rem;
-  }
-}
+      .cc-lstat-lbl {
+        font-size: .72rem;
+        line-height: 1.4;
+      }
+
+      .cc-lstat-icon {
+        font-size: 1.2rem;
+        margin-bottom: .45rem;
+      }
+    }
+
     /* ================================================================
    7. TESTIMONIALS
    ================================================================ */
-.cc-testi {
-  background: #fff;
-}
+    .cc-testi {
+      background: #fff;
+    }
 
-.cc-tcard {
-  background: var(--cc-bg);
-  border: 1.5px solid var(--cc-border);
-  border-radius: var(--cc-radius-lg);
-  padding: 1.85rem;
-  transition: all .3s ease;
-  overflow: hidden;
-}
+    .cc-tcard {
+      background: var(--cc-bg);
+      border: 1.5px solid var(--cc-border);
+      border-radius: var(--cc-radius-lg);
+      padding: 1.85rem;
+      transition: all .3s ease;
+      overflow: hidden;
+    }
 
-.cc-tcard::before {
-  content: "\201C";
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  font-size: 4rem;
-  color: var(--cc-border);
-  line-height: 1;
-  font-weight: 900;
-  pointer-events: none;
-}
+    .cc-tcard::before {
+      content: "\201C";
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      font-size: 4rem;
+      color: var(--cc-border);
+      line-height: 1;
+      font-weight: 900;
+      pointer-events: none;
+    }
 
-.cc-tcard:hover {
-  background: #fff;
-  box-shadow: var(--cc-shadow-lg);
-  transform: translateY(-4px);
-  border-color: #fdba74;
-}
+    .cc-tcard:hover {
+      background: #fff;
+      box-shadow: var(--cc-shadow-lg);
+      transform: translateY(-4px);
+      border-color: #fdba74;
+    }
 
-.cc-tquote {
-  font-size: .88rem;
-  color: var(--cc-text2);
-  line-height: 1.8;
-  font-style: italic;
-  position: relative;
-  z-index: 2;
-}
+    .cc-tquote {
+      font-size: .88rem;
+      color: var(--cc-text2);
+      line-height: 1.8;
+      font-style: italic;
+      position: relative;
+      z-index: 2;
+    }
 
-.cc-tauthor {
-  position: relative;
-  z-index: 2;
-}
+    .cc-tauthor {
+      position: relative;
+      z-index: 2;
+    }
 
-.cc-tavatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: .82rem;
-  color: #fff;
-}
+    .cc-tavatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: .82rem;
+      color: #fff;
+    }
 
-.cc-tname {
-  font-weight: 600;
-  font-size: .88rem;
-  color: var(--cc-navy);
-}
+    .cc-tname {
+      font-weight: 600;
+      font-size: .88rem;
+      color: var(--cc-navy);
+    }
 
-.cc-trole {
-  font-size: .75rem;
-  color: var(--cc-muted);
-}
+    .cc-trole {
+      font-size: .75rem;
+      color: var(--cc-muted);
+    }
 
-@media (max-width: 576px) {
-  .cc-tcard {
-    padding: 1.4rem;
-  }
+    @media (max-width: 576px) {
+      .cc-tcard {
+        padding: 1.4rem;
+      }
 
-  .cc-tquote {
-    font-size: .82rem;
-    line-height: 1.7;
-  }
+      .cc-tquote {
+        font-size: .82rem;
+        line-height: 1.7;
+      }
 
-  .cc-tcard::before {
-    font-size: 3rem;
-    top: 1rem;
-    right: 1rem;
-  }
-}
+      .cc-tcard::before {
+        font-size: 3rem;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
+
     /* ================================================================
    8. CONTACT / ENQUIRY FORM
    ================================================================ */
@@ -1644,62 +1684,76 @@ $filter = $_GET['dept'] ?? 'All';
 
   <div class="cc-divider"></div>
   <section class="cc-why py-5">
-  <div class="container">
-    <div class="text-center d-flex align-items-center justify-content-center flex-column">
-      <div class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
-        <i class="bi bi-heart-fill"></i> Why IIMsCourses
+    <div class="container">
+      <div class="text-center d-flex align-items-center justify-content-center flex-column">
+        <div
+          class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
+          <i class="bi bi-heart-fill"></i> Why IIMsCourses
+        </div>
+        <h2 class="cc-title fw-semibold fs-1">More than just a job</h2>
+        <p class="cc-desc">We believe great work comes from people who feel trusted, supported, and genuinely connected
+          to the mission.</p>
       </div>
-      <h2 class="cc-title fw-semibold fs-1">More than just a job</h2>
-      <p class="cc-desc">We believe great work comes from people who feel trusted, supported, and genuinely connected to the mission.</p>
+
+      <div class="row g-3 mt-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
+            <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i
+                class="bi bi-bullseye"></i></div>
+            <div class="cc-why-title fw-semibold fs-6 mb-2">Mission-Driven Work</div>
+            <p class="cc-why-body">Every line of code, every article, every counselling session directly impacts a
+              student's future. Your work matters here — measurably, every single day.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
+            <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i
+                class="bi bi-rocket-takeoff-fill"></i></div>
+            <div class="cc-why-title fw-semibold fs-6 mb-2">Real Ownership</div>
+            <p class="cc-why-body">No bureaucracy. Engineers ship features. Designers own flows. Counsellors shape
+              strategy. We hand you a problem and trust you completely to solve it.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
+            <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i
+                class="bi bi-people-fill"></i></div>
+            <div class="cc-why-title fw-semibold fs-6 mb-2">Exceptional Team</div>
+            <p class="cc-why-body">Work alongside IIM alumni, IIT engineers, and ed-tech veterans who are among the best
+              in their fields. You will raise your game every single day.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
+            <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i
+                class="bi bi-graph-up-arrow"></i></div>
+            <div class="cc-why-title fw-semibold fs-6 mb-2">ESOPs for Everyone</div>
+            <p class="cc-why-body">Every team member — from interns to leads — gets stock options. When the company
+              wins, you win. Shared success is not just a tagline here.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
+            <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i
+                class="bi bi-geo-alt-fill"></i></div>
+            <div class="cc-why-title fw-semibold fs-6 mb-2">Flexible &amp; Remote-First</div>
+            <p class="cc-why-body">Work from Bengaluru, Pune, or your hometown in Rajasthan. We judge you by output, not
+              presence. Results over optics — always, without exception.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
+            <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i
+                class="bi bi-award-fill"></i></div>
+            <div class="cc-why-title fw-semibold fs-6 mb-2">Fast Career Growth</div>
+            <p class="cc-why-body">In 18 months you can go from engineer to tech lead. Our growth is your growth.
+              Promotions are based purely on impact and ownership, never tenure.</p>
+          </div>
+        </div>
+      </div>
     </div>
- 
-    <div class="row g-3 mt-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
-          <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i class="bi bi-bullseye"></i></div>
-          <div class="cc-why-title fw-semibold fs-6 mb-2">Mission-Driven Work</div>
-          <p class="cc-why-body">Every line of code, every article, every counselling session directly impacts a student's future. Your work matters here — measurably, every single day.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
-          <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i class="bi bi-rocket-takeoff-fill"></i></div>
-          <div class="cc-why-title fw-semibold fs-6 mb-2">Real Ownership</div>
-          <p class="cc-why-body">No bureaucracy. Engineers ship features. Designers own flows. Counsellors shape strategy. We hand you a problem and trust you completely to solve it.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
-          <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i class="bi bi-people-fill"></i></div>
-          <div class="cc-why-title fw-semibold fs-6 mb-2">Exceptional Team</div>
-          <p class="cc-why-body">Work alongside IIM alumni, IIT engineers, and ed-tech veterans who are among the best in their fields. You will raise your game every single day.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
-          <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i class="bi bi-graph-up-arrow"></i></div>
-          <div class="cc-why-title fw-semibold fs-6 mb-2">ESOPs for Everyone</div>
-          <p class="cc-why-body">Every team member — from interns to leads — gets stock options. When the company wins, you win. Shared success is not just a tagline here.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
-          <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i class="bi bi-geo-alt-fill"></i></div>
-          <div class="cc-why-title fw-semibold fs-6 mb-2">Flexible &amp; Remote-First</div>
-          <p class="cc-why-body">Work from Bengaluru, Pune, or your hometown in Rajasthan. We judge you by output, not presence. Results over optics — always, without exception.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="cc-why-card overflow-hidden py-4 px-4 rounded-4 cc-reveal">
-          <div class="cc-why-icon rounded-3 d-flex align-items-center justify-content-center fs-5 mb-3"><i class="bi bi-award-fill"></i></div>
-          <div class="cc-why-title fw-semibold fs-6 mb-2">Fast Career Growth</div>
-          <p class="cc-why-body">In 18 months you can go from engineer to tech lead. Our growth is your growth. Promotions are based purely on impact and ownership, never tenure.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- 
+  </section>
+
 
   <!-- ══════════════════════════════════════════════════
      QUICK STATS STRIP
@@ -1733,18 +1787,18 @@ $filter = $_GET['dept'] ?? 'All';
   <div class="cc-divider"></div>
   <section class="cc-section py-5 bg-whtie cc-jobs" id="cc-openings">
     <div class="cc-container ">
-    <div class="text-center d-flex flex-column align-items-center justify-content-center">
-  <div
-    class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
-    <i class="bi bi-briefcase-fill"></i> Open Positions
-  </div>
+      <div class="text-center d-flex flex-column align-items-center justify-content-center">
+        <div
+          class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
+          <i class="bi bi-briefcase-fill"></i> Open Positions
+        </div>
 
-  <h2 class="cc-title fw-semibold fs-1">Find your role</h2>
+        <h2 class="cc-title fw-semibold fs-1">Find your role</h2>
 
-  <p class="cc-desc">
-    We're building across engineering, content, design, counselling, marketing, and more.
-  </p>
-</div>
+        <p class="cc-desc">
+          We're building across engineering, content, design, counselling, marketing, and more.
+        </p>
+      </div>
 
       <!-- Filter chips -->
       <div class="cc-filter-wrap d-flex flex-wrap gap-3 my-4">
@@ -1753,7 +1807,8 @@ $filter = $_GET['dept'] ?? 'All';
         foreach ($depts as $d):
           $cnt = ($d === 'All') ? count($JOBS) : ($dept_counts[$d] ?? 0);
           ?>
-          <a href="?dept=<?= urlencode($d) ?>#cc-openings" class="cc-chip d-inline-flex py-1 px-2 rounded-3 text-center text-decoration-none fw-semibold bg-white gap-2 <?= $filter === $d ? 'active' : '' ?>">
+          <a href="?dept=<?= urlencode($d) ?>#cc-openings"
+            class="cc-chip d-inline-flex py-1 px-2 rounded-3 text-center text-decoration-none fw-semibold bg-white gap-2 <?= $filter === $d ? 'active' : '' ?>">
             <?= htmlspecialchars($d) ?>
             <span class="cc-cnt"><?= $cnt ?></span>
           </a>
@@ -1772,15 +1827,19 @@ $filter = $_GET['dept'] ?? 'All';
           $icon = $icons[$j['dept']] ?? 'bi-briefcase-fill';
           ?>
           <div class="cc-job-card d-flex align-items-center  py-4 px-3 rounded-4 gap-3 cc-reveal">
-            <div class="cc-job-icon text-white d-flex align-items-center justify-content-center rounded-3"><i class="bi <?= $icon ?>"></i></div>
+            <div class="cc-job-icon text-white d-flex align-items-center justify-content-center rounded-3"><i
+                class="bi <?= $icon ?>"></i></div>
             <div class="cc-job-body">
               <div class="cc-job-title-text fw-semibold mb-2"><?= htmlspecialchars($j['title']) ?></div>
               <div class="cc-tags  d-flex flex-wrap gap-2">
-                <span class="cc-tag py-1 px-1 rounded-1 fw-semibold cc-tag-dept"><?= htmlspecialchars($j['dept']) ?></span>
+                <span
+                  class="cc-tag py-1 px-1 rounded-1 fw-semibold cc-tag-dept"><?= htmlspecialchars($j['dept']) ?></span>
                 <span class="cc-tag py-1 px-1 rounded-1 fw-semibold cc-tag-loc"><i class="bi bi-geo-alt-fill"></i>
                   <?= htmlspecialchars($j['loc']) ?></span>
-                <span class="cc-tag py-1 px-1 rounded-1 fw-semibold cc-tag-type"><?= htmlspecialchars($j['type']) ?></span>
-                <span class="cc-tag py-1 px-1 rounded-1 fw-semibold cc-tag-exp"><i class="bi bi-clock-fill"></i> <?= htmlspecialchars($j['exp']) ?></span>
+                <span
+                  class="cc-tag py-1 px-1 rounded-1 fw-semibold cc-tag-type"><?= htmlspecialchars($j['type']) ?></span>
+                <span class="cc-tag py-1 px-1 rounded-1 fw-semibold cc-tag-exp"><i class="bi bi-clock-fill"></i>
+                  <?= htmlspecialchars($j['exp']) ?></span>
               </div>
             </div>
             <div class="cc-job-right d-flex flex-column gap-2">
@@ -1801,10 +1860,13 @@ $filter = $_GET['dept'] ?? 'All';
       </div>
 
       <!-- Speculative application strip -->
-      <div class="cc-speculative cc-reveal py-4 px-3 mt-4 d-flex align-items-center justify-content-between gap-5 flex-wrap rounded-4">
+      <div
+        class="cc-speculative cc-reveal py-4 px-3 mt-4 d-flex align-items-center justify-content-between gap-5 flex-wrap rounded-4">
         <p><strong>Don't see a perfect fit?</strong> We love exceptional people even when there's no exact opening for
           them.</p>
-        <button class="cc-btn-solid text-white border-0 gap-2 d-inline-flex align-items-center py-2 px-2 rounded-2 fw-semibold" onclick="ccOpenGeneralModal()">
+        <button
+          class="cc-btn-solid text-white border-0 gap-2 d-inline-flex align-items-center py-2 px-2 rounded-2 fw-semibold"
+          onclick="ccOpenGeneralModal()">
           <i class="bi bi-send-fill"></i> Drop a General Application
         </button>
       </div>
@@ -1831,7 +1893,8 @@ $filter = $_GET['dept'] ?? 'All';
           <div class="cc-pstep text-center cc-reveal">
             <div class="cc-pnum d-flex align-items-center justify-content-center bg-white fs-5">
               <i class="bi <?= $p['icon'] ?>"></i>
-              <span class="cc-pnum-val d-flex align-items-center justify-content-center fw-semibold"><?= $p['num'] ?></span>
+              <span
+                class="cc-pnum-val d-flex align-items-center justify-content-center fw-semibold"><?= $p['num'] ?></span>
             </div>
             <div class="cc-ptitle fw-semibold mb-1"><?= htmlspecialchars($p['title']) ?></div>
             <p class="cc-pdesc"><?= htmlspecialchars($p['desc']) ?></p>
@@ -1845,306 +1908,300 @@ $filter = $_GET['dept'] ?? 'All';
      SECTION 4 — PERKS & BENEFITS
      ══════════════════════════════════════════════════ -->
   <div class="cc-divider"></div>
-<section class="cc-section py-5 bg-white cc-perks">
-  <div class="container">
+  <section class="cc-section py-5 bg-white cc-perks">
+    <div class="container">
 
-    <!-- Heading -->
-    <div class="cc-center text-center d-flex flex-column align-items-center justify-content-center">
-      <div class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
-        <i class="bi bi-gift-fill"></i>
-        Perks &amp; Benefits
+      <!-- Heading -->
+      <div class="cc-center text-center d-flex flex-column align-items-center justify-content-center">
+        <div
+          class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
+          <i class="bi bi-gift-fill"></i>
+          Perks &amp; Benefits
+        </div>
+
+        <h2 class="cc-title fw-semibold display-5">
+          We take care of our people
+        </h2>
+
+        <p class="cc-desc text-secondary">
+          Comprehensive benefits designed for the way modern professionals actually work and live.
+        </p>
       </div>
 
-      <h2 class="cc-title fw-semibold display-5">
-        We take care of our people
-      </h2>
+      <!-- Bootstrap Grid -->
+      <div class="row g-4 mt-4">
 
-      <p class="cc-desc text-secondary">
-        Comprehensive benefits designed for the way modern professionals actually work and live.
-      </p>
-    </div>
+        <?php foreach ($PERKS as $pk): ?>
+          <div class="col-lg-4 col-md-6">
 
-    <!-- Bootstrap Grid -->
-    <div class="row g-4 mt-4">
+            <div class="cc-perk-card h-100 d-flex align-items-start gap-3">
 
-      <?php foreach ($PERKS as $pk): ?>
-        <div class="col-lg-4 col-md-6">
-
-          <div class="cc-perk-card h-100 d-flex align-items-start gap-3">
-
-            <!-- Icon -->
-            <div class="cc-perk-icon flex-shrink-0">
-              <i class="bi <?= $pk['icon'] ?>"></i>
-            </div>
-
-            <!-- Content -->
-            <div>
-              <div class="cc-perk-title">
-                <?= htmlspecialchars($pk['title']) ?>
+              <!-- Icon -->
+              <div class="cc-perk-icon flex-shrink-0">
+                <i class="bi <?= $pk['icon'] ?>"></i>
               </div>
 
-              <p class="cc-perk-body mb-0">
-                <?= htmlspecialchars($pk['desc']) ?>
-              </p>
+              <!-- Content -->
+              <div>
+                <div class="cc-perk-title">
+                  <?= htmlspecialchars($pk['title']) ?>
+                </div>
+
+                <p class="cc-perk-body mb-0">
+                  <?= htmlspecialchars($pk['desc']) ?>
+                </p>
+              </div>
+
             </div>
 
           </div>
+        <?php endforeach; ?>
 
-        </div>
-      <?php endforeach; ?>
-
+      </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- ══════════════════════════════════════════════════
      SECTION 5 — LIFE AT THE COMPANY
      ══════════════════════════════════════════════════ -->
   <div class="cc-divider"></div>
   <section class="cc-section py-5 cc-life">
-  <div class="container">
+    <div class="container">
 
-    <!-- Heading -->
-    <div class="text-center d-flex flex-column align-items-center justify-content-center">
+      <!-- Heading -->
+      <div class="text-center d-flex flex-column align-items-center justify-content-center">
 
-      <div
-        class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
-        <i class="bi bi-camera-fill"></i>
-        Life at IIMsCourses
+        <div
+          class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
+          <i class="bi bi-camera-fill"></i>
+          Life at IIMsCourses
+        </div>
+
+        <h2 class="cc-title fw-semibold display-5">
+          Culture built on trust &amp; impact
+        </h2>
+
+        <p class="cc-desc text-secondary">
+          We're educators, technologists, and dreamers. We work hard, celebrate wins,
+          and genuinely care for each other.
+        </p>
+
       </div>
 
-      <h2 class="cc-title fw-semibold display-5">
-        Culture built on trust &amp; impact
-      </h2>
+      <!-- Main Layout -->
+      <div class="row g-4 align-items-start mt-4">
 
-      <p class="cc-desc text-secondary">
-        We're educators, technologists, and dreamers. We work hard, celebrate wins,
-        and genuinely care for each other.
-      </p>
+        <!-- Left Side -->
+        <div class="col-lg-6">
 
-    </div>
+          <div class="row g-3">
 
-    <!-- Main Layout -->
-    <div class="row g-4 align-items-start mt-4">
+            <?php foreach ($LIFE as $i => $lc):
+              $colors = ['ora', 'nvy', 'grn', 'ora', 'nvy', 'grn'];
+              $clr = $colors[$i % 3];
+              ?>
 
-      <!-- Left Side -->
-      <div class="col-lg-6">
+              <div class="col-12">
 
-        <div class="row g-3">
+                <div class="cc-life-card d-flex align-items-start gap-3 h-100">
 
-          <?php foreach ($LIFE as $i => $lc):
-            $colors = ['ora', 'nvy', 'grn', 'ora', 'nvy', 'grn'];
-            $clr = $colors[$i % 3];
-          ?>
-
-            <div class="col-12">
-
-              <div class="cc-life-card d-flex align-items-start gap-3 h-100">
-
-                <!-- Icon -->
-                <div class="cc-life-icon <?= $clr ?> flex-shrink-0">
-                  <i class="bi <?= $lc['icon'] ?>"></i>
-                </div>
-
-                <!-- Content -->
-                <div>
-                  <div class="cc-life-title">
-                    <?= htmlspecialchars($lc['title']) ?>
+                  <!-- Icon -->
+                  <div class="cc-life-icon <?= $clr ?> flex-shrink-0">
+                    <i class="bi <?= $lc['icon'] ?>"></i>
                   </div>
 
-                  <p class="cc-life-body mb-0">
-                    <?= htmlspecialchars($lc['desc']) ?>
-                  </p>
+                  <!-- Content -->
+                  <div>
+                    <div class="cc-life-title">
+                      <?= htmlspecialchars($lc['title']) ?>
+                    </div>
+
+                    <p class="cc-life-body mb-0">
+                      <?= htmlspecialchars($lc['desc']) ?>
+                    </p>
+                  </div>
+
                 </div>
 
               </div>
 
-            </div>
+            <?php endforeach; ?>
 
-          <?php endforeach; ?>
-
-        </div>
-
-      </div>
-
-      <!-- Right Side -->
-      <div class="col-lg-6">
-
-        <!-- Stats -->
-    <div class="row g-3">
-
-  <div class="col-6 col-md-6">
-    <div class="cc-lstat h-100">
-      <span class="cc-lstat-icon" style="color:var(--cc-orange)">
-        <i class="bi bi-people-fill"></i>
-      </span>
-
-      <span class="cc-lstat-val">85+</span>
-
-      <span class="cc-lstat-lbl">
-        Team Members across India
-      </span>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-6">
-    <div class="cc-lstat h-100">
-      <span class="cc-lstat-icon" style="color:#1d4ed8">
-        <i class="bi bi-mortarboard-fill"></i>
-      </span>
-
-      <span class="cc-lstat-val">40%</span>
-
-      <span class="cc-lstat-lbl">
-        IIM / IIT Alumni on Team
-      </span>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-6">
-    <div class="cc-lstat h-100">
-      <span class="cc-lstat-icon" style="color:#059669">
-        <i class="bi bi-gender-ambiguous"></i>
-      </span>
-
-      <span class="cc-lstat-val">45%</span>
-
-      <span class="cc-lstat-lbl">
-        Women in Leadership Roles
-      </span>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-6">
-    <div class="cc-lstat h-100">
-      <span class="cc-lstat-icon" style="color:var(--cc-orange)">
-        <i class="bi bi-lightning-charge-fill"></i>
-      </span>
-
-      <span class="cc-lstat-val">3x</span>
-
-      <span class="cc-lstat-lbl">
-        Major Product Releases / Month
-      </span>
-    </div>
-  </div>
-
-</div>
-        <!-- Awards Box -->
-        <div class="bg-white border rounded-4 p-4 mt-4">
-
-          <div
-            class="fw-semibold small mb-3 d-flex align-items-center gap-2"
-            style="color:var(--cc-navy)">
-            <i class="bi bi-trophy-fill" style="color:var(--cc-orange)"></i>
-            Recognition &amp; Awards
           </div>
 
-          <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+        </div>
 
-            <li class="d-flex align-items-start gap-2 small text-secondary">
-              <i class="bi bi-check-circle-fill flex-shrink-0"
-                style="color:var(--cc-green)"></i>
-              Great Place to Work Certified 2024
-            </li>
+        <!-- Right Side -->
+        <div class="col-lg-6">
 
-            <li class="d-flex align-items-start gap-2 small text-secondary">
-              <i class="bi bi-check-circle-fill flex-shrink-0"
-                style="color:var(--cc-green)"></i>
-              Top 10 EdTech Startups to Watch — Inc42
-            </li>
+          <!-- Stats -->
+          <div class="row g-3">
 
-            <li class="d-flex align-items-start gap-2 small text-secondary">
-              <i class="bi bi-check-circle-fill flex-shrink-0"
-                style="color:var(--cc-green)"></i>
-              Best Student Experience Platform — EduTech Awards
-            </li>
+            <div class="col-6 col-md-6">
+              <div class="cc-lstat h-100">
+                <span class="cc-lstat-icon" style="color:var(--cc-orange)">
+                  <i class="bi bi-people-fill"></i>
+                </span>
 
-            <li class="d-flex align-items-start gap-2 small text-secondary">
-              <i class="bi bi-check-circle-fill flex-shrink-0"
-                style="color:var(--cc-green)"></i>
-              4.8★ on Glassdoor from 200+ verified reviews
-            </li>
+                <span class="cc-lstat-val">85+</span>
 
-          </ul>
+                <span class="cc-lstat-lbl">
+                  Team Members across India
+                </span>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-6">
+              <div class="cc-lstat h-100">
+                <span class="cc-lstat-icon" style="color:#1d4ed8">
+                  <i class="bi bi-mortarboard-fill"></i>
+                </span>
+
+                <span class="cc-lstat-val">40%</span>
+
+                <span class="cc-lstat-lbl">
+                  IIM / IIT Alumni on Team
+                </span>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-6">
+              <div class="cc-lstat h-100">
+                <span class="cc-lstat-icon" style="color:#059669">
+                  <i class="bi bi-gender-ambiguous"></i>
+                </span>
+
+                <span class="cc-lstat-val">45%</span>
+
+                <span class="cc-lstat-lbl">
+                  Women in Leadership Roles
+                </span>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-6">
+              <div class="cc-lstat h-100">
+                <span class="cc-lstat-icon" style="color:var(--cc-orange)">
+                  <i class="bi bi-lightning-charge-fill"></i>
+                </span>
+
+                <span class="cc-lstat-val">3x</span>
+
+                <span class="cc-lstat-lbl">
+                  Major Product Releases / Month
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <!-- Awards Box -->
+          <div class="bg-white border rounded-4 p-4 mt-4">
+
+            <div class="fw-semibold small mb-3 d-flex align-items-center gap-2" style="color:var(--cc-navy)">
+              <i class="bi bi-trophy-fill" style="color:var(--cc-orange)"></i>
+              Recognition &amp; Awards
+            </div>
+
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+
+              <li class="d-flex align-items-start gap-2 small text-secondary">
+                <i class="bi bi-check-circle-fill flex-shrink-0" style="color:var(--cc-green)"></i>
+                Great Place to Work Certified 2024
+              </li>
+
+              <li class="d-flex align-items-start gap-2 small text-secondary">
+                <i class="bi bi-check-circle-fill flex-shrink-0" style="color:var(--cc-green)"></i>
+                Top 10 EdTech Startups to Watch — Inc42
+              </li>
+
+              <li class="d-flex align-items-start gap-2 small text-secondary">
+                <i class="bi bi-check-circle-fill flex-shrink-0" style="color:var(--cc-green)"></i>
+                Best Student Experience Platform — EduTech Awards
+              </li>
+
+              <li class="d-flex align-items-start gap-2 small text-secondary">
+                <i class="bi bi-check-circle-fill flex-shrink-0" style="color:var(--cc-green)"></i>
+                4.8★ on Glassdoor from 200+ verified reviews
+              </li>
+
+            </ul>
+
+          </div>
 
         </div>
 
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
   <!-- ══════════════════════════════════════════════════
      SECTION 6 — TESTIMONIALS
      ══════════════════════════════════════════════════ -->
   <div class="cc-divider"></div>
-<section class="cc-section py-5 cc-testi">
-  <div class="container">
+  <section class="cc-section py-5 cc-testi">
+    <div class="container">
 
-    <!-- Heading -->
-    <div class="text-center d-flex flex-column align-items-center justify-content-center">
+      <!-- Heading -->
+      <div class="text-center d-flex flex-column align-items-center justify-content-center">
 
-      <div
-        class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
-        <i class="bi bi-chat-quote-fill"></i>
-        Team Stories
+        <div
+          class="cc-label d-inline-flex align-items-center gap-2 text-uppercase fw-semibold rounded-pill px-3 py-2 mb-3 border">
+          <i class="bi bi-chat-quote-fill"></i>
+          Team Stories
+        </div>
+
+        <h2 class="cc-title fw-semibold display-5">
+          Hear from our people
+        </h2>
+
+        <p class="cc-desc text-secondary">
+          Real words from the team — no PR polish, no filters, no corporate speak.
+        </p>
+
       </div>
 
-      <h2 class="cc-title fw-semibold display-5">
-        Hear from our people
-      </h2>
+      <!-- Testimonials -->
+      <div class="row g-4 mt-4">
 
-      <p class="cc-desc text-secondary">
-        Real words from the team — no PR polish, no filters, no corporate speak.
-      </p>
+        <?php foreach ($TESTIMONIALS as $t): ?>
 
-    </div>
+          <div class="col-lg-4 col-md-6">
 
-    <!-- Testimonials -->
-    <div class="row g-4 mt-4">
+            <div class="cc-tcard h-100 position-relative d-flex flex-column">
 
-      <?php foreach ($TESTIMONIALS as $t): ?>
+              <!-- Quote -->
+              <p class="cc-tquote mb-0">
+                <?= htmlspecialchars($t['quote']) ?>
+              </p>
 
-        <div class="col-lg-4 col-md-6">
+              <!-- Author -->
+              <div class="cc-tauthor d-flex align-items-center gap-3 mt-auto">
 
-          <div class="cc-tcard h-100 position-relative d-flex flex-column">
-
-            <!-- Quote -->
-            <p class="cc-tquote mb-0">
-              <?= htmlspecialchars($t['quote']) ?>
-            </p>
-
-            <!-- Author -->
-            <div class="cc-tauthor d-flex align-items-center gap-3 mt-auto">
-
-              <div class="cc-tavatar flex-shrink-0"
-                style="background:<?= $t['clr'] ?>">
-                <?= $t['initials'] ?>
-              </div>
-
-              <div>
-                <div class="cc-tname">
-                  <?= htmlspecialchars($t['name']) ?>
+                <div class="cc-tavatar flex-shrink-0" style="background:<?= $t['clr'] ?>">
+                  <?= $t['initials'] ?>
                 </div>
 
-                <div class="cc-trole">
-                  <?= htmlspecialchars($t['role']) ?>
-                  &middot;
-                  <?= htmlspecialchars($t['college']) ?>
+                <div>
+                  <div class="cc-tname">
+                    <?= htmlspecialchars($t['name']) ?>
+                  </div>
+
+                  <div class="cc-trole">
+                    <?= htmlspecialchars($t['role']) ?>
+                    &middot;
+                    <?= htmlspecialchars($t['college']) ?>
+                  </div>
                 </div>
+
               </div>
 
             </div>
 
           </div>
 
-        </div>
+        <?php endforeach; ?>
 
-      <?php endforeach; ?>
-
+      </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- ══════════════════════════════════════════════════
      SECTION 7 — CONTACT / ENQUIRY
      ══════════════════════════════════════════════════ -->
@@ -2589,6 +2646,7 @@ $filter = $_GET['dept'] ?? 'All';
     })();
   </script>
 </body>
+
 </html>
 <?php
 include '../components/Footer.php';

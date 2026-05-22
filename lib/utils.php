@@ -11,28 +11,32 @@
  *
  * Usage: cn('base-class', $condition ? 'active' : '', 'other-class')
  */
-function cn(string ...$classes): string {
+function cn(string ...$classes): string
+{
     return implode(' ', array_filter(array_map('trim', $classes)));
 }
 
 /**
  * Return a CSS class string based on a condition.
  */
-function cx(bool $condition, string $when_true, string $when_false = ''): string {
+function cx(bool $condition, string $when_true, string $when_false = ''): string
+{
     return $condition ? $when_true : $when_false;
 }
 
 /**
  * Safely get a nested array value with a default.
  */
-function arr_get(array $arr, string $key, mixed $default = null): mixed {
+function arr_get(array $arr, string $key, mixed $default = null): mixed
+{
     return $arr[$key] ?? $default;
 }
 
 /**
  * Generate a URL-safe slug from a string.
  */
-function to_slug(string $text): string {
+function to_slug(string $text): string
+{
     $text = mb_strtolower(trim($text));
     $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
     $text = preg_replace('/[\s-]+/', '-', $text);
@@ -42,13 +46,15 @@ function to_slug(string $text): string {
 /**
  * Format a fee in Lakhs with ₹ symbol.
  */
-function fmt_fee(int|float $lakhs): string {
+function fmt_fee(int|float $lakhs): string
+{
     return '₹' . number_format($lakhs, 0) . 'L';
 }
 
 /**
  * Clamp a value between min and max.
  */
-function clamp(float $value, float $min, float $max): float {
+function clamp(float $value, float $min, float $max): float
+{
     return max($min, min($max, $value));
 }

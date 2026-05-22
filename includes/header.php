@@ -1,4 +1,3 @@
-
 <?php
 /**
  * includes/header.php
@@ -96,4 +95,3 @@ $__assetBase = '/' . $__parts[0] . '/';
 </script>
 
 <body class="<?= htmlspecialchars($body_class) ?>" id="page-body">
-    
